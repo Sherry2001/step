@@ -9,8 +9,90 @@ body, html {
   margin: 0;
 
 }
-/*88888888888888888888888888888888888888888*/
 
+/*Home View with Background*/
+header {
+  height: 100%;
+  background-color:rgb(50, 51, 53);
+  color: aliceblue;
+  background: url("/images/sunset.jpg") no-repeat fixed center;
+  background-size: cover;
+}
+
+/*Sections*/
+.dark {
+  height: 100%;
+  background-color:rgb(50, 51, 53);
+  color: aliceblue;
+  padding:100px 100px;
+}
+
+.light {
+  height: 100%;
+  background-color:rgb(230, 236, 248);
+  color: rgb(43, 46, 48);
+  padding: 100px 100px
+}
+
+/*Containers*/
+.container {
+  position: relative;
+  margin: 100px 100px;
+  text-align:center
+}
+
+/*Text Wrappers*/
+.abs-center {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  text-align: center;
+  -ms-transform: translate(-45%, -50%);
+  transform: translate(-50%, -50%);
+}
+
+.wrapper {
+  margin-right: auto; 
+  margin-left:  auto; 
+  max-width: 960px; 
+  padding-right: 10px; 
+  padding-left:  10px; 
+}
+
+#fact-container {
+  margin-top: 20px;
+}
+
+/*Navigation Bar*/
+nav {
+  padding-right: 3em;
+}
+
+nav ul {
+  list-style-type: none;
+  margin: 0;
+  overflow: hidden;
+  padding: 0;
+}
+
+nav li {
+  float: right;
+}
+
+nav li a {
+  display: block;
+  color: azure;
+  text-align: center;
+  padding: 14px 25px;
+  text-decoration: none;
+}
+
+nav li a:hover {
+  color: rgb(199, 238, 238);
+}
+
+/*TIMELINE CSS (taken from W3School Tutorial and edited)*/
 /* The actual timeline (the vertical ruler) */
 .timeline {
   position: relative;
@@ -135,91 +217,6 @@ body, html {
   .right {
     left: 0%;
   }
-}
-
-/*888888888888888888888888888888888*/
-
-#fact-container {
-  margin-top: 20px;
-}
-
-
-/*Sections*/
-
-header {
-  height: 100%;
-  background-color:rgb(50, 51, 53);
-  color: aliceblue;
-  background: url("/images/sunset.jpg") no-repeat fixed center;
-  background-size: cover;
-}
-
-
-.abs-center {
-  margin: 0;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  text-align: center;
-  -ms-transform: translate(-45%, -50%);
-  transform: translate(-50%, -50%);
-}
-
-.dark {
-  height: 100%;
-  background-color:rgb(50, 51, 53);
-  color: aliceblue;
-  padding:100px 100px;
-}
-
-.light {
-  height: 100%;
-  background-color:rgb(230, 236, 248);
-  color: rgb(43, 46, 48);
-  padding: 100px 100px
-}
-
-
-.container {
-  position: relative;
-  margin: 100px 100px;
-  text-align:center
-}
-
-.wrapper {
-  margin-right: auto; 
-  margin-left:  auto; 
-  max-width: 960px; 
-  padding-right: 10px; 
-  padding-left:  10px; 
-}
-
-/*Navigation Bar*/
-nav {
-  padding-right: 3em;
-}
-
-nav ul {
-  list-style-type: none;
-  margin: 0;
-  overflow: hidden;
-  padding: 0;
-}
-
-nav li {
-  float: right;
-}
-
-nav li a {
-  display: block;
-  color: azure;
-  text-align: center;
-  padding: 14px 25px;
-  text-decoration: none;
-}
-
-nav li a:hover {
-  color: rgb(199, 238, 238);
 }
 
 /*Text Appearances*/
