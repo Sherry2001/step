@@ -38,6 +38,26 @@ header {
   text-align: center;
 }
 
+.vertical-center {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+  text-align:center
+}
+
+.abs-center {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-45%, -50%);
+  transform: translate(-50%, -50%);
+}
+
+
+
 .dark {
   height: 100%;
   background-color:rgb(50, 51, 53);
@@ -58,7 +78,8 @@ header {
 
 
 .container {
-    margin: 100px 0px;
+    position: relative;
+    margin: 100px 100px;
 }
 
 
@@ -87,20 +108,22 @@ li a {
 }
 
 li a:hover {
-  color: rgb(199, 238, 238) ;
+  color: rgb(199, 238, 238);
 }
 
 /*Font*/
 h1 { 
-  font-size: 200px
+  font-size: 200px;
+  margin: auto;
 }
 
 h2 {
-  font-size: 50px
+  font-size: 50px;
+  margin: auto
 }
 
 p {
-  font-size: 25px
+  font-size: 25px;
 }
 
   
