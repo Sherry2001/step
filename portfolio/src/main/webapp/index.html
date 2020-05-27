@@ -6,51 +6,62 @@
     <link rel="stylesheet" href="style.css">
     <script src="script.js"></script>
   </head>
+
   <body>
-    
-    <nav> 
-      <ul>
-        <li><a href="#gallery">Gallery</a>
-        <li><a href="#projects">Projects</a>
-        <li><a href="#resume">Resume</a>
-        <li><a href="#about">About Me</a>
-      </ul>  
-    </nav>
 
-    <div id="content">
-      <h1>Sherry Shi's Portfolio</h1>
-      <p>This is my portfolio.</p>
-      <p>I am a rising junior at Upenn studying computer science and 
-          business!</p>
-      <p>Click here to get a random message:</p>
-      <button onclick="addRandomGreeting()">Hello</button>
-      <div id="greeting-container"></div>
+    <header id="home" class="bg">
+      <nav>
+        <ul>
+          <li><a href="#gallery">Gallery</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#resume">Resume</a></li>
+          <li><a href="#about">About Me</a></li>
+          <li><a href="#home">Home</a></li>
+        </ul>  
+      </nav>
 
-      <p>Click here to get a random fact about me:</p>
-      <button onclick="genRandomFact()">Fact</button>
-      <div id="fact-container"></div>
-    </div>
+      <div class="yspace" class="light">
+        <h1>Sherry Shi</h1>
+        <p>Click here to get a random fact about me:</p>
+        <button onclick="genRandomFact()">Fact</button>
+        <p id="fact-container"></p>
+      </div>
+    </header>
 
     <!-- About Section --> 
-    <section id="about">
-      <p>Hello, this section is for about me</p>
+    <section id="about" class="dark">
+      <div class="container">
+        <h2>Hello, this section is for about me</h2>
+        <p>Here's some text about me blah blah blah<p>
+      </div>
     </section> 
 
     <!-- Resume Section --> 
-    <section id="resume"> 
-      <p>This will be the resume section</p>
+    <section id="resume" class="light">   
+      <div class="container">
+        <h2>Hello, this section for my resume</h2>
+        <p>Here's my resume<p>
+      </div>
     </section>
 
     <!-- Project Section --> 
-    <section id="projects"> 
-      <p>This will be the projects section, will link github</p>
+    <section id="projects" class="dark"> 
+      <div class="container">
+        <h2>Hello, this section is for my projects maybe</h2>
+        <p>Here's some text about me blah blah blah<p>      
+      	<a href="https://github.com/Sherry2001" target="_blank">Visit my Github</a>
+      </div>
     </section> 
 
     <!-- Gallery Section --> 
-    <section id="projects"> 
-      <p>This will be the gallery section, here's a pic</p>
-      <img src="/images/ryan.jpg" alt="picture of ryan the lion" />
-      <p>This is my favorite stuffed animal. His name is Ryan. He's a lion.</p>
+    <section id="gallery" class="light"> 
+      <div class="projects">
+        <h2>This will be the gallery section, here's a pic</h2>
+        <img src="/images/ryan.jpg" alt="picture of ryan the lion" />
+        <p>This is my favorite stuffed animal. His name is Ryan. He's a lion.</p>
+      </div>
     </section> 
+    
   </body>
 </html>
+
