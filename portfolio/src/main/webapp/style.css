@@ -56,8 +56,6 @@ header {
   transform: translate(-50%, -50%);
 }
 
-
-
 .dark {
   height: 100%;
   background-color:rgb(50, 51, 53);
@@ -78,14 +76,13 @@ header {
 
 
 .container {
-    position: relative;
-    margin: 100px 100px;
+  position: relative;
+  margin: 100px 100px;
 }
-
 
 /*Navigation Bar*/
 nav {
-    padding-right: 3em;
+  padding-right: 3em;
 }
 
 ul {
@@ -125,5 +122,3 @@ h2 {
 p {
   font-size: 25px;
 }
-
-  
