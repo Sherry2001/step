@@ -21,14 +21,14 @@ header {
 
 /*Sections*/
 .dark {
-  height: 100%;
+  height: auto;
   background-color:rgb(50, 51, 53);
   color: aliceblue;
   padding:100px 100px;
 }
 
 .light {
-  height: 100%;
+  height: auto;
   background-color:rgb(230, 236, 248);
   color: rgb(43, 46, 48);
   padding: 100px 100px
