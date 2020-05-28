@@ -45,3 +45,24 @@ function genRandomFact() {
   const factContainer = document.getElementById('fact-container');
   factContainer.innerText = fact;
 }
+
+document.addEventListener('DOMContentLoaded', function() {
+
+    //Sticky Nav Bar
+    window.onscroll = function() {stickyNav()};
+
+    var navbar = document.getElementById("nav");
+
+    var offsetPos = navbar.offsetTop;
+
+    // Add the sticky class to the navbar when you reach its scroll position. Remove "sticky" when you leave the scroll position
+    function stickyNav() {
+    if (window.pageYOffset >= offsetPos) {
+        navbar.classList.add("sticky")
+    } else {
+        navbar.classList.remove("sticky");
+    }
+    }
+
+});
+

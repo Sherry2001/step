@@ -11,13 +11,14 @@ body, html {
 }
 
 /*Home View with Background*/
-header {
+header{
   height: 100%;
-  background-color:rgb(50, 51, 53);
-  color: aliceblue;
-  background: url("/images/sunset.jpg") no-repeat fixed center;
+  background: linear-gradient(rgba(12, 12, 12, 0.99),rgba(12, 12, 12, 0.3)), 
+      url("/images/sunset.jpg") no-repeat fixed center;
+  color: #fcfafc;
   background-size: cover;
 }
+
 
 /*Sections*/
 section {
