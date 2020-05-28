@@ -19,12 +19,12 @@ header{
   background-size: cover;
 }
 
-
 /*Sections*/
 section {
   height: auto;
   padding:100px 100px;
 }
+
 .dark {
   background-color:#0C0C0C;
   color: #fcfafc;
@@ -74,6 +74,7 @@ section {
   max-width: 1000px;
   text-align: left;
 }
+
 .content {
   text-align: left 
 }
@@ -85,6 +86,67 @@ section {
 
 #fact-container {
   margin-top: 20px;
+}
+
+/*Cards*/
+.card {
+  background-color:#fff;
+  box-sizing: border-box;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 5px 15px rgba(0,0,0,.2);
+  transition: .2s;
+  padding: 20px;
+  max-width: 33.33%;
+  margin: auto;
+}
+
+.card:hover {
+  transform: translateY(-.5%);
+  box-shadow: 0 7px 18px rgba(0,0,0,.4);
+}
+
+.card img {
+  display: block;
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.card .descrip {
+  padding: 5px 5px;  
+}
+
+.card h3 {
+  font-size: 35px;
+  font-weight: 500;
+  color: rgb(61, 60, 60);
+  margin-bottom: 1.5rem;
+}
+
+.card p {
+  font-size: 18px;
+  letter-spacing: .1rem;
+  line-height: 1.6;
+  color: #0C0C0C;
+  margin-bottom: 2.5rem;
+}
+
+.card button {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  font-size: 20px;
+  text-align: center;
+  color:#0C0C0C;
+  background-color: #c7e8ff;
+  border-radius: 10px;
+  transition: .2s;  
+}
+
+.card button:hover {
+  background-color: #d5eeff;
 }
 
 /*Image Class*/
