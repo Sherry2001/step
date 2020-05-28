@@ -20,18 +20,23 @@ header {
 }
 
 /*Sections*/
-.dark {
+section {
   height: auto;
-  background-color:rgb(50, 51, 53);
-  color: aliceblue;
   padding:100px 100px;
+}
+.dark {
+  background-color:#0C0C0C;
+  color: #fcfafc;
 }
 
 .light {
-  height: auto;
-  background-color:rgb(230, 236, 248);
-  color: rgb(43, 46, 48);
-  padding: 100px 100px
+  background-color: #fcfafc;
+  color: #0C0C0C;
+}
+
+.blue {
+  background-color: #c7e8ff;
+  color: #0C0C0C;
 }
 
 /*Containers*/
@@ -64,6 +69,10 @@ header {
   text-align: left;
 }
 
+.content {
+  text-align: left 
+}
+
 .intro {
   margin: 0;
   padding-left: 10px;
@@ -82,6 +91,28 @@ header {
 }
 
 /*Columns*/
+.column {
+  float: left;
+  padding: 20px;
+}
+
+.quarter {
+  width: 25%;
+}
+
+.half {
+  width: 50%;
+}
+
+.third {
+  width: 33.33%;
+}
+
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
 
 /*Navigation Bar*/
 nav {
@@ -101,7 +132,7 @@ nav li {
 
 nav li a {
   display: block;
-  color: azure;
+  color: #fcfafc;
   text-align: center;
   padding: 14px 25px;
   text-decoration: none;
@@ -244,21 +275,12 @@ nav li a:hover {
 }
 
 /*Text Appearances*/
-h1 { 
+.title {
   font-size: 80px;
-  margin: auto;
+  margin: 0;
 }
 
-h2 {
-  font-size: 50px;
-  margin: auto
+.blueC {
+   color: #c7e8ff;
 }
 
-h3 {
-  font-size: 30px;
-  margin: auto
-}
-
-p {
-  font-size: 20px;
-}
