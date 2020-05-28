@@ -119,31 +119,42 @@ section {
 }
 
 /*Navigation Bar*/
-nav {
-  padding-right: 3em;
+#nav{
+  --text: #fcfafc;
+  --inverse: #0C0C0C;
+  --background: transparent;
+
+  background: var(--background);
+  padding: 15px;
 }
 
-nav ul {
+#nav ul {
   list-style-type: none;
   margin: 0;
   overflow: hidden;
   padding: 0;
 }
 
-nav li {
+#nav li {
   float: right;
 }
 
-nav li a {
+#nav li a {
+  color: var(--text);
   display: block;
-  color: #fcfafc;
   text-align: center;
   padding: 14px 25px;
   text-decoration: none;
 }
 
-nav li a:hover {
+#nav li a:hover {
   color: rgb(199, 238, 238);
+}
+
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%;
 }
 
 /*TIMELINE CSS (taken from W3School Tutorial and edited)*/
