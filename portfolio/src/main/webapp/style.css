@@ -60,15 +60,19 @@ section {
 .wrapper {
   margin-right: auto; 
   margin-left: auto; 
-  max-width: 960px; 
-  padding: 50px 10px;
+  padding: 50px 10px 10px 10px;
 }
 
 .bio {
   display: flex;
   text-align: left;
+  max-width: 860px; 
 }
 
+.profile {
+  max-width: 1000px;
+  text-align: left;
+}
 .content {
   text-align: left 
 }
@@ -275,12 +279,27 @@ nav li a:hover {
 }
 
 /*Text Appearances*/
-.title {
-  font-size: 80px;
-  margin: 0;
+.bluec {
+   color: #c7e8ff;
 }
 
-.blueC {
-   color: #c7e8ff;
+h1 {
+  font-size: 80px;
+}
+
+h2 {
+  font-size: 60px;
+}
+
+h3 {
+  font-size: 40px;
+}
+
+h4 {
+  font-size: 20px;
+}
+
+.slim {
+  margin: auto;
 }
 
