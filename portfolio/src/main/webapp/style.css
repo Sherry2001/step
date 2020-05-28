@@ -120,12 +120,9 @@ section {
 
 /*Navigation Bar*/
 #nav{
-  --text: #fcfafc;
-  --inverse: #0C0C0C;
-  --background: transparent;
-
-  background: var(--background);
-  padding: 15px;
+  background: rgba(12, 12, 12, 0.719);
+  z-index: 9999;
+  padding: 8px 15px 0px 15px;
 }
 
 #nav ul {
@@ -140,7 +137,7 @@ section {
 }
 
 #nav li a {
-  color: var(--text);
+  color: #fcfafc;
   display: block;
   text-align: center;
   padding: 14px 25px;
@@ -148,7 +145,7 @@ section {
 }
 
 #nav li a:hover {
-  color: rgb(199, 238, 238);
+  color: rgb(197, 197, 197);
 }
 
 .sticky {
