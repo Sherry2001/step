@@ -25,17 +25,17 @@ section {
   padding:100px 100px;
 }
 
-.dark {
+section.dark {
   background-color:#0C0C0C;
   color: #fcfafc;
 }
 
-.light {
+section.light {
   background-color: #fcfafc;
   color: #0C0C0C;
 }
 
-.blue {
+section.blue {
   background-color: #c7e8ff;
   color: #0C0C0C;
 }
@@ -174,15 +174,15 @@ section {
   padding: 20px;
 }
 
-.quarter {
+.column.quarter {
   width: 25%;
 }
 
-.half {
+.column.half {
   width: 50%;
 }
 
-.third {
+.column.third {
   width: 33.33%;
 }
 
@@ -249,7 +249,7 @@ section {
 }
 
 /* Container around content */
-.tl-container {
+.timeline-container {
   padding: 10px 40px;
   position: relative;
   background-color: inherit;
@@ -258,7 +258,7 @@ section {
 }
 
 /* The circles on the timeline */
-.tl-container::after {
+.timeline-container::after {
   content: '';
   position: absolute;
   width: 25px;
@@ -272,17 +272,17 @@ section {
 }
 
 /* Place the container to the left */
-.left {
+.timeline-container.left {
   left: 0;
 }
 
 /* Place the container to the right */
-.right {
+.timeline-container.right {
   left: 50%;
 }
 
 /* Add arrows to the left container (pointing right) */
-.left::before {
+.timeline-container.left::before {
   content: " ";
   height: 0;
   position: absolute;
@@ -296,7 +296,7 @@ section {
 }
 
 /* Add arrows to the right container (pointing left) */
-.right::before {
+.timeline-container.right::before {
   content: " ";
   height: 0;
   position: absolute;
@@ -310,12 +310,12 @@ section {
 }
 
 /* Fix the circle for containers on the right side */
-.right::after {
+.timeline-container.right::after {
   left: -16px;
 } 
 
 /* The actual content */
-.tl-content {
+.timeline-content {
   padding: 20px 30px;
   background-color: white;
   position: relative;
@@ -323,7 +323,7 @@ section {
   color: #474e5d
 }
 
-.tl-content:hover {
+.timeline-content:hover {
   color: #8a94aa
 }
 
@@ -335,14 +335,14 @@ section {
   }
 
 /* Full-width containers */
-  .tl-container {
+  .timeline-container {
     width: 100%;
     padding-left: 70px;
     padding-right: 25px;
   }
 
 /* Make sure that all arrows are pointing leftwards */
-  .tl-container::before {
+  .timeline-container::before {
     left: 60px;
     border: medium solid white;
     border-width: 10px 10px 10px 0;
