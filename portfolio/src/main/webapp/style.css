@@ -37,7 +37,7 @@ header {
 /*Containers*/
 .container {
   position: relative;
-  margin: 100px 100px;
+  margin: 50px 50px;
   text-align:center
 }
 
@@ -57,11 +57,11 @@ header {
   margin-left: auto; 
   max-width: 960px; 
   padding: 50px 10px;
-  text-align: left;
 }
 
 .bio {
   display: flex;
+  text-align: left;
 }
 
 .intro {
@@ -76,7 +76,7 @@ header {
 /*Image Class*/
 .propic {
   width: 150px;
-  border:2px outset aliceblue;
+  border:2px solid aliceblue;
   border-radius:50%;
   margin: 10px;
 }
@@ -115,7 +115,7 @@ nav li a:hover {
 .timeline {
   position: relative;
   max-width: 1200px;
-  margin: 0 auto;
+  margin: 70px 20px;
 }
 
 /* The actual timeline (the vertical ruler) */
@@ -136,6 +136,7 @@ nav li a:hover {
   position: relative;
   background-color: inherit;
   width: 50%;
+  text-align: left;
 }
 
 /* The circles on the timeline */
@@ -202,6 +203,10 @@ nav li a:hover {
   position: relative;
   border-radius: 6px;
   color: #474e5d
+}
+
+.tl-content:hover {
+  color: #8a94aa
 }
 
 /* Media queries - Responsive timeline on screens less than 600px wide */
