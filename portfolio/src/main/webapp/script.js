@@ -11,13 +11,11 @@ function genRandomFact() {
     'I am 19 years old!',
   ];
 
-  // Pick a random greeting, no repeat.
   let randomIndex = randomNumGenerator(facts.length);
   console.log(randomIndex);
   lastRandomIndex = randomIndex;
   let fact = facts[randomIndex];
 
-  // Add it to the page.
   const factContainer = document.getElementById('fact-container');
   factContainer.innerText = fact;
 }
