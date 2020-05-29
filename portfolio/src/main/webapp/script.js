@@ -46,3 +46,13 @@ document.addEventListener('DOMContentLoaded', function() {
   };
 });
 
+/**
+ *Functions to toggle suggestion box form on and off
+ */
+function openForm() {
+  document.getElementById("recommendations").style.display="block";
+}
+
+function closeForm() {
+  document.getElementById("recommendations").style.display="none";
+}

@@ -13,7 +13,7 @@
     <header id="home" class="bg">
       <div id="nav">
         <ul>
-          <li><a href="#gallery">Gallery</a></li>
+          <li><a href="gallery.html">Gallery</a></li>
           <li><a href="#to-do">To-Do's</a></li>
           <li><a href="#projects">Projects</a></li>
           <li><a href="#timeline">Timeline</a></li>
@@ -105,7 +105,7 @@
     <section id="projects" class="light"> 
       <div class="container">
         <h3>My Porfolio</h3>
-        <h4 class="grey-text">Some personal and class projects</h4>      
+        <h4 class="blue-text">Some personal and class projects</h4>      
         <div class="row wrapper projects">
           <div class="column third">
             <div class="card">
@@ -194,81 +194,61 @@
     </section> 
 
     <!-- To-Do Section -->
-    <section id="to-do" class="dark container">
-      <h3>My To-Do List</h3>
-      <div class="row">
-        <div class="column third">
-          <div class="to-do-container">
-            <h4 class="blue-text">Books to Read</h4>
-            <p>A Brief History of Time<br><span class="grey-text">by Stephen Hawking</span></p>
-            <p>A Brief History of Time<br><span class="grey-text">by Stephen Hawking</span></p>
+    <section id="to-do" class="dark">
+      <div class="container">
+        <h3>My To-Do List</h3>
+        <div class="row">
+          <div class="column third">
+            <div class="to-do-container">
+              <h4 class="blue-text">Books to Read</h4>
+              <p>A Brief History of Time<br><span class="grey-text">by Stephen Hawking</span></p>
+              <p>A Brief History of Time<br><span class="grey-text">by Stephen Hawking</span></p>
+            </div>
+          </div>
+          <div class="column third">
+            <div class="to-do-container">
+              <h4 class="blue-text">Movies to Watch</h4>
+              <p>A Brief History of Time<br><span class="grey-text">by Stephen Hawking</span></p>
+              <p>A Brief History of Time<br><span class="grey-text">by Stephen Hawking</span></p>
+            </div>
+          </div>
+          <div class="column third">
+            <div class="to-do-container">
+              <h4 class="blue-text">Places to Travel</h4>
+              <p>A Brief History of Time<br><span class="grey-text">by Stephen Hawking</span></p>
+              <p>A Brief History of Time<br><span class="grey-text">by Stephen Hawking</span></p>
+            </div>
           </div>
         </div>
-        <div class="column third">
-          <div class="to-do-container">
-            <h4 class="blue-text">Movies to Watch</h4>
-            <p>A Brief History of Time<br><span class="grey-text">by Stephen Hawking</span></p>
-            <p>A Brief History of Time<br><span class="grey-text">by Stephen Hawking</span></p>
+        <button onClick="openForm()">Suggestion Box</button>
+        <form id="recommendations">
+          <h5 class="blue-text">
+        	  Give me your recommendations! Music, books, movies, tv-shows, foods, I'm all ears :)
+              </h5>
+          <input id="name" type="text" placeholder="Your Name?">
+          <select id="category" placeholder="Category" >
+            <option value="Literature">Literature</option>
+            <option value="Music">Music</option>
+            <option value="Movie">Movie</option>
+            <option value="TV-Show">TV-Show</option>
+            <option value="Travel">Travel Destination</option>
+            <option value="Food">Food</option>
+            <option value="Activity">Activity</option>
+            <option value="Other">Other</option>
+          </select>
+          <input id="recommendation" type="text" placeholder="Your Recommendation?">
+          <textarea id="comment" type="text" placeholder="Any additional comments?"></textarea>
+          <div class="row">
+            <div class="column half">
+              <button type="submit">Send</button>
+            </div> 
+            <div class="column half">
+              <button onclick="closeForm()">Close Form</button>
+            </div>   
           </div>
-        </div>
-        <div class="column third">
-          <div class="to-do-container">
-            <h4 class="blue-text">Places to Travel</h4>
-            <p>A Brief History of Time<br><span class="grey-text">by Stephen Hawking</span></p>
-            <p>A Brief History of Time<br><span class="grey-text">by Stephen Hawking</span></p>
-          </div>
-        </div>
+        </form>
       </div>
     </section>
-
-    <!-- Gallery Section --> 
-    <section id="gallery" class="light"> 
-      <div class="container">
-        <h3>My Gallery</h3>
-        <div class="row"> 
-            <div class="column gallery quarter">
-                <img src="/images/sunset.jpg" style="width:100%">
-                <img src="/images/ryan.jpg" style="width:100%">
-                <img src="/images/sunset.jpg" style="width:100%">
-                <img src="/images/ryan.jpg" style="width:100%">
-                <img src="/images/sunset.jpg" style="width:100%">
-                <img src="/images/ryan.jpg" style="width:100%">
-                <img src="/images/sunset.jpg" style="width:100%">
-                <img src="/images/ryan.jpg" style="width:100%">
-            </div>
-            <div class="column gallery quarter">
-                <img src="/images/sunset.jpg" style="width:100%">
-                <img src="/images/ryan.jpg" style="width:100%">
-                <img src="/images/sunset.jpg" style="width:100%">
-                <img src="/images/ryan.jpg" style="width:100%">
-                <img src="/images/sunset.jpg" style="width:100%">
-                <img src="/images/ryan.jpg" style="width:100%">
-                <img src="/images/sunset.jpg" style="width:100%">
-                <img src="/images/ryan.jpg" style="width:100%">
-            </div>  
-            <div class="column gallery quarter">
-                <img src="/images/sunset.jpg" style="width:100%">
-                <img src="/images/ryan.jpg" style="width:100%">
-                <img src="/images/sunset.jpg" style="width:100%">
-                <img src="/images/ryan.jpg" style="width:100%">
-                <img src="/images/sunset.jpg" style="width:100%">
-                <img src="/images/ryan.jpg" style="width:100%">
-                <img src="/images/sunset.jpg" style="width:100%">
-                <img src="/images/ryan.jpg" style="width:100%">
-            </div>
-            <div class="column gallery quarter">
-                <img src="/images/sunset.jpg" style="width:100%">
-                <img src="/images/ryan.jpg" style="width:100%">
-                <img src="/images/sunset.jpg" style="width:100%">
-                <img src="/images/ryan.jpg" style="width:100%">
-                <img src="/images/sunset.jpg" style="width:100%">
-                <img src="/images/ryan.jpg" style="width:100%">
-                <img src="/images/sunset.jpg" style="width:100%">
-                <img src="/images/ryan.jpg" style="width:100%">
-            </div>
-        </div>
-      </div>
-    </section> 
   </body>
 </html>
 

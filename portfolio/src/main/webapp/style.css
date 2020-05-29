@@ -86,7 +86,7 @@ section.blue {
 }
 
 .wrapper {
-  margin: auto; 
+  margin: 0px auto; 
   padding: 25px 10px 10px;
 }
 
@@ -198,8 +198,8 @@ section.blue {
 
 /*Buttons*/
 .card .button-container {
-    bottom: 20px;
-    position: absolute;
+  bottom: 20px;
+  position: absolute;
 }
 
 .card button {
@@ -212,19 +212,19 @@ section.blue {
   background-color: #c7e8ff;
   border-radius: 10px;
   border: 2px ;
-  box-shadow: 0 2px 5px rgba(0,0,0,.3);
-  transition: .2s;  
+  box-shadow: 0 2px 3px rgba(0,0,0,.3);
+  transition: .1s;  
   float: left;
 }
 
 .card button:hover {
   background-color: #d5eeff;
-  box-shadow: 0 2px 5px rgba(0,0,0,.5);
+  box-shadow: 0 2px 3px rgba(0,0,0,.4);
 }
 
 button {
   display: block;
-  padding: 6px 6px;
+  padding: 6px 8px;
   margin: 35px auto 5px;
   font-size: 16px;
   font: inherit;
@@ -232,7 +232,8 @@ button {
   background-color: #c7e8ff;
   color: #0C0C0C;
   border-radius: 13px;
-  transition: .2s;   
+  transition: .1s;
+  border: none;
 }
 
 button:hover { 
@@ -240,6 +241,35 @@ button:hover {
   color: inherit;
   border: 2px solid #c7e8ff;
 }
+
+
+#to-do button {
+  display: block;
+  padding: 10px 13px;
+  margin: 15px auto;
+  font: 20px inherit;
+  text-align: center;
+  background-color: #c7e8ff;
+  color: #0C0C0C;
+  border-radius: 15px;
+  transition: .1s;
+  border: none;  
+}
+  
+#to-do button:hover {
+  background-color: #0c0c0c;
+  color: inherit;
+  border: 2px solid #c7e8ff;
+}
+
+#recommendations button {
+  margin: auto auto;
+  text-align: center;
+  border-radius: 8px;
+  width: 100%;
+}
+
+  
 /*Image Class*/
 .pro-pic {
   height: 175px;
@@ -507,6 +537,30 @@ button:hover {
   }
 }
 
+/*Form*/
+#recommendations {
+  background: inherit;
+  margin: 30px auto;
+  max-width: 500px;
+  position: relative;
+  border: 2px solid #c7e8ff;
+  border-radius: 20px;
+  padding: 30px 40px;
+  text-align: center;
+  display: none;
+}
+
+#recommendations input, select, textarea {
+  width: 100%;
+  padding: 15px;
+  margin: 20px auto 5px;
+  border: none;
+  border-radius: 8px;
+  background-color: #fcfafc;
+  font: inherit;
+  font-size: 15px;
+}
+
 /*To-do list*/
 #to-do ul {
   margin: auto;
@@ -523,7 +577,7 @@ button:hover {
 }
 
 .grey-text {
-  color: rgb(73, 73, 73)
+  color: rgb(211, 211, 211)
 }
 
 h1 {
@@ -540,6 +594,11 @@ h3 {
 
 h4 {
   font-size: 20px;
+}
+
+h5 {
+    font-size: 18px;
+    margin: 10px 5px;
 }
 
 .slim {
