@@ -2,17 +2,172 @@
 <html>
   <head>
     <meta charset="UTF-8">
-    <title>My Portfolio</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Sherry's Portfolio</title>
     <link rel="stylesheet" href="style.css">
     <script src="script.js"></script>
   </head>
+
   <body>
-    <div id="content">
-      <h1>My Portfolio</h1>
-      <p>This is my portfolio.</p>
-      <p>Click here to get a random message:</p>
-      <button onclick="addRandomGreeting()">Hello</button>
-      <div id="greeting-container"></div>
-    </div>
+    <!--Home Initial View-->   
+    <header id="home" class="bg">
+      <div id="nav">
+        <ul>
+          <li><a href="#gallery">Gallery</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#timeline">Timeline</a></li>
+          <li><a href="#about">About Me</a></li>
+          <li><a href="#home">Home</a></li>
+        </ul>  
+      </div>
+      <div class="absolute-center">
+        <h1>Sherry Shi</h1>
+        <p>Pictured: Port Washington Sunset | pc: Google Images</p>
+        <p>Click here to get a random fact about me:</p>
+        <button onclick="genRandomFact()">Fact</button>
+        <p id="fact-container"></p>
+      </div>
+    </header>
+
+    <!-- About Section --> 
+    <section id="about" class="dark">
+      <div class="container">
+        <h3 class="blue-text">About Me</h3>
+        <div class="wrapper bio">
+          <img class="pro-pic" src="/images/ryan.jpg" alt = "My Profile Picture">
+          <div class="intro">
+            <p>My name is Sherry. I'm a rising junior at the University of 
+                Pennsylvania currently pursuing a dual degree in Computer Science
+                from Engineering and business from Wharton.</p>
+          </div>
+        </div>
+        <div class="row wrapper profile">
+          <div class="column half">
+            <h4 class="blue-text">Basic Info</h4>
+            <b>Date of Birth:</b> 
+            <p>04/13/2001</p>
+            <b>Hometown:</b> 
+            <p>Port Washington, NY</p>
+            <b>Languages:</b>
+            <p>English \& Chinese</p>
+          </div>
+          <div class="column half">
+            <h4 class="blue-text">Interests & Hobbies</h4>
+            <b>Music</b> 
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- Timeline Section -->
+    <section id="timeline" class="dark">
+      <div class="container"> 
+        <h2>A walk through my life so far...</h2>
+        <h4 class="blue-text">Education, Work, and Other Milestones</h4> 
+        <div class="timeline">
+          <div class="timeline-container left">
+            <div class="timeline-content">
+              <h3 class="slim">2017</h3>
+              <h4 class="slim">What Happened</h4>
+              <p>A short discription of what happened</p>
+            </div>
+          </div>
+          <div class="timeline-container right">
+            <div class="timeline-content">
+              <h3 class="slim">2016</h3>
+              <h4 class="slim">What Happened</h4>
+              <p>A short discription of what happened</p>
+            </div>
+          </div>
+          <!--Will insert more timeline items-->  
+        </div>
+      </div>
+    </section> 
+
+    <!-- Project Section --> 
+    <section id="projects" class="light"> 
+      <div class="container">
+        <h2>Hello, this section is for my projects maybe</h2>
+        <p>Here's some text about me blah blah blah<p>      
+      	<a href="https://github.com/Sherry2001" target="_blank">Visit my Github</a>
+        <div class="row wrapper projects">
+          <div class="column third">
+            <div class="card">
+              <img src="/images/sunset.jpg" alt="a sunset">
+              <div class="description">
+                <h3>Project Uno</h3>
+                <p>This is a description of my project</p>
+              </div>
+              <button href=#>View</button>
+            </div> 
+          </div>
+          <div class="column third">
+            <div class="card">
+              <img src="/images/sunset.jpg" alt="a sunset">
+              <div class="description">
+                <h3>Project Uno</h3>
+                <p>This is a description of my project</p>
+              </div>
+              <button href=#>View</button>
+            </div> 
+          </div>
+          <div class="column third">
+            <div class="card">
+              <img src="/images/sunset.jpg" alt="a sunset">
+              <div class="description">
+                <h3>Project Uno</h3>
+                <p>This is a description of my project</p>
+              </div>
+              <button href=#>View</button>
+            </div> 
+          </div>
+        </div>
+
+        <div class="row wrapper projects">
+          <div class="column third">
+            <div class="card">
+              <img src="/images/sunset.jpg" alt="a sunset">
+              <div class="description">
+                <h3>Project Uno</h3>
+                <p>This is a description of my project</p>
+              </div>
+              <button href=#>View</button>
+            </div> 
+          </div>
+          <div class="column third">
+            <div class="card">
+              <img src="/images/sunset.jpg" alt="a sunset">
+              <div class="description">
+                <h3>Project Uno</h3>
+                <p>This is a description of my project</p>
+              </div>
+              <button href=#>View</button>
+            </div> 
+          </div>
+          <div class="column third">
+            <div class="card">
+              <img src="/images/sunset.jpg" alt="a sunset">
+              <div class="description">
+                <h3>Project Uno</h3>
+                <p>This is a description of my project</p>
+              </div>
+              <button href=#>View</button>
+            </div> 
+          </div>
+        </div>
+
+      </div>
+    </section> 
+
+    <!-- Gallery Section --> 
+    <section id="gallery" class="dark"> 
+      <div class="container">
+        <h2>This will be the gallery section, here's a pic</h2>
+        <img src="/images/ryan.jpg" alt="picture of ryan the lion" />
+        <p>This is my favorite stuffed animal. His name is Ryan. He's a lion.</p>
+      </div>
+    </section> 
   </body>
 </html>
+
