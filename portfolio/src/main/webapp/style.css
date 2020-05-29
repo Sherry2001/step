@@ -29,6 +29,18 @@ section {
   padding:100px 100px;
 }
 
+@media screen and (max-width: 1300px) {
+  section {
+    padding: 100px 50px;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  section {
+    padding: 100px 25px;
+  }
+}
+
 section.dark {
   background-color:#0C0C0C;
   color: #fcfafc;
@@ -51,6 +63,18 @@ section.blue {
   text-align:center
 }
 
+@media screen and (max-width: 1300px) {
+  .container {
+    margin: 50px;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .container {
+    margin: 50px 25px;
+  }
+}
+
 /*Text Wrappers*/
 .absolute-center {
   margin: 0;
@@ -63,7 +87,7 @@ section.blue {
 
 .wrapper {
   margin: auto; 
-  padding: 50px 10px 10px;
+  padding: 25px 10px 10px;
 }
 
 .bio {
@@ -73,8 +97,9 @@ section.blue {
 }
 
 .profile {
-  max-width: 1000px;
+  max-width: 1300px;
   text-align: left;
+  margin-bottom: 100px;
 }
 
 .projects {
@@ -89,7 +114,7 @@ section.blue {
 
 .intro {
   margin: 0;
-  padding-left: 10px;
+  padding-left: 20px;
 }
 
 #fact-container {
@@ -98,6 +123,22 @@ section.blue {
 }
 
 /*Cards*/
+.profile-card {
+  border-radius: 8px;
+  overflow: hidden;
+  background-color:rgb(41, 41, 41);
+  box-shadow: 0 5px 16px rgba(175, 172, 172, 0.3);
+  transition: .4s;
+  padding: 10px 20px;
+  width: 100%;
+}
+
+.profile-card:hover {
+  transform: translateY(-.2%);
+  box-shadow: 0 5px 18px rgba(175, 172, 172, 0.4);
+}
+
+
 .card {
   border-radius: 15px;
   overflow: hidden;
@@ -127,8 +168,11 @@ section.blue {
 }
 
 .card h4 {
+  font-weight: 600;
   margin: 15px 0 2px;
   transition: .4s;
+  color: #0c0c0c;
+  
 }
 
 .card h4 a{
@@ -220,10 +264,7 @@ section.blue {
   flex: calc(100%/3);
   -ms-flex: calc(100%/3);
   width: calc(100%/3);
-}
-
-.projects .column.third {
-  display: flex;
+  display: flex; /*so elements within are same height*/
 }
 
 .row:after {
@@ -249,7 +290,7 @@ section.blue {
   }
 }
 
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 1000px) {
   .column.quarter {
     -ms-flex: 50%;
     flex: 50%;
