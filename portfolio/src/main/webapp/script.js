@@ -21,17 +21,14 @@ function genRandomFact() {
  * Implements Sticky Nav Bar
  */
 document.addEventListener('DOMContentLoaded', function() {
-  window.onscroll = function() {stickyNav()};
-  var navbar = document.getElementById("nav");
-  var offsetPos = navbar.offsetTop;
-  
-  // Add the sticky class to nav when scroll, remove when not
-  function stickyNav() {
+  let navbar = document.getElementById("nav");
+  let offsetPos = navbar.offsetTop;
+  window.onscroll = function() {
     if (window.pageYOffset >= offsetPos) {
       navbar.classList.add("sticky")
     } else {
       navbar.classList.remove("sticky");
     }
-  }
+  };
 });
 
