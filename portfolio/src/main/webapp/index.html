@@ -14,6 +14,7 @@
       <div id="nav">
         <ul>
           <li><a href="#gallery">Gallery</a></li>
+          <li><a href="#to-do">To-Do's</a></li>
           <li><a href="#projects">Projects</a></li>
           <li><a href="#timeline">Timeline</a></li>
           <li><a href="#about">About Me</a></li>
@@ -23,9 +24,6 @@
       <div class="absolute-center">
         <h1>Sherry Shi</h1>
         <p>Pictured: Port Washington Sunset | pc: Google Images</p>
-        <p>Click here to get a random fact about me:</p>
-        <button onclick="genRandomFact()">Fact</button>
-        <p id="fact-container"></p>
       </div>
     </header>
 
@@ -33,14 +31,15 @@
     <section id="about" class="dark">
       <div class="container">
         <!--Intro Paragraph-->
-        <h3>About Me</h3>
-        <h4 class="blue-text">A short intro</h4>
+        <h3 class="blue-text">About Me</h3>
         <div class="wrapper bio">
           <img class="pro-pic" src="/images/ryan.jpg" alt = "My Profile Picture">
           <div class="intro">
             <p>My name is Sherry. I'm a rising junior at the University of 
                 Pennsylvania currently pursuing a dual degree in Computer Science
                 from Engineering and business from Wharton.</p>
+            <button onclick="genRandomFact()">Random Fact About Me</button>
+            <p id="fact-container"></p>
           </div>
         </div>
         <!--Three-columned Profile-->
@@ -81,7 +80,7 @@
         </div>
         <!--Timeline div sections -->
         <h3 id="timeline">A Brief History of Me</h3>
-        <h4 class="blue-text">Education, Work, and Other Milestones<h4> 
+        <h4 class="blue-text">Education, Work, and Other Milestones</h4> 
         <div class="timeline">
           <div class="timeline-container left">
             <div class="timeline-content">
@@ -194,8 +193,36 @@
       </div>
     </section> 
 
+    <!-- To-Do Section -->
+    <section id="to-do" class="dark container">
+      <h3>My To-Do List</h3>
+      <div class="row">
+        <div class="column third">
+          <div class="to-do-container">
+            <h4 class="blue-text">Books to Read</h4>
+            <p>A Brief History of Time<br><span class="grey-text">by Stephen Hawking</span></p>
+            <p>A Brief History of Time<br><span class="grey-text">by Stephen Hawking</span></p>
+          </div>
+        </div>
+        <div class="column third">
+          <div class="to-do-container">
+            <h4 class="blue-text">Movies to Watch</h4>
+            <p>A Brief History of Time<br><span class="grey-text">by Stephen Hawking</span></p>
+            <p>A Brief History of Time<br><span class="grey-text">by Stephen Hawking</span></p>
+          </div>
+        </div>
+        <div class="column third">
+          <div class="to-do-container">
+            <h4 class="blue-text">Places to Travel</h4>
+            <p>A Brief History of Time<br><span class="grey-text">by Stephen Hawking</span></p>
+            <p>A Brief History of Time<br><span class="grey-text">by Stephen Hawking</span></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- Gallery Section --> 
-    <section id="gallery" class="dark"> 
+    <section id="gallery" class="light"> 
       <div class="container">
         <h3>My Gallery</h3>
         <div class="row"> 

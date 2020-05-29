@@ -5,7 +5,7 @@ let lastRandomIndex;
  */
 function genRandomFact() {
   const facts = [
-    'I love spicey food, but I dislike eating peppers!',
+    'I love spicy food, but I dislike eating peppers!',
     'I play the flute!',
     'I have been taking lots of walks during quarantine',
     'I am 19 years old!',

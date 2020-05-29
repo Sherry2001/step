@@ -108,18 +108,30 @@ section.blue {
   flex-flow: row wrap;
 }
 
-.content {
-  text-align: left 
-}
-
 .intro {
-  margin: 0;
+  margin: auto;
   padding-left: 20px;
 }
 
 #fact-container {
-  height: 20px;
-  margin-top: 20px;
+    height: 20px;
+    margin-top: 20px;
+    color: inherit;
+    text-align: center;
+}
+
+.to-do-container {
+  /* text-align: left */
+  margin: auto;
+}
+
+.to-do-container p {
+  margin: 30px;
+}
+
+.to-do-container h4 {
+    font-size: 20px;
+    margin-bottom: 45px;
 }
 
 /*Cards*/
@@ -184,17 +196,17 @@ section.blue {
   color: #a7d7fa;
 }
 
+/*Buttons*/
 .card .button-container {
     bottom: 20px;
     position: absolute;
 }
 
-
 .card button {
   display: block;
   padding: 3px 6px;
   margin: 5px;
-  font-size: 16;
+  font-size: 15px;
   text-align: center;
   color:#0C0C0C;
   background-color: #c7e8ff;
@@ -210,10 +222,27 @@ section.blue {
   box-shadow: 0 2px 5px rgba(0,0,0,.5);
 }
 
+button {
+  display: block;
+  padding: 6px 6px;
+  margin: 35px auto 5px;
+  font-size: 16px;
+  font: inherit;
+  text-align: center;
+  background-color: #c7e8ff;
+  color: #0C0C0C;
+  border-radius: 13px;
+  transition: .2s;   
+}
 
+button:hover { 
+  background-color: #0c0c0c;
+  color: inherit;
+  border: 2px solid #c7e8ff;
+}
 /*Image Class*/
 .pro-pic {
-  width: 150px;
+  height: 175px;
   border:2px solid aliceblue;
   border-radius:50%;
   margin: 10px;
@@ -476,6 +505,12 @@ section.blue {
   .right {
     left: 0;
   }
+}
+
+/*To-do list*/
+#to-do ul {
+  margin: auto;
+  text-align: left;
 }
 
 /*Text Appearances*/
