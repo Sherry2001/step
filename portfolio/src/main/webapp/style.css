@@ -91,6 +91,7 @@ section.blue {
 }
 
 #fact-container {
+  height: 20px;
   margin-top: 20px;
 }
 
