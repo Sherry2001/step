@@ -15,12 +15,19 @@ body {
 }
 
 /*Home View with Background*/
-header{
+.home-background {
   height: 100%;
   background: linear-gradient(rgba(12, 12, 12, 0.99),rgba(12, 12, 12, 0.3)), 
       url("/images/sunset.jpg") no-repeat fixed center;
   color: #fcfafc;
   background-size: cover;
+}
+
+/*Gallery page home view with Background*/
+.gallery-background {
+  height: 60%;
+  background-color:#0C0C0C;
+  color: #fcfafc;
 }
 
 /*Sections*/
@@ -80,6 +87,14 @@ section.blue {
   margin: 0;
   position: absolute;
   top: 50%;
+  left: 50%;
+  text-align: center;
+  transform: translate(-50%, -50%);
+}
+
+.gallery-title {
+  position: absolute;
+  top: 30%;
   left: 50%;
   text-align: center;
   transform: translate(-50%, -50%);
@@ -597,8 +612,8 @@ h4 {
 }
 
 h5 {
-    font-size: 18px;
-    margin: 10px 5px;
+  font-size: 18px;
+  margin: 10px 5px;
 }
 
 .slim {
