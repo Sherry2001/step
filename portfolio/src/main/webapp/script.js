@@ -1,3 +1,4 @@
+
 let lastRandomIndex;
 
 /**
@@ -26,7 +27,7 @@ function genRandomFact() {
  */
 function randomNumGenerator(factsLength) {
   let randomIndex = Math.floor(Math.random() * factsLength);
-  return (randomIndex===lastRandomIndex)? randomNumGenerator(factsLength):randomIndex;
+  return (randomIndex === lastRandomIndex)? randomNumGenerator(factsLength):randomIndex;
 }
 
 /**
@@ -48,9 +49,38 @@ document.addEventListener('DOMContentLoaded', function() {
  *Functions to toggle suggestion box form on and off
  */
 function openForm() {
-  document.getElementById("recommendations").style.display="block";
+  document.getElementById("recommendations").style.display = "block";
 }
 
 function closeForm() {
-  document.getElementById("recommendations").style.display="none";
+  document.getElementById("recommendations").style.display = "none";
 }
+
+/**
+ *Send recommendation to my Google Sheet
+ */
+document.addEventListener('DOMContentLoaded', (event) => {
+  const scriptURL = "https://script.google.com/macros/s/AKfycbygq04RYi-5qwb82bmfONkahtZAsrz0WkSoGfHLgHVkPWnnmSI/exec";
+  const form = document.forms['recommendation-form']
+							
+  form.addEventListener('submit', e => {
+    e.preventDefault();
+    fetch(scriptURL, { method: 'POST', body: new FormData(form), mode: "no-cors"})
+	  .then(response => respond("Thank you! Your rec was sent my way :)"))
+	  .catch(error => respond("Uh oh, error: " + error.message))
+  });//the event occurred
+
+  /**
+ *Response to recommendation form
+ */
+  function respond(responseText) {
+    setTimeout(() => {
+        document.getElementById("form-response").innerHTML = responseText;
+    }, 500);
+    document.getElementById('recommendation').value = "";
+    document.getElementById('comment').value = "";
+  }
+})
+
+
+		

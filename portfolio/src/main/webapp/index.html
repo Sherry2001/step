@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Sherry's Portfolio</title>
     <link rel="stylesheet" href="style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
     <script src="script.js"></script>
   </head>
 
@@ -220,13 +221,13 @@
             </div>
           </div>
         </div>
-        <button onClick="openForm()">Suggestion Box</button>
-        <form id="recommendations">
+        <button onClick="openForm()">Suggestion Box</a></button>
+        <form id="recommendations" name="recommendation-form">
           <h5 class="blue-text">
         	  Give me your recommendations! Music, books, movies, tv-shows, foods, I'm all ears :)
               </h5>
-          <input id="name" type="text" placeholder="Your Name?">
-          <select id="category" placeholder="Category" >
+          <input id="name" type="text" name="Name" placeholder="Your Name?">
+          <select id="category" placeholder="Category" name="Category">
             <option value="Literature">Literature</option>
             <option value="Music">Music</option>
             <option value="Movie">Movie</option>
@@ -236,19 +237,54 @@
             <option value="Activity">Activity</option>
             <option value="Other">Other</option>
           </select>
-          <input id="recommendation" type="text" placeholder="Your Recommendation?">
-          <textarea id="comment" type="text" placeholder="Any additional comments?"></textarea>
+          <input id="recommendation" type="text" 
+              placeholder="Your Recommendation?" name="Recommendation">
+          <textarea id="comment" type="text" 
+              placeholder="Any additional comments?" name="Comments"></textarea>
           <div class="row">
             <div class="column half">
-              <button type="submit">Send</button>
+              <button type="submit" id="submit-form">Send</button>
             </div> 
             <div class="column half">
-              <button onclick="closeForm()">Close Form</button>
+              <button onclick="closeForm()" type="button">Close Form</button>
             </div>   
           </div>
+          <div id="form-response" class="response-container"></div>
         </form>
       </div>
     </section>
+<!--     
+    <script crossorigin>
+                            const scriptURL = "https://script.google.com/macros/s/AKfycbygq04RYi-5qwb82bmfONkahtZAsrz0WkSoGfHLgHVkPWnnmSI/exec";
+							const form = document.forms['recommendation-form']
+						    const message = document.getElementById("form-response");
+							
+							form.addEventListener('submit', e => {
+							  e.preventDefault()
+							  fetch(scriptURL, { method: 'POST', body: new FormData(form), mode: "no-cors"})
+								.then(response => console.log("hi"))
+								.catch(error => console.log("no"))
+							})
+							function showSuccessMessage (response) {
+								console.log('Success!', response)
+								setTimeout(() => {
+									successMessage.classList.remove('is-hidden')
+								}, 500)
+								document.getElementById('firstName').value = '';
+								document.getElementById('lastName').value = '';
+								document.getElementById('email').value = '';
+
+							}
+
+							function showErrorMessage (error) {
+								console.error('Error!', error.message)
+								setTimeout(() => {
+									errorMessage.classList.remove('is-hidden')
+								}, 500)
+							}
+						  
+    </script> -->
+
   </body>
 </html>
 
