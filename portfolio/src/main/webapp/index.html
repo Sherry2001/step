@@ -34,7 +34,7 @@
         <!--Intro Paragraph-->
         <h3 class="blue-text">About Me</h3>
         <div class="wrapper bio">
-          <img class="pro-pic" src="/images/ryan.jpg" alt = "My Profile Picture">
+          <img class="pro-pic" src="./images/ryan.jpg" alt = "My Profile Picture">
           <div class="intro">
             <p>My name is Sherry. I'm a rising junior at the University of 
                 Pennsylvania currently pursuing a dual degree in Computer Science
@@ -110,7 +110,7 @@
         <div class="row wrapper projects">
           <div class="column third">
             <div class="card">
-              <img src="/images/sunset.jpg" alt="a sunset">
+              <img src="./images/sunset.jpg" alt="a sunset">
               <div class="description">
                 <h4>Project Uno</h4>
                 <p>This is a description of my project</p>
@@ -123,7 +123,7 @@
           </div>
           <div class="column third">
             <div class="card">
-              <img src="/images/sunset.jpg" alt="a sunset">
+              <img src="./images/sunset.jpg" alt="a sunset">
               <div class="description">
                 <h4><a href="https://www.dolphin.upenn.edu/pennorch/">Penn Symphony Orchestra</a></h4>
                 <p>This is a description of my project</p>
@@ -136,7 +136,7 @@
           </div>
           <div class="column third">
             <div class="card">
-              <img src="/images/sunset.jpg" alt="a sunset">
+              <img src="./images/sunset.jpg" alt="a sunset">
               <div class="description">
                 <h4>Project Uno</h4>
                 <p>This is a description of my project</p>
@@ -152,7 +152,7 @@
         <div class="row wrapper projects">
           <div class="column third">
             <div class="card">
-              <img src="/images/sunset.jpg" alt="a sunset">
+              <img src="./images/sunset.jpg" alt="a sunset">
               <div class="description">
                 <h4>Project Uno</h4>
                 <p>This is a description of my project</p>
@@ -165,7 +165,7 @@
           </div>
           <div class="column third">
             <div class="card">
-              <img src="/images/sunset.jpg" alt="a sunset">
+              <img src="./images/sunset.jpg" alt="a sunset">
               <div class="description">
                 <h4>Project Uno</h4>
                 <p>This is a description of my project</p>
@@ -178,7 +178,7 @@
           </div>
           <div class="column third">
             <div class="card">
-              <img src="/images/sunset.jpg" alt="a sunset">
+              <img src="./images/sunset.jpg" alt="a sunset">
               <div class="description">
                 <h4>Project Uno</h4>
                 <p>This is a description of my project</p>
@@ -221,7 +221,7 @@
             </div>
           </div>
         </div>
-        <button onClick="openForm()">Suggestion Box</a></button>
+        <button onClick="openForm()">Suggestion Box</button>
         <form id="recommendations" name="recommendation-form">
           <h5 class="blue-text">
         	  Give me your recommendations! Music, books, movies, tv-shows, foods, I'm all ears :)
@@ -249,42 +249,9 @@
               <button onclick="closeForm()" type="button">Close Form</button>
             </div>   
           </div>
-          <div id="form-response" class="response-container"></div>
+          <p id="form-response" class="hidden"></p>
         </form>
       </div>
     </section>
-<!--     
-    <script crossorigin>
-                            const scriptURL = "https://script.google.com/macros/s/AKfycbygq04RYi-5qwb82bmfONkahtZAsrz0WkSoGfHLgHVkPWnnmSI/exec";
-							const form = document.forms['recommendation-form']
-						    const message = document.getElementById("form-response");
-							
-							form.addEventListener('submit', e => {
-							  e.preventDefault()
-							  fetch(scriptURL, { method: 'POST', body: new FormData(form), mode: "no-cors"})
-								.then(response => console.log("hi"))
-								.catch(error => console.log("no"))
-							})
-							function showSuccessMessage (response) {
-								console.log('Success!', response)
-								setTimeout(() => {
-									successMessage.classList.remove('is-hidden')
-								}, 500)
-								document.getElementById('firstName').value = '';
-								document.getElementById('lastName').value = '';
-								document.getElementById('email').value = '';
-
-							}
-
-							function showErrorMessage (error) {
-								console.error('Error!', error.message)
-								setTimeout(() => {
-									errorMessage.classList.remove('is-hidden')
-								}, 500)
-							}
-						  
-    </script> -->
-
   </body>
 </html>
-

@@ -234,7 +234,8 @@ section.blue {
 }
 
 .card button:hover {
-  background-color: #d5eeff;
+  background-color: #c7e8ff;
+  border: none;
   box-shadow: 0 2px 3px rgba(0,0,0,.4);
 }
 
@@ -258,28 +259,15 @@ button:hover {
   border: 2px solid #c7e8ff;
 }
 
-
 #to-do button {
-  display: block;
   padding: 10px 13px;
   margin: 15px auto;
   font: 20px inherit;
-  text-align: center;
-  background-color: #c7e8ff;
-  color: #0C0C0C;
   border-radius: 15px;
-  transition: .1s;
-  border: none;  
 }
   
-#to-do button:hover {
-  background-color: #0c0c0c;
-  color: inherit;
-  border: 2px solid #c7e8ff;
-}
-
 #recommendations button {
-  margin: auto auto;
+  margin: auto;
   text-align: center;
   border-radius: 8px;
   width: 100%;
@@ -517,7 +505,7 @@ button:hover {
 }
 
 .timeline-content:hover {
-  color: #000000
+  color: #000
 }
 
 /* Media queries - Responsive timeline on screens less than 600px wide */
@@ -575,6 +563,7 @@ button:hover {
   background-color: #fcfafc;
   font: inherit;
   font-size: 15px;
+  font-weight: 700;
 }
 
 /*To-do list*/
@@ -621,3 +610,6 @@ h5 {
   margin: 3px;
 }
 
+.hidden {
+  visibility: hidden;
+}
