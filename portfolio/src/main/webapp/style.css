@@ -153,7 +153,6 @@ section.blue {
 /*Cards*/
 .profile-card {
   border-radius: 8px;
-  overflow: hidden;
   background-color:rgb(41, 41, 41);
   box-shadow: 0 5px 16px rgba(175, 172, 172, 0.3);
   transition: .4s;
@@ -218,7 +217,7 @@ section.blue {
   position: absolute;
 }
 
-.card button {
+.card .skill {
   display: block;
   padding: 3px 6px;
   margin: 5px;
@@ -233,7 +232,8 @@ section.blue {
   float: left;
 }
 
-.card button:hover {
+.card .skill:hover {
+  cursor: default;
   background-color: #c7e8ff;
   border: none;
   box-shadow: 0 2px 3px rgba(0,0,0,.4);
@@ -254,6 +254,7 @@ button {
 }
 
 button:hover { 
+  cursor: pointer;
   background-color: #0c0c0c;
   color: inherit;
   border: 2px solid #c7e8ff;
