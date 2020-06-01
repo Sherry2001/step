@@ -108,6 +108,9 @@ section.blue {
 
 .bio {
   display: flex;
+  display: -webkit-box;  /* OLD - iOS 6-, Safari 3.1-6, BB7 */
+  display: -ms-flexbox;  /* TWEENER - IE 10 */
+  display: -webkit-flex; /* NEW - Safari 6.1+. iOS 7.1+, BB10 */
   text-align: left;
   max-width: 860px; 
 }
@@ -121,6 +124,9 @@ section.blue {
 .projects {
   max-width: 1500px;
   display: flex; 
+  display: -webkit-box;  /* OLD - iOS 6-, Safari 3.1-6, BB7 */
+  display: -ms-flexbox;  /* TWEENER - IE 10 */
+  display: -webkit-flex; /* NEW - Safari 6.1+. iOS 7.1+, BB10 */
   flex-flow: row wrap;
 }
 
@@ -137,7 +143,6 @@ section.blue {
 }
 
 .to-do-container {
-  /* text-align: left */
   margin: auto;
 }
 
@@ -212,7 +217,7 @@ section.blue {
 }
 
 /*Buttons*/
-.card .button-container {
+.card .skills-container {
   bottom: 20px;
   position: absolute;
 }
@@ -299,9 +304,13 @@ button:hover {
 /*Columns*/
 .row {
   display: flex;
-  display: -ms-flexbox;
+  display: -webkit-box;  /* OLD - iOS 6-, Safari 3.1-6, BB7 */
+  display: -ms-flexbox;  /* TWEENER - IE 10 */
+  display: -webkit-flex; /* NEW - Safari 6.1+. iOS 7.1+, BB10 */
   flex-wrap: wrap;
-  -ms-flex-wrap: wrap;
+  -webkit-box-flex-wrap: wrap;   /* OLD - iOS 6-, Safari 3.1-6 */
+  -webkit-flex-wrap: 25%;       /* Safari 6.1+. iOS 7.1+, BB10 */
+  -ms-flex-wrap: 25%;           /* IE 10 */
 }
 
 .column {
@@ -314,58 +323,74 @@ button:hover {
 
 .column.quarter {
   flex: 25%;
-  -ms-flex: 25%;
+  -webkit-box-flex: 25%;   /* OLD - iOS 6-, Safari 3.1-6 */
+  -webkit-flex: 25%;       /* Safari 6.1+. iOS 7.1+, BB10 */
+  -ms-flex: 25%;           /* IE 10 */
   width: 25%;
 }
 
 .column.half {
   flex: 50%;
-  -ms-flex: 50%;
+  -webkit-box-flex: 50%;   /* OLD - iOS 6-, Safari 3.1-6 */
+  -webkit-flex: 50%;       /* Safari 6.1+. iOS 7.1+, BB10 */
+  -ms-flex: 50%;           /* IE 10 */
   width: 50%;
 }
 
 .column.third {
   flex: calc(100%/3);
-  -ms-flex: calc(100%/3);
+  -webkit-box-flex: calc(100%/3);   /* OLD - iOS 6-, Safari 3.1-6 */
+  -webkit-flex: calc(100%/3);       /* Safari 6.1+. iOS 7.1+, BB10 */
+  -ms-flex: calc(100%/3);           /* IE 10 */  
   width: calc(100%/3);
   display: flex; /*so elements within are same height*/
+  display: -webkit-box;  /* OLD - iOS 6-, Safari 3.1-6, BB7 */
+  display: -ms-flexbox;  /* TWEENER - IE 10 */
+  display: -webkit-flex; /* NEW - Safari 6.1+. iOS 7.1+, BB10 */
 }
 
 .row:after {
   content: "";
   display: table;
-  clear: both;
 }
 
 
 @media screen and (max-width: 700px) {
   .column.half {
-    -ms-flex: 100%;
     flex: 100%;
+    -webkit-box-flex: 100%;   /* OLD - iOS 6-, Safari 3.1-6 */
+    -webkit-flex: 100%;       /* Safari 6.1+. iOS 7.1+, BB10 */
+    -ms-flex: 100%;           /* IE 10 */
     max-width: 100%;
   }
 }
 
 @media screen and (max-width: 860px) {
   .column.third {
-    -ms-flex: 100%;
     flex: 100%;
+    -webkit-box-flex: 100%;   /* OLD - iOS 6-, Safari 3.1-6 */
+    -webkit-flex: 100%;       /* Safari 6.1+. iOS 7.1+, BB10 */
+    -ms-flex: 100%;           /* IE 10 */
     max-width: 100%;
   }
 }
 
 @media screen and (max-width: 1000px) {
   .column.quarter {
-    -ms-flex: 50%;
-    flex: 50%;
+    flex: 100%;
+    -webkit-box-flex: 100%;   /* OLD - iOS 6-, Safari 3.1-6 */
+    -webkit-flex: 100%;       /* Safari 6.1+. iOS 7.1+, BB10 */
+    -ms-flex: 100%;           /* IE 10 */
     max-width: 50%;
   }
 }
 
 @media screen and (max-width: 680px) {
   .column.quarter {
-    -ms-flex: 100%;
     flex: 100%;
+    -webkit-box-flex: 100%;   /* OLD - iOS 6-, Safari 3.1-6 */
+    -webkit-flex: 100%;       /* Safari 6.1+. iOS 7.1+, BB10 */
+    -ms-flex: 100%;           /* IE 10 */
     max-width: 100%;
   }
 }
