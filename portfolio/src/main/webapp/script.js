@@ -1,5 +1,14 @@
 let lastRandomIndex;
 
+/**
+ *Fetch practice
+ */
+function getData() {
+  fetch('/data').then(response => response.text()).then(data => {
+    document.getElementById('data-fetched').innerHTML = data;
+  });
+}
+
 const facts = [
     'I love spicy food, but I dislike eating peppers!',
     'I play the flute!',
