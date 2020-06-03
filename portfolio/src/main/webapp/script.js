@@ -1,5 +1,27 @@
 let lastRandomIndex;
 
+/**
+ *Fetch json practice, array of messages
+ */
+function getData() {
+  fetch('/data').then(response => response.json()).then(messages => {
+    const messagesList = document.getElementById('messages-list');
+      for (var i = 0; i < messages.length; i++) {
+      console.log(messages[i]);
+      messagesList.appendChild(createListElement(messages[i]));
+    } 
+  });
+}
+
+/**
+ * Helper to create <li> element
+ */
+function createListElement(text) {
+  const li = document.createElement('li');
+  li.innerText = text;
+  return li;
+}
+
 const facts = [
     'I love spicy food, but I dislike eating peppers!',
     'I play the flute!',
