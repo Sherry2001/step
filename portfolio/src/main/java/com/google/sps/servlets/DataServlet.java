@@ -44,6 +44,21 @@ public class DataServlet extends HttpServlet {
     response.setContentType("application/json");
     response.getWriter().println(jsonResponse);
   }
+  
+  @Override
+  public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    String name = request.getParameter("name");
+    String category = request.getParameter("category");
+    String recommendation = request.getParameter("recommendation");
+    String comments = request.getParameter("comments");
+
+    String putTogether = name + "'s " + category + " recommendation: " + recommendation;
+    putTogether += name + " commented, \"" + comments + "\"";
+
+    messages.add(putTogether); 
+    System.out.println("got here" + putTogether);
+    response.sendRedirect("/index.html#to-do");
+  }
 
   private String convertToJson(List<String> messages) { 
     Gson gson = new Gson();

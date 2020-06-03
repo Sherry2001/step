@@ -568,7 +568,7 @@ button:hover {
 }
 
 /*Form*/
-#recommendations {
+form {
   background: inherit;
   margin: 30px auto;
   max-width: 500px;
@@ -577,10 +577,13 @@ button:hover {
   border-radius: 20px;
   padding: 30px 40px;
   text-align: center;
+}
+
+#recommendations {
   display: none;
 }
 
-#recommendations input, select, textarea {
+form input, select, textarea {
   width: 100%;
   padding: 15px;
   margin: 20px auto 5px;

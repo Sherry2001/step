@@ -221,6 +221,31 @@
             </div>
           </div>
         </div>
+        <!-- Trying week3 post to server form--> 
+        <form action="/data" method="POST" name="recommendation-form-server" style="visibility:visible">
+          <h5 class="blue-text">
+        	  Give me your recommendations! Music, books, movies, tv-shows, foods, I'm all ears :)
+              </h5>
+          <input id="name" type="text" name="name" placeholder="Your Name?">
+          <select id="category" placeholder="category" name="category">
+            <option value="Literature">Literature</option>
+            <option value="Music">Music</option>
+            <option value="Movie">Movie</option>
+            <option value="TV-Show">TV-Show</option>
+            <option value="Travel">Travel Destination</option>
+            <option value="Food">Food</option>
+            <option value="Activity">Activity</option>
+            <option value="Other">Other</option>
+          </select>
+          <input id="recommendation" type="text" 
+              placeholder="Your Recommendation?" name="recommendation">
+          <textarea id="comment" type="text" 
+              placeholder="Any additional comments?" name="comments"></textarea>
+          <button type="submit" id="submit-form">Send</button>
+          <p id="form-response" class="hidden"></p>
+        </form>
+
+        <!--Original Form--> 
         <button onClick="openForm()">Suggestion Box</button>
         <form id="recommendations" name="recommendation-form">
           <h5 class="blue-text">
