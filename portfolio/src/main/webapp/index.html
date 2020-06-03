@@ -5,65 +5,82 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Sherry's Portfolio</title>
     <link rel="stylesheet" href="style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
     <script src="script.js"></script>
   </head>
 
   <body>
     <!--Home Initial View-->   
-    <header id="home" class="bg">
+    <header id="home" class="home-background">
       <div id="nav">
         <ul>
-          <li><a href="#gallery">Gallery</a></li>
-          <li><a href="#projects">Projects</a></li>
-          <li><a href="#timeline">Timeline</a></li>
-          <li><a href="#about">About Me</a></li>
-          <li><a href="#home">Home</a></li>
+          <li><a href="gallery.html">Gallery</a></li>
+          <li><a href="index.html#to-do">To-Do's</a></li>
+          <li><a href="index.html#projects">Projects</a></li>
+          <li><a href="index.html#timeline">Timeline</a></li>
+          <li><a href="index.html#about">About Me</a></li>
+          <li><a href="index.html#home">Home</a></li>
         </ul>  
       </div>
       <div class="absolute-center">
         <h1>Sherry Shi</h1>
         <p>Pictured: Port Washington Sunset | pc: Google Images</p>
-        <p>Click here to get a random fact about me:</p>
-        <button onclick="genRandomFact()">Fact</button>
-        <p id="fact-container"></p>
       </div>
     </header>
 
     <!-- About Section --> 
     <section id="about" class="dark">
       <div class="container">
+        <!--Intro Paragraph-->
         <h3 class="blue-text">About Me</h3>
         <div class="wrapper bio">
-          <img class="pro-pic" src="/images/ryan.jpg" alt = "My Profile Picture">
+          <img class="pro-pic" src="./images/ryan.jpg" alt = "My Profile Picture">
           <div class="intro">
             <p>My name is Sherry. I'm a rising junior at the University of 
                 Pennsylvania currently pursuing a dual degree in Computer Science
                 from Engineering and business from Wharton.</p>
+            <button onclick="genRandomFact()">Random Fact About Me</button>
+            <p id="fact-container"></p>
           </div>
         </div>
+        <!--Three-columned Profile-->
         <div class="row wrapper profile">
-          <div class="column half">
-            <h4 class="blue-text">Basic Info</h4>
-            <b>Date of Birth:</b> 
-            <p>04/13/2001</p>
-            <b>Hometown:</b> 
-            <p>Port Washington, NY</p>
-            <b>Languages:</b>
-            <p>English \& Chinese</p>
+          <div class="column third">
+            <div class="profile-card">
+              <h4 class="blue-text">Basic Info</h4>
+              <strong>Date of Birth:</strong> 
+              <p>04/13/2001</p>
+              <strong>Hometown:</strong> 
+              <p>Port Washington, NY</p>
+              <strong>Languages:</strong>
+              <p>English & Chinese</p>
+            </div>
           </div>
-          <div class="column half">
-            <h4 class="blue-text">Interests & Hobbies</h4>
-            <b>Music</b> 
+          <div class="column third">
+            <div class="profile-card">
+              <h4 class="blue-text">Basic Info</h4>
+              <strong>Date of Birth:</strong> 
+              <p>04/13/2001</p>
+              <strong>Hometown:</strong> 
+              <p>Port Washington, NY</p>
+              <strong>Languages:</strong>
+              <p>English & Chinese</p>
+            </div> 
+          </div>
+          <div class="column third">
+            <div class="profile-card">
+              <h4 class="blue-text">Basic Info</h4>
+              <strong>Date of Birth:</strong> 
+              <p>04/13/2001</p>
+              <strong>Hometown:</strong> 
+              <p>Port Washington, NY</p>
+              <strong>Languages:</strong>
+              <p>English & Chinese</p>
+            </div>
           </div>
         </div>
-      </div>
-
-    </section>
-
-    <!-- Timeline Section -->
-    <section id="timeline" class="dark">
-      <div class="container"> 
-        <h2>A walk through my life so far...</h2>
+        <!--Timeline div sections -->
+        <h3 id="timeline">A Brief History of Me</h3>
         <h4 class="blue-text">Education, Work, and Other Milestones</h4> 
         <div class="timeline">
           <div class="timeline-container left">
@@ -83,43 +100,51 @@
           <!--Will insert more timeline items-->  
         </div>
       </div>
-    </section> 
+    </section>
 
     <!-- Project Section --> 
     <section id="projects" class="light"> 
       <div class="container">
-        <h2>Hello, this section is for my projects maybe</h2>
-        <p>Here's some text about me blah blah blah<p>      
-      	<a href="https://github.com/Sherry2001" target="_blank">Visit my Github</a>
+        <h3>My Porfolio</h3>
+        <h4 class="blue-text">Some personal and class projects</h4>      
         <div class="row wrapper projects">
           <div class="column third">
             <div class="card">
-              <img src="/images/sunset.jpg" alt="a sunset">
+              <img src="./images/sunset.jpg" alt="a sunset">
               <div class="description">
-                <h3>Project Uno</h3>
+                <h4>Project Uno</h4>
                 <p>This is a description of my project</p>
               </div>
-              <button href=#>View</button>
+              <div class="skills-container">
+                <div class="skill">View</div>
+                <div class="skill">Another Skill</div>
+              </div>
             </div> 
           </div>
           <div class="column third">
             <div class="card">
-              <img src="/images/sunset.jpg" alt="a sunset">
+              <img src="./images/sunset.jpg" alt="a sunset">
               <div class="description">
-                <h3>Project Uno</h3>
+                <h4><a href="https://www.dolphin.upenn.edu/pennorch/">Penn Symphony Orchestra</a></h4>
                 <p>This is a description of my project</p>
               </div>
-              <button href=#>View</button>
+              <div class="skills-container">
+                <div class="skill">View</div>
+                <div class="skill">Another Skill</div>
+              </div>
             </div> 
           </div>
           <div class="column third">
             <div class="card">
-              <img src="/images/sunset.jpg" alt="a sunset">
+              <img src="./images/sunset.jpg" alt="a sunset">
               <div class="description">
-                <h3>Project Uno</h3>
+                <h4>Project Uno</h4>
                 <p>This is a description of my project</p>
               </div>
-              <button href=#>View</button>
+              <div class="skills-container">
+                <div class="skill">View</div>
+                <div class="skill">Another Skill</div>
+              </div>
             </div> 
           </div>
         </div>
@@ -127,32 +152,41 @@
         <div class="row wrapper projects">
           <div class="column third">
             <div class="card">
-              <img src="/images/sunset.jpg" alt="a sunset">
+              <img src="./images/sunset.jpg" alt="a sunset">
               <div class="description">
-                <h3>Project Uno</h3>
+                <h4>Project Uno</h4>
                 <p>This is a description of my project</p>
               </div>
-              <button href=#>View</button>
+              <div class="skills-container">
+                <div class="skill">View</div>
+                <div class="skill">Another Skill</div>
+              </div>
             </div> 
           </div>
           <div class="column third">
             <div class="card">
-              <img src="/images/sunset.jpg" alt="a sunset">
+              <img src="./images/sunset.jpg" alt="a sunset">
               <div class="description">
-                <h3>Project Uno</h3>
+                <h4>Project Uno</h4>
                 <p>This is a description of my project</p>
               </div>
-              <button href=#>View</button>
+              <div class="skills-container">
+                <div class="skill">View</div>
+                <div class="skill">Another Skill</div>
+              </div>
             </div> 
           </div>
           <div class="column third">
             <div class="card">
-              <img src="/images/sunset.jpg" alt="a sunset">
+              <img src="./images/sunset.jpg" alt="a sunset">
               <div class="description">
-                <h3>Project Uno</h3>
+                <h4>Project Uno</h4>
                 <p>This is a description of my project</p>
               </div>
-              <button href=#>View</button>
+              <div class="skills-container">
+                <div class="skill">View</div>
+                <div class="skill">Another Skill</div>
+              </div>
             </div> 
           </div>
         </div>
@@ -160,14 +194,64 @@
       </div>
     </section> 
 
-    <!-- Gallery Section --> 
-    <section id="gallery" class="dark"> 
+    <!-- To-Do Section -->
+    <section id="to-do" class="dark">
       <div class="container">
-        <h2>This will be the gallery section, here's a pic</h2>
-        <img src="/images/ryan.jpg" alt="picture of ryan the lion" />
-        <p>This is my favorite stuffed animal. His name is Ryan. He's a lion.</p>
+        <h3>My To-Do List</h3>
+        <div class="row">
+          <div class="column third">
+            <div class="to-do-container">
+              <h4 class="blue-text">Books to Read</h4>
+              <p>A Brief History of Time<br><span class="grey-text">by Stephen Hawking</span></p>
+              <p>A Brief History of Time<br><span class="grey-text">by Stephen Hawking</span></p>
+            </div>
+          </div>
+          <div class="column third">
+            <div class="to-do-container">
+              <h4 class="blue-text">Movies to Watch</h4>
+              <p>A Brief History of Time<br><span class="grey-text">by Stephen Hawking</span></p>
+              <p>A Brief History of Time<br><span class="grey-text">by Stephen Hawking</span></p>
+            </div>
+          </div>
+          <div class="column third">
+            <div class="to-do-container">
+              <h4 class="blue-text">Places to Travel</h4>
+              <p>A Brief History of Time<br><span class="grey-text">by Stephen Hawking</span></p>
+              <p>A Brief History of Time<br><span class="grey-text">by Stephen Hawking</span></p>
+            </div>
+          </div>
+        </div>
+        <button onClick="openForm()">Suggestion Box</button>
+        <form id="recommendations" name="recommendation-form">
+          <h5 class="blue-text">
+        	  Give me your recommendations! Music, books, movies, tv-shows, foods, I'm all ears :)
+              </h5>
+          <input id="name" type="text" name="Name" placeholder="Your Name?">
+          <select id="category" placeholder="Category" name="Category">
+            <option value="Literature">Literature</option>
+            <option value="Music">Music</option>
+            <option value="Movie">Movie</option>
+            <option value="TV-Show">TV-Show</option>
+            <option value="Travel">Travel Destination</option>
+            <option value="Food">Food</option>
+            <option value="Activity">Activity</option>
+            <option value="Other">Other</option>
+          </select>
+          <input id="recommendation" type="text" 
+              placeholder="Your Recommendation?" name="Recommendation">
+          <textarea id="comment" type="text" 
+              placeholder="Any additional comments?" name="Comments"></textarea>
+          <div class="row">
+            <div class="column half">
+              <button type="submit" id="submit-form">Send</button>
+            </div> 
+            <div class="column half">
+              <button onclick="closeForm()" type="button">Close Form</button>
+            </div>   
+          </div>
+          <p id="form-response" class="hidden"></p>
+        </form>
       </div>
-    </section> 
+    </section>
   </body>
 </html>
-
