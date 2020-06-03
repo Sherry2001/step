@@ -1,12 +1,25 @@
 let lastRandomIndex;
 
 /**
- *Fetch practice
+ *Fetch json practice, array of messages
  */
 function getData() {
-  fetch('/data').then(response => response.text()).then(data => {
-    document.getElementById('data-fetched').innerHTML = data;
+  fetch('/data').then(response => response.json()).then(messages => {
+    const messagesList = document.getElementById('messages-list');
+      for (var i = 0; i < messages.length; i++) {
+      console.log(messages[i]);
+      messagesList.appendChild(createListElement(messages[i]));
+    } 
   });
+}
+
+/**
+ * Helper to create <li> element
+ */
+function createListElement(text) {
+  const li = document.createElement('li');
+  li.innerText = text;
+  return li;
 }
 
 const facts = [

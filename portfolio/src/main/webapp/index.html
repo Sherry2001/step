@@ -9,7 +9,7 @@
     <script src="script.js"></script>
   </head>
 
-  <body>
+  <body onload="getData()">
     <!--Home Initial View-->   
     <header id="home" class="home-background">
       <div id="nav">
@@ -202,11 +202,9 @@
         <h3>My To-Do List</h3>
         <div class="row">
           <div class="column third">
-            <div class="to-do-container">
-              <h4 class="blue-text">Books to Read</h4>
-              <p>A Brief History of Time<br><span class="grey-text">by Stephen Hawking</span></p>
-              <p>A Brief History of Time<br><span class="grey-text">by Stephen Hawking</span></p>
-            </div>
+            <ul id="messages-list" class="to-do-container">
+              <h4 class="blue-text">Hello Comments?</h4>
+            </ul>
           </div>
           <div class="column third">
             <div class="to-do-container">
