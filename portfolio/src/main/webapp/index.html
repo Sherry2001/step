@@ -227,6 +227,7 @@
             </div>
           </div>
         </div>
+
         <!-- Trying week3 post to server form--> 
         <form action="/data" method="POST" id="datastore-form" name="recommendation-form-server">
           <h5 class="blue-text">
@@ -257,8 +258,9 @@
           <h5 class="blue-text">
         	  Give me your recommendations! Music, books, movies, tv-shows, foods, I'm all ears :)
               </h5>
-          <input id="name" type="text" name="Name" placeholder="Your Name?">
-          <select id="category" placeholder="Category" name="Category">
+          <input id="name-excel" type="text" name="Name" placeholder="Your Name?">
+          <select id="category-excel" placeholder="Category" name="Category">
+            <option value="" disabled selected>Select a Category</option>
             <option value="Literature">Literature</option>
             <option value="Music">Music</option>
             <option value="Movie">Movie</option>
@@ -268,9 +270,9 @@
             <option value="Activity">Activity</option>
             <option value="Other">Other</option>
           </select>
-          <input id="recommendation" type="text" 
+          <input id="recommendation-excel" type="text" 
               placeholder="Your Recommendation?" name="Recommendation">
-          <textarea id="comment" type="text" 
+          <textarea id="comment-excel" type="text" 
               placeholder="Any additional comments?" name="Comments"></textarea>
           <div class="row">
             <div class="column half">

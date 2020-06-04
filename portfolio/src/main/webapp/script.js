@@ -9,12 +9,10 @@ async function deleteData() {
  * Fetch json practice, array of messages
  */
 function getData(maxLoad) {
-  console.log('got in here, maxload: ', maxLoad);
   fetch('/data?max=' + maxLoad).then(response => response.json()).then(messages => {
     const messagesList = document.getElementById('messages-list');
     messagesList.innerHTML = '';
     for (var i = 0; i < messages.length; i++) {
-      console.log(messages[i]);
       messagesList.appendChild(createListElement(messages[i]));
     } 
   });
@@ -43,7 +41,6 @@ const facts = [
  */
 function genRandomFact() {
   let randomIndex = randomNumGenerator(facts.length);
-  console.log(randomIndex);
   lastRandomIndex = randomIndex;
   let fact = facts[randomIndex];
 
@@ -113,7 +110,8 @@ document.addEventListener('DOMContentLoaded', (event) => {
         document.getElementById('form-response').innerHTML = "";
         document.getElementById('form-response').style.visibility = "hidden";
     }, 5000);
-    document.getElementById('recommendation').value = "";
-    document.getElementById('comment').value = "";
+    document.getElementById('recommendation-excel').value = "";
+    document.getElementById('comment-excel').value = "";
+    document.getElementById('category-excel').options[0].selected = 'true';
   }
 })

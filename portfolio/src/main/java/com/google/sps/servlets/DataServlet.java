@@ -36,29 +36,31 @@ public class DataServlet extends HttpServlet {
 
   private List<String> messages;
   private DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+  private String name;
+  private String category;
+  private String content;
+  private String comment;
 
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
     Query query = new Query("Recommendation").addSort("timestamp", SortDirection.DESCENDING);
     PreparedQuery results = datastore.prepare(query);
-
+    
     //Number limit for entities loaded
     int maxNumber = results.countEntities();
     try {
       maxNumber = Integer.parseInt(request.getParameter("max"));
-    } catch (NumberFormatException e) {
-      System.err.println("Could not convert to int: " + request.getParameter("max")); 
-    }
+    } catch (NumberFormatException e) {}
     
     List<Entity> resultsList = results.asList(FetchOptions.Builder.withLimit(maxNumber));
     List<String> myToDos = new ArrayList<>(); 
 
     for (Entity entity : resultsList) {
-      String name = (String) entity.getProperty("name");
-      String category = (String) entity.getProperty("category");
-      String content = (String) entity.getProperty("content");
-      String comment = (String) entity.getProperty("comment");
-      String putTogether = name + "'s " + category + " recommendation: " + content;
+      name = (String) entity.getProperty("name");
+      category = (String) entity.getProperty("category");
+      content = (String) entity.getProperty("content");
+      comment = (String) entity.getProperty("comment");
+      String putTogether = name + "'s " + category + " recommendation: " + content+". ";
       putTogether += name + " commented, \"" + comment + "\"";
       myToDos.add(putTogether);
     }
@@ -70,10 +72,10 @@ public class DataServlet extends HttpServlet {
   
   @Override
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-    String name = request.getParameter("name");
-    String category = request.getParameter("category");
-    String content = request.getParameter("recommendation");
-    String comment = request.getParameter("comments");
+    name = request.getParameter("name");
+    category = request.getParameter("category");
+    content = request.getParameter("recommendation");
+    comment = request.getParameter("comments");
 
     Entity recommendation = new Entity("Recommendation");
     recommendation.setProperty("name", name);
@@ -86,7 +88,7 @@ public class DataServlet extends HttpServlet {
     response.sendRedirect("/index.html#to-do");
   }
 
-  private String convertToJson(List<String> messages) { 
+  private static String convertToJson(List<String> messages) { 
     Gson gson = new Gson();
     String jsonString = gson.toJson(messages);
     return jsonString;
