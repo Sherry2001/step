@@ -39,7 +39,7 @@
             <p>My name is Sherry. I'm a rising junior at the University of 
                 Pennsylvania currently pursuing a dual degree in Computer Science
                 from Engineering and business from Wharton.</p>
-            <button onclick="genRandomFact()">Random Fact About Me</button>
+            <button onclick="generateRandomFact()">Random Fact About Me</button>
             <p id="fact-container"></p>
           </div>
         </div>
@@ -195,13 +195,15 @@
     </section> 
 
     <!-- To-Do Section -->
+    <!--TODO: Change to-do list titles appropriately after changing loadData() to 
+        separately load to each column-->
     <section id="to-do" class="dark">
       <div class="container">
         <h3>My To-Do List</h3>
         <div class="row">
           <div class="column third">
               <div class="to-do-container">
-              <h4 class="blue-text">Hello Comments?</h4>
+              <h4 class="blue-text">Recommendations</h4>
               <select id="max-loaded" class="inline-select" onChange="getData(this.value)">
                 <option value="" selected>Show All</option>
                 <option value="10">10</option>
@@ -252,6 +254,8 @@
           <button type="submit" id="submit-form">Send</button>
         </form>
 
+        <!--TODO: Combine these two forms into one that posts to both server and google sheets--> 
+        
         <!--Original Form--> 
         <button onClick="openForm()">Suggestion Box</button>
         <form id="recommendations" name="recommendation-form">

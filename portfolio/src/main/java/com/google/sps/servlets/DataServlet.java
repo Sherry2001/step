@@ -34,8 +34,7 @@ import com.google.gson.Gson;
 @WebServlet("/data")
 public class DataServlet extends HttpServlet {
 
-  private List<String> messages;
-  private DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+  private final DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
   private String name;
   private String category;
   private String content;

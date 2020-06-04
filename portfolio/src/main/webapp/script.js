@@ -12,8 +12,8 @@ function getData(maxLoad) {
   fetch('/data?max=' + maxLoad).then(response => response.json()).then(messages => {
     const messagesList = document.getElementById('messages-list');
     messagesList.innerHTML = '';
-    for (var i = 0; i < messages.length; i++) {
-      messagesList.appendChild(createListElement(messages[i]));
+    for (let message of messages) {
+      messagesList.appendChild(createListElement(message));
     } 
   });
 }
@@ -39,8 +39,8 @@ const facts = [
 /**
  * Adds a random fact about myself!
  */
-function genRandomFact() {
-  let randomIndex = randomNumGenerator(facts.length);
+function generateRandomFact() {
+  let randomIndex = randomNumberGenerator(facts.length);
   lastRandomIndex = randomIndex;
   let fact = facts[randomIndex];
 
@@ -52,23 +52,23 @@ function genRandomFact() {
  * Generates random number from 0 to parameter factsLength, no repeat
  * @param factsLength
  */
-function randomNumGenerator(factsLength) {
+function randomNumberGenerator(factsLength) {
   let randomIndex = Math.floor(Math.random() * factsLength);
   return (randomIndex === lastRandomIndex)? 
-      randomNumGenerator(factsLength):randomIndex;
+      randomNumberGenerator(factsLength):randomIndex;
 }
 
 /**
  * Implements Sticky Nav Bar
  */
 document.addEventListener('DOMContentLoaded', function() {
-  let navbar = document.getElementById("nav");
+  let navbar = document.getElementById('nav');
   let offsetPos = navbar.offsetTop;
   window.onscroll = function() {
     if (window.pageYOffset >= offsetPos) {
-      navbar.classList.add("sticky")
+      navbar.classList.add('sticky')
     } else {
-      navbar.classList.remove("sticky");
+      navbar.classList.remove('sticky');
     }
   };
 });
@@ -77,41 +77,40 @@ document.addEventListener('DOMContentLoaded', function() {
  *Functions to toggle suggestion box form on and off
  */
 function openForm() {
-  document.getElementById("recommendations").style.display = "block";
-  document.getElementById("datastore-form").style.display = "block";
+  document.getElementById('recommendations').style.display = 'block';
+  document.getElementById('datastore-form').style.display = 'block';
 }
 
 function closeForm() {
-  document.getElementById("recommendations").style.display = "none";
+  document.getElementById('recommendations').style.display = 'none';
 }
 
 /**
  *Send recommendation to my Google Sheet
  */
 document.addEventListener('DOMContentLoaded', (event) => {
-  const scriptURL = "https://script.google.com/macros/s/AKfycbygq04RYi-5qwb82bmfONkahtZAsrz0WkSoGfHLgHVkPWnnmSI/exec";
+  const scriptURL = 'https://script.google.com/macros/s/AKfycbygq04RYi-5qwb82bmfONkahtZAsrz0WkSoGfHLgHVkPWnnmSI/exec';
   const form = document.forms['recommendation-form'];
 							
   form.addEventListener('submit', e => {
     e.preventDefault();
-    fetch(scriptURL, { method: 'POST', body: new FormData(form), mode: "no-cors"})
-	  .then(response => respond("Thank you for sending :)"))
-	  .catch(error => respond("Uh oh, error: " + error.message))
-    
-  });//the event occurred
+    fetch(scriptURL, { method: 'POST', body: new FormData(form), mode: 'no-cors'})
+	  .then(response => respond('Thank you for sending :)'))
+	  .catch(error => respond('Uh oh, error: ' + error.message))
+  });
 
   /**
  *Response to recommendation form
  */
   function respond(responseText) {
     document.getElementById('form-response').innerHTML += responseText;
-    document.getElementById('form-response').style.visibility = "visible";
+    document.getElementById('form-response').style.visibility = 'visible';
     setTimeout(() => {
-        document.getElementById('form-response').innerHTML = "";
-        document.getElementById('form-response').style.visibility = "hidden";
+        document.getElementById('form-response').innerHTML = '';
+        document.getElementById('form-response').style.visibility = 'hidden';
     }, 5000);
-    document.getElementById('recommendation-excel').value = "";
-    document.getElementById('comment-excel').value = "";
+    document.getElementById('recommendation-excel').value = '';
+    document.getElementById('comment-excel').value = '';
     document.getElementById('category-excel').options[0].selected = 'true';
   }
 })
