@@ -25,8 +25,6 @@
       <div class="absolute-center">
         <h1>Sherry Shi</h1>
         <p>Pictured: Port Washington Sunset | pc: Google Images</p>
-        <button onclick="getData()">Data</button>
-        <p id="data-fetched"></p>
       </div>
     </header>
 
@@ -222,12 +220,13 @@
           </div>
         </div>
         <!-- Trying week3 post to server form--> 
-        <form action="/data" method="POST" name="recommendation-form-server" style="visibility:visible">
+        <form action="/data" method="POST" id="datastore-form" name="recommendation-form-server">
           <h5 class="blue-text">
         	  Give me your recommendations! Music, books, movies, tv-shows, foods, I'm all ears :)
               </h5>
           <input id="name" type="text" name="name" placeholder="Your Name?">
-          <select id="category" placeholder="category" name="category">
+          <select id="category" placeholder="category" name="category" required>
+            <option value="" disabled selected>Select a Category</option>
             <option value="Literature">Literature</option>
             <option value="Music">Music</option>
             <option value="Movie">Movie</option>
@@ -242,7 +241,6 @@
           <textarea id="comment" type="text" 
               placeholder="Any additional comments?" name="comments"></textarea>
           <button type="submit" id="submit-form">Send</button>
-          <p id="form-response" class="hidden"></p>
         </form>
 
         <!--Original Form--> 

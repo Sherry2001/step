@@ -4,7 +4,7 @@ let lastRandomIndex;
  *Fetch json practice, array of messages
  */
 function getData() {
-  fetch('/data').then(response => response.json()).then(messages => {
+  fetch('/data?max=3').then(response => response.json()).then(messages => {
     const messagesList = document.getElementById('messages-list');
       for (var i = 0; i < messages.length; i++) {
       console.log(messages[i]);
@@ -72,6 +72,7 @@ document.addEventListener('DOMContentLoaded', function() {
  */
 function openForm() {
   document.getElementById("recommendations").style.display = "block";
+  document.getElementById("datastore-form").style.display = "block";
 }
 
 function closeForm() {
@@ -88,19 +89,20 @@ document.addEventListener('DOMContentLoaded', (event) => {
   form.addEventListener('submit', e => {
     e.preventDefault();
     fetch(scriptURL, { method: 'POST', body: new FormData(form), mode: "no-cors"})
-	  .then(response => respond("Thank you! Your rec was sent my way :)"))
+	  .then(response => respond("Thank you for sending :)"))
 	  .catch(error => respond("Uh oh, error: " + error.message))
+    
   });//the event occurred
 
   /**
  *Response to recommendation form
  */
   function respond(responseText) {
-    document.getElementById("form-response").innerHTML = responseText;
-    document.getElementById("form-response").style.visibility = "visible";
+    document.getElementById('form-response').innerHTML += responseText;
+    document.getElementById('form-response').style.visibility = "visible";
     setTimeout(() => {
-        document.getElementById("form-response").innerHTML = "";
-        document.getElementById("form-response").style.visibility = "hidden";
+        document.getElementById('form-response').innerHTML = "";
+        document.getElementById('form-response').style.visibility = "hidden";
     }, 5000);
     document.getElementById('recommendation').value = "";
     document.getElementById('comment').value = "";

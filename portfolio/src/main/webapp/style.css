@@ -143,7 +143,7 @@ section.blue {
 }
 
 .to-do-container {
-  margin: auto;
+  margin: 0 auto;
 }
 
 .to-do-container p {
@@ -577,9 +577,6 @@ form {
   border-radius: 20px;
   padding: 30px 40px;
   text-align: center;
-}
-
-#recommendations {
   display: none;
 }
 

@@ -20,6 +20,7 @@ import com.google.appengine.api.datastore.Entity;
 import com.google.appengine.api.datastore.PreparedQuery;
 import com.google.appengine.api.datastore.Query;
 import com.google.appengine.api.datastore.Query.SortDirection;
+import com.google.appengine.api.datastore.FetchOptions;
 import java.io.IOException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -39,11 +40,22 @@ public class DataServlet extends HttpServlet {
 
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-    Query query = new Query("Recommendation").addSort("timestamp", SortDirection.ASCENDING);
+    Query query = new Query("Recommendation").addSort("timestamp", SortDirection.DESCENDING);
     PreparedQuery results = datastore.prepare(query);
+
+    //Number limit for entities loaded
+    int maxNumber = results.countEntities();
+    try {
+      maxNumber = Integer.parseInt(request.getParameter("max"));
+    } catch (NumberFormatException e) {
+      System.err.println("Could not convert to int: " + request.getParameter("max")); 
+    }
     
-    List<String> myToDos = new ArrayList<>();    
-    for (Entity entity : results.asIterable()) {
+    List<Entity> resultsList = results.asList(FetchOptions.Builder.withLimit(100));
+    List<String> myToDos = new ArrayList<>(); 
+
+    for (int i = 0; i < maxNumber; i++) {
+      Entity entity = resultsList.get(i);
       String name = (String) entity.getProperty("name");
       String category = (String) entity.getProperty("category");
       String content = (String) entity.getProperty("content");
@@ -52,6 +64,7 @@ public class DataServlet extends HttpServlet {
       putTogether += name + " commented, \"" + comment + "\"";
       myToDos.add(putTogether);
     }
+    
     String jsonResponse = convertToJson(myToDos);
     response.setContentType("application/json");
     response.getWriter().println(jsonResponse);
@@ -72,12 +85,6 @@ public class DataServlet extends HttpServlet {
     recommendation.setProperty("timestamp", System.currentTimeMillis());
 
     datastore.put(recommendation);
-
-    String putTogether = name + "'s " + category + " recommendation: " + content;
-    putTogether += name + " commented, \"" + comment + "\"";
-
-    messages.add(putTogether); 
-    System.out.println("got here" + putTogether);
     response.sendRedirect("/index.html#to-do");
   }
 
