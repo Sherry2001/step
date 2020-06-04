@@ -152,7 +152,7 @@ section.blue {
 
 .to-do-container h4 {
     font-size: 20px;
-    margin-bottom: 45px;
+    margin-bottom: 20px;
 }
 
 /*Cards*/
@@ -590,6 +590,15 @@ form input, select, textarea {
   font: inherit;
   font-size: 15px;
   font-weight: 700;
+}
+
+.inline-select {
+  font-size: 12;
+  width: auto;
+  margin: 0 5px 30px;
+  padding: 2px 10px;
+  border-radius: 3px;
+  font-weight: 300;
 }
 
 /*To-do list*/

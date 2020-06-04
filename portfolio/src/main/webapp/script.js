@@ -3,10 +3,12 @@ let lastRandomIndex;
 /**
  *Fetch json practice, array of messages
  */
-function getData() {
-  fetch('/data?max=3').then(response => response.json()).then(messages => {
+function getData(maxLoad) {
+  console.log('got in here, maxload: ', maxLoad);
+  fetch('/data?max=' + maxLoad).then(response => response.json()).then(messages => {
     const messagesList = document.getElementById('messages-list');
-      for (var i = 0; i < messages.length; i++) {
+    messagesList.innerHTML = '';
+    for (var i = 0; i < messages.length; i++) {
       console.log(messages[i]);
       messagesList.appendChild(createListElement(messages[i]));
     } 
