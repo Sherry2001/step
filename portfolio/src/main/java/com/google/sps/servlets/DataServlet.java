@@ -17,6 +17,9 @@ package com.google.sps.servlets;
 import com.google.appengine.api.datastore.DatastoreService;
 import com.google.appengine.api.datastore.DatastoreServiceFactory;
 import com.google.appengine.api.datastore.Entity;
+import com.google.appengine.api.datastore.PreparedQuery;
+import com.google.appengine.api.datastore.Query;
+import com.google.appengine.api.datastore.Query.SortDirection;
 import java.io.IOException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -32,18 +35,24 @@ import com.google.gson.Gson;
 public class DataServlet extends HttpServlet {
 
   private List<String> messages;
-  
-  @Override 
-  public void init() {
-    messages = new ArrayList<String>(); 
-    messages.add("Hello, this is my first comment");
-    messages.add("Hello, this is my second comment");
-    messages.add("Hi, this is my third comment");
-  }
+  private DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
 
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-    String jsonResponse = convertToJson(messages);
+    Query query = new Query("Recommendation").addSort("timestamp", SortDirection.ASCENDING);
+    PreparedQuery results = datastore.prepare(query);
+    
+    List<String> myToDos = new ArrayList<>();    
+    for (Entity entity : results.asIterable()) {
+      String name = (String) entity.getProperty("name");
+      String category = (String) entity.getProperty("category");
+      String content = (String) entity.getProperty("content");
+      String comment = (String) entity.getProperty("comment");
+      String putTogether = name + "'s " + category + " recommendation: " + content;
+      putTogether += name + " commented, \"" + comment + "\"";
+      myToDos.add(putTogether);
+    }
+    String jsonResponse = convertToJson(myToDos);
     response.setContentType("application/json");
     response.getWriter().println(jsonResponse);
   }
@@ -55,13 +64,12 @@ public class DataServlet extends HttpServlet {
     String content = request.getParameter("recommendation");
     String comment = request.getParameter("comments");
 
-    DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
-
     Entity recommendation = new Entity("Recommendation");
     recommendation.setProperty("name", name);
     recommendation.setProperty("category", category);
     recommendation.setProperty("content", content);
     recommendation.setProperty("comment", comment);
+    recommendation.setProperty("timestamp", System.currentTimeMillis());
 
     datastore.put(recommendation);
 
