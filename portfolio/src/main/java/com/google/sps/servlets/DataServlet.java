@@ -31,7 +31,6 @@ import java.util.ArrayList;
 import com.google.gson.Gson;
 
 
-/** Servlet that returns some example content. TODO: modify this file to handle comments data */
 @WebServlet("/data")
 public class DataServlet extends HttpServlet {
 
@@ -51,11 +50,10 @@ public class DataServlet extends HttpServlet {
       System.err.println("Could not convert to int: " + request.getParameter("max")); 
     }
     
-    List<Entity> resultsList = results.asList(FetchOptions.Builder.withLimit(100));
+    List<Entity> resultsList = results.asList(FetchOptions.Builder.withLimit(maxNumber));
     List<String> myToDos = new ArrayList<>(); 
 
-    for (int i = 0; i < maxNumber; i++) {
-      Entity entity = resultsList.get(i);
+    for (Entity entity : resultsList) {
       String name = (String) entity.getProperty("name");
       String category = (String) entity.getProperty("category");
       String content = (String) entity.getProperty("content");
@@ -64,7 +62,7 @@ public class DataServlet extends HttpServlet {
       putTogether += name + " commented, \"" + comment + "\"";
       myToDos.add(putTogether);
     }
-    
+
     String jsonResponse = convertToJson(myToDos);
     response.setContentType("application/json");
     response.getWriter().println(jsonResponse);

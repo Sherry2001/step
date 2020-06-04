@@ -136,10 +136,10 @@ section.blue {
 }
 
 #fact-container, .response-container{
-    height: 20px;
-    margin-top: 20px;
-    color: inherit;
-    text-align: center;
+  height: 20px;
+  margin-top: 20px;
+  color: inherit;
+  text-align: center;
 }
 
 .to-do-container {
@@ -151,8 +151,8 @@ section.blue {
 }
 
 .to-do-container h4 {
-    font-size: 20px;
-    margin-bottom: 20px;
+  font-size: 20px;
+  margin-bottom: 20px;
 }
 
 /*Cards*/

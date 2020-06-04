@@ -1,7 +1,12 @@
-let lastRandomIndex;
+/**
+ * Delete from datastore
+ */
+async function deleteData() {
+  fetch('/delete-data', {method:'POST'}).then(() => getData());
+}
 
 /**
- *Fetch json practice, array of messages
+ * Fetch json practice, array of messages
  */
 function getData(maxLoad) {
   console.log('got in here, maxload: ', maxLoad);
@@ -23,6 +28,8 @@ function createListElement(text) {
   li.innerText = text;
   return li;
 }
+
+let lastRandomIndex;
 
 const facts = [
     'I love spicy food, but I dislike eating peppers!',
