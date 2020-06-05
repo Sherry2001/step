@@ -57,7 +57,7 @@ function createRecommendationElement(toDo) {
 
   const name = document.createElement('div');
   name.className = 'footer';
-  name.innerHTML = toDo.category +' Recommended by: ' + toDo.name;
+  name.innerHTML = toDo.category +' rec by: ' + toDo.name;
   recommendation.appendChild(name);
 
   return recommendation;
@@ -113,12 +113,13 @@ document.addEventListener('DOMContentLoaded', function() {
  *Functions to toggle suggestion box form on and off
  */
 function openForm() {
-  document.getElementById('recommendations').style.display = 'block';
+  document.getElementById('recommendation-form').style.display = 'block';
   document.getElementById('datastore-form').style.display = 'block';
 }
 
 function closeForm() {
-  document.getElementById('recommendations').style.display = 'none';
+  document.getElementById('recommendation-form').style.display = 'none';
+  document.getElementById('datastore-form').style.display = 'none';
 }
 
 /**
@@ -127,26 +128,40 @@ function closeForm() {
 document.addEventListener('DOMContentLoaded', (event) => {
   const scriptURL = 'https://script.google.com/macros/s/AKfycbygq04RYi-5qwb82bmfONkahtZAsrz0WkSoGfHLgHVkPWnnmSI/exec';
   const form = document.forms['recommendation-form'];
-							
+
   form.addEventListener('submit', e => {
     e.preventDefault();
-    fetch(scriptURL, { method: 'POST', body: new FormData(form), mode: 'no-cors'})
-	  .then(response => respond('Thank you for sending :)'))
-	  .catch(error => respond('Uh oh, error: ' + error.message))
-  });
+    const name = document.getElementById('name-excel').value;
+    const category = document.getElementById('category-excel').value;
+    const recommendation = document.getElementById('content-excel').value;
+    const comment = document.getElementById('comment-excel').value;	
+    const url = '/data?name=' + name + '&category=' + category + '&content=' + recommendation +
+               '&comment=' + comment;
 
-  /**
+    fetch(scriptURL, { method: 'POST', body: new FormData(form), mode: 'no-cors'})
+    .catch(error => respond('Uh oh, error: ' + error.message))
+    .then(() => {
+        fetch (url, {method: 'POST'});
+        console.log('after fetch post');
+    }).then(() => {
+        getData();
+        respond("Thank you for your recommendation :)");
+    })
+  })
+});
+
+/**
  *Response to recommendation form
  */
-  function respond(responseText) {
-    document.getElementById('form-response').innerHTML += responseText;
-    document.getElementById('form-response').style.visibility = 'visible';
-    setTimeout(() => {
-        document.getElementById('form-response').innerHTML = '';
-        document.getElementById('form-response').style.visibility = 'hidden';
-    }, 5000);
-    document.getElementById('recommendation-excel').value = '';
-    document.getElementById('comment-excel').value = '';
-    document.getElementById('category-excel').options[0].selected = 'true';
-  }
-})
+function respond(responseText) {
+  document.getElementById('form-response').innerHTML += responseText;
+  document.getElementById('form-response').style.visibility = 'visible';
+  setTimeout(() => {
+      document.getElementById('form-response').innerHTML = '';
+      document.getElementById('form-response').style.visibility = 'hidden';
+  }, 5000);
+  document.getElementById('content-excel').value = '';
+  document.getElementById('comment-excel').value = '';
+  document.getElementById('category-excel').options[0].selected = 'true';
+}
+

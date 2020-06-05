@@ -243,34 +243,13 @@
           </div>
         </div>
 
-        <!-- Trying week3 post to server form--> 
-        <form action="/data" method="POST" id="datastore-form" name="recommendation-form-server">
-          <h5 class="blue-text">
-        	  Give me your recommendations! Music, books, movies, tv-shows, foods, I'm all ears :)
-              </h5>
-          <input id="name" type="text" name="name" placeholder="Your Name?">
-          <select id="category" placeholder="category" name="category" required>
-            <option value="" disabled selected>Select a Category</option>
-            <option value="Literature">Literature</option>
-            <option value="Music">Music</option>
-            <option value="Movie">Movie</option>
-            <option value="TV-Show">TV-Show</option>
-            <option value="Travel">Travel Destination</option>
-            <option value="Food">Food</option>
-            <option value="Activity">Activity</option>
-          </select>
-          <input id="recommendation" type="text" 
-              placeholder="Your Recommendation?" name="recommendation">
-          <textarea id="comment" type="text" 
-              placeholder="Any additional comments?" name="comments"></textarea>
-          <button type="submit" id="submit-form">Send</button>
-        </form>
 
-        <!--TODO: Combine these two forms into one that posts to both server and google sheets--> 
+        <!--TODO: Review good/bad practice of posting recommendation-form to
+         two urls through query params. If it is okay, will delete second form--> 
         
-        <!--Original Form--> 
+        <!--Original Form: Now submits to datastore and excel--> 
         <button onClick="openForm()">Suggestion Box</button>
-        <form id="recommendations" name="recommendation-form">
+        <form id="recommendation-form" name="recommendation-form">
           <h5 class="blue-text">
         	  Give me your recommendations! Music, books, movies, tv-shows, foods, I'm all ears :)
               </h5>
@@ -286,7 +265,7 @@
             <option value="Activity">Activity</option>
             <option value="Other">Other</option>
           </select>
-          <input id="recommendation-excel" type="text" 
+          <input id="content-excel" type="text" 
               placeholder="Your Recommendation?" name="Recommendation">
           <textarea id="comment-excel" type="text" 
               placeholder="Any additional comments?" name="Comments"></textarea>
@@ -299,6 +278,29 @@
             </div>   
           </div>
           <p id="form-response" class="hidden"></p>
+        </form>
+
+        <!-- Post to datastore only form--> 
+        <form action="/data" method="POST" id="datastore-form" name="recommendation-form-server">
+          <h5 class="blue-text">
+        	  Give me your recommendations! Music, books, movies, tv-shows, foods, I'm all ears :)
+              </h5>
+          <input id="name" type="text" name="name" placeholder="Your Name?">
+          <select id="category" placeholder="category" name="category" required>
+            <option value="" disabled selected>Select a Category</option>
+            <option value="Literature">Literature</option>
+            <option value="Music">Music</option>
+            <option value="Movie">Movie</option>
+            <option value="TV-Show">TV-Show</option>
+            <option value="Destination">Destination</option>
+            <option value="Food">Food</option>
+            <option value="Activity">Activity</option>
+          </select>
+          <input id="content" type="text" 
+              placeholder="Your Recommendation?" name="content">
+          <textarea id="comment" type="text" 
+              placeholder="Any additional comments?" name="comment"></textarea>
+          <button type="submit" id="submit-form">Send</button>
         </form>
       </div>
     </section>
