@@ -13,7 +13,25 @@ function getData(maxLoad) {
     const messagesList = document.getElementById('messages-list');
     messagesList.innerHTML = '';
     for (let message of messages) {
-      messagesList.appendChild(createListElement(message));
+      const recommendation = document.createElement('div');
+      recommendation.className = 'recommendation';
+
+      const content =  document.createElement('div');
+      content.className = 'content';
+      content.innerHTML = message.content;
+      recommendation.appendChild(content);
+
+      const comment = document.createElement('div');
+      comment.className = 'comment';
+      comment.innerHTML = message.comment; 
+      recommendation.appendChild(comment);
+
+      const name = document.createElement('div');
+      name.className = 'footer';
+      name.innerHTML = 'Recommended by: ' + message.name;
+      recommendation.appendChild(name);
+
+      messagesList.appendChild(recommendation);
     } 
   });
 }

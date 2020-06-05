@@ -29,7 +29,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 import java.util.ArrayList;
 import com.google.gson.Gson;
-
+import com.google.sps.data.Recommendation;
 
 @WebServlet("/data")
 public class DataServlet extends HttpServlet {
@@ -52,16 +52,19 @@ public class DataServlet extends HttpServlet {
     } catch (NumberFormatException e) {}
     
     List<Entity> resultsList = results.asList(FetchOptions.Builder.withLimit(maxNumber));
-    List<String> myToDos = new ArrayList<>(); 
+    List<Recommendation> myToDos = new ArrayList<>(); 
 
     for (Entity entity : resultsList) {
-      name = (String) entity.getProperty("name");
-      category = (String) entity.getProperty("category");
-      content = (String) entity.getProperty("content");
-      comment = (String) entity.getProperty("comment");
-      String putTogether = name + "'s " + category + " recommendation: " + content+". ";
-      putTogether += name + " commented, \"" + comment + "\"";
-      myToDos.add(putTogether);
+      long id = entity.getKey().getId();
+      System.out.println("id: " + id);
+    
+      String name = (String) entity.getProperty("name");
+      String category = (String) entity.getProperty("category");
+      String content = (String) entity.getProperty("content");
+      String comment = (String) entity.getProperty("comment");
+      Recommendation recommendation = new Recommendation(id, name, category, content, comment);
+
+      myToDos.add(recommendation);
     }
 
     String jsonResponse = convertToJson(myToDos);
@@ -71,10 +74,10 @@ public class DataServlet extends HttpServlet {
   
   @Override
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-    name = request.getParameter("name");
-    category = request.getParameter("category");
-    content = request.getParameter("recommendation");
-    comment = request.getParameter("comments");
+    String name = request.getParameter("name");
+    String category = request.getParameter("category");
+    String content = request.getParameter("recommendation");
+    String comment = request.getParameter("comments");
 
     Entity recommendation = new Entity("Recommendation");
     recommendation.setProperty("name", name);
@@ -87,7 +90,7 @@ public class DataServlet extends HttpServlet {
     response.sendRedirect("/index.html#to-do");
   }
 
-  private static String convertToJson(List<String> messages) { 
+  private static String convertToJson(List<Recommendation> messages) { 
     Gson gson = new Gson();
     String jsonString = gson.toJson(messages);
     return jsonString;

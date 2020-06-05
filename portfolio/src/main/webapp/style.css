@@ -144,6 +144,7 @@ section.blue {
 
 .to-do-container {
   margin: 0 auto;
+  width: 100%;
 }
 
 .to-do-container p {
@@ -156,6 +157,35 @@ section.blue {
 }
 
 /*Cards*/
+.recommendation {
+  background-color:#dae8f9;
+  color: #0c0c0c;
+  padding: 10px 0px;
+  border-radius: 1px;
+  width: 70%;
+  margin: 10px auto;
+}
+
+.recommendation .content{
+  font-size: 16px;
+  font-weight: 600;
+  padding: 5px 20px;
+  text-align: center;
+}
+
+.recommendation .comment {
+  text-align: left;
+  font-size: 14px;
+  padding: 5px 20px 10px;
+}
+
+.recommendation .footer{
+  border-top: 2px solid rgba(189, 189, 189, 0.39);
+  font-size: 14px;
+  padding: 10px 20px 0px;
+  text-align: left;
+}
+
 .profile-card {
   border-radius: 8px;
   background-color:rgb(41, 41, 41);
