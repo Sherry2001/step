@@ -9,40 +9,58 @@ async function deleteData() {
  * Fetch json practice, array of messages
  */
 function getData(maxLoad) {
-  fetch('/data?max=' + maxLoad).then(response => response.json()).then(messages => {
-    const messagesList = document.getElementById('messages-list');
-    messagesList.innerHTML = '';
-    for (let message of messages) {
-      const recommendation = document.createElement('div');
-      recommendation.className = 'recommendation';
+  fetch('/data?max=' + maxLoad).then(response => response.json()).then(toDos => {
+    const literatureList = document.getElementById('literature-list');
+    const musicList = document.getElementById('music-list');
+    const movieList = document.getElementById('movie-list');
+    const travelList = document.getElementById('travel-list');
 
-      const content =  document.createElement('div');
-      content.className = 'content';
-      content.innerHTML = message.content;
-      recommendation.appendChild(content);
+    literatureList.innerHTML = '';
+    musicList.innerHTML = '';
+    movieList.innerHTML = '';
+    travelList.innerHTML = '';
 
-      const comment = document.createElement('div');
-      comment.className = 'comment';
-      comment.innerHTML = message.comment; 
-      recommendation.appendChild(comment);
+    for (let toDo of toDos) {
+      const recommendation = createRecommendationElement(toDo);
+      const category = toDo.category;
 
-      const name = document.createElement('div');
-      name.className = 'footer';
-      name.innerHTML = 'Recommended by: ' + message.name;
-      recommendation.appendChild(name);
-
-      messagesList.appendChild(recommendation);
+      if (category == 'Literature') {
+        literatureList.appendChild(recommendation);
+      } else if (category == 'Music') {
+        musicList.appendChild(recommendation);
+      } else if (category == 'Movie' || category == 'TV-Show') {
+        movieList.appendChild(recommendation);
+      } else {
+        travelList.appendChild(recommendation); 
+      }
     } 
   });
 }
 
 /**
- * Helper to create <li> element
+ * Helper to create a recommendation
+ * Creates a <div class="recommendation"> element
  */
-function createListElement(text) {
-  const li = document.createElement('li');
-  li.innerText = text;
-  return li;
+function createRecommendationElement(toDo) {
+  const recommendation = document.createElement('div');
+  recommendation.className = 'recommendation';
+
+  const content =  document.createElement('div');
+  content.className = 'content';
+  content.innerHTML = toDo.content;
+  recommendation.appendChild(content);
+
+  const comment = document.createElement('div');
+  comment.className = 'comment';
+  comment.innerHTML = toDo.comment; 
+  recommendation.appendChild(comment);
+
+  const name = document.createElement('div');
+  name.className = 'footer';
+  name.innerHTML = toDo.category +' Recommended by: ' + toDo.name;
+  recommendation.appendChild(name);
+
+  return recommendation;
 }
 
 let lastRandomIndex;
