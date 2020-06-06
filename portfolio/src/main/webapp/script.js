@@ -114,7 +114,6 @@ document.addEventListener('DOMContentLoaded', function() {
  */
 function toggleForm() {
   const form = document.getElementById('recommendation-form');
-  console.log('rn the form is : ', form.style.display);
   if (form.style.display == 'block') {
     form.style.display = 'none';
   } else {
