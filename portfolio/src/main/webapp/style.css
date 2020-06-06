@@ -304,7 +304,7 @@ button:hover {
   border-radius: 15px;
 }
   
-#recommendation-form button {
+#recommendations button {
   margin: auto;
   text-align: center;
   border-radius: 8px;
@@ -600,7 +600,7 @@ button:hover {
 }
 
 /*Form*/
-#recommendation-form, #datastore-form {
+#recommendations, #datastore-form {
   background: inherit;
   margin: 30px auto;
   max-width: 500px;

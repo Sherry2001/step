@@ -23,7 +23,6 @@ import com.google.appengine.api.datastore.Query.SortDirection;
 import com.google.appengine.api.datastore.FetchOptions;
 import java.io.IOException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -33,7 +32,6 @@ import com.google.gson.Gson;
 import com.google.sps.data.Recommendation;
 
 @WebServlet("/data")
-@MultipartConfig 
 public class DataServlet extends HttpServlet {
 
   private final DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
@@ -75,11 +73,11 @@ public class DataServlet extends HttpServlet {
   }
   
   @Override
-  public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {   
+  public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
     String name = request.getParameter("name");
     String category = request.getParameter("category");
-    String content = request.getParameter("content");
-    String comment = request.getParameter("comment");
+    String content = request.getParameter("recommendation");
+    String comment = request.getParameter("comments");
 
     Entity recommendation = new Entity("Recommendation");
     recommendation.setProperty("name", name);
@@ -89,6 +87,7 @@ public class DataServlet extends HttpServlet {
     recommendation.setProperty("timestamp", System.currentTimeMillis());
 
     datastore.put(recommendation);
+    response.sendRedirect("/index.html#to-do");
   }
 
   private static String convertToJson(List<Recommendation> messages) { 
