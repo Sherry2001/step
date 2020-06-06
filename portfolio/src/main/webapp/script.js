@@ -113,8 +113,15 @@ document.addEventListener('DOMContentLoaded', function() {
  *Functions to toggle suggestion box form on and off
  */
 function openForm() {
-  document.getElementById('recommendation-form').style.display = 'block';
-  document.getElementById('datastore-form').style.display = 'block';
+  const form = document.getElementById('recommendation-form');
+  console.log('rn the form is : ', form.style.display);
+  if (form.style.display == 'block') {
+    form.style.display = 'none';
+  } else {
+    form.style.display = 'block';
+  }
+//   document.getElementById('recommendation-form').style.display = 'block';
+//   document.getElementById('datastore-form').style.display = 'block';
 }
 
 function closeForm() {
