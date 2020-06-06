@@ -25,8 +25,6 @@
       <div class="absolute-center">
         <h1>Sherry Shi</h1>
         <p>Pictured: Port Washington Sunset | pc: Google Images</p>
-        <button onclick="getData()">Data</button>
-        <p id="data-fetched"></p>
       </div>
     </header>
 
@@ -41,7 +39,7 @@
             <p>My name is Sherry. I'm a rising junior at the University of 
                 Pennsylvania currently pursuing a dual degree in Computer Science
                 from Engineering and business from Wharton.</p>
-            <button onclick="genRandomFact()">Random Fact About Me</button>
+            <button onclick="generateRandomFact()">Random Fact About Me</button>
             <p id="fact-container"></p>
           </div>
         </div>
@@ -197,37 +195,88 @@
     </section> 
 
     <!-- To-Do Section -->
+    <!--TODO: Change to-do list titles appropriately after changing loadData() to 
+        separately load to each column-->
     <section id="to-do" class="dark">
       <div class="container">
         <h3>My To-Do List</h3>
-        <div class="row">
-          <div class="column third">
-            <ul id="messages-list" class="to-do-container">
-              <h4 class="blue-text">Hello Comments?</h4>
-            </ul>
-          </div>
-          <div class="column third">
-            <div class="to-do-container">
-              <h4 class="blue-text">Movies to Watch</h4>
-              <p>A Brief History of Time<br><span class="grey-text">by Stephen Hawking</span></p>
-              <p>A Brief History of Time<br><span class="grey-text">by Stephen Hawking</span></p>
+          <select id="max-loaded" class="inline-select" onChange="getData(this.value)">
+          <option value="" selected>Show All</option>
+          <option value="10">10</option>
+          <option value="5">5</option>
+          <option value="3">3</option>
+        </select>
+        <button onclick="deleteData()">Delete All</button>
+
+        <div class="row wrapper to-dos">
+          <div class="column quarter">
+              <div class="to-do-container">
+              <h4 class="blue-text">Literature</h4>
+              <div id="literature-list">
+                <!--Dynamically put-in content-->
+              </div>
             </div>
           </div>
-          <div class="column third">
+          <div class="column quarter">
             <div class="to-do-container">
-              <h4 class="blue-text">Places to Travel</h4>
-              <p>A Brief History of Time<br><span class="grey-text">by Stephen Hawking</span></p>
-              <p>A Brief History of Time<br><span class="grey-text">by Stephen Hawking</span></p>
+              <h4 class="blue-text">Music</h4>
+              <div id="music-list">
+                <!--Dynamically put-in content-->
+              </div>
+            </div>
+          </div>
+          <div class="column quarter">
+            <div class="to-do-container">
+              <h4 class="blue-text">Movies & Shows </h4>
+              <div id="movie-list">
+                <!--Dynamically put-in content-->
+              </div>
+            </div>
+          </div>
+          <div class="column quarter">
+            <div class="to-do-container">
+              <h4 class="blue-text">Destinations & Foods</h4>
+              <div id="travel-list">
+                <!--Dynamically put-in content-->
+              </div>
             </div>
           </div>
         </div>
+
+        <!-- Trying week3 post to server form--> 
+        <form action="/data" method="POST" id="datastore-form" name="recommendation-form-server">
+          <h5 class="blue-text">
+        	  Give me your recommendations! Music, books, movies, tv-shows, foods, I'm all ears :)
+              </h5>
+          <input id="name" type="text" name="name" placeholder="Your Name?">
+          <select id="category" placeholder="category" name="category" required>
+            <option value="" disabled selected>Select a Category</option>
+            <option value="Literature">Literature</option>
+            <option value="Music">Music</option>
+            <option value="Movie">Movie</option>
+            <option value="TV-Show">TV-Show</option>
+            <option value="Travel">Travel Destination</option>
+            <option value="Food">Food</option>
+            <option value="Activity">Activity</option>
+          </select>
+          <input id="recommendation" type="text" 
+              placeholder="Your Recommendation?" name="recommendation">
+          <textarea id="comment" type="text" 
+              placeholder="Any additional comments?" name="comments"></textarea>
+          <button type="submit" id="submit-form">Send</button>
+        </form>
+
+        <!--TODO: Combine these two forms into one that posts to both server and google sheets--> 
+        
+        <!--Original Form--> 
         <button onClick="openForm()">Suggestion Box</button>
         <form id="recommendations" name="recommendation-form">
           <h5 class="blue-text">
         	  Give me your recommendations! Music, books, movies, tv-shows, foods, I'm all ears :)
               </h5>
-          <input id="name" type="text" name="Name" placeholder="Your Name?">
-          <select id="category" placeholder="Category" name="Category">
+          <input id="name-excel" type="text" name="Name" placeholder="Your Name?">
+          <select id="category-excel" placeholder="Category" name="Category">
+            <option value="" disabled selected>Select a Category</option>
             <option value="Literature">Literature</option>
             <option value="Music">Music</option>
             <option value="Movie">Movie</option>
@@ -237,9 +286,9 @@
             <option value="Activity">Activity</option>
             <option value="Other">Other</option>
           </select>
-          <input id="recommendation" type="text" 
+          <input id="recommendation-excel" type="text" 
               placeholder="Your Recommendation?" name="Recommendation">
-          <textarea id="comment" type="text" 
+          <textarea id="comment-excel" type="text" 
               placeholder="Any additional comments?" name="Comments"></textarea>
           <div class="row">
             <div class="column half">
