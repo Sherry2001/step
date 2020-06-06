@@ -146,7 +146,6 @@ document.addEventListener('DOMContentLoaded', (event) => {
     .catch(error => respond('Uh oh, error: ' + error.message))
     .then(() => {
         fetch (url, {method: 'POST'});
-        console.log('after fetch post');
     }).then(() => {
         getData();
         respond("Thank you for your recommendation :)");
