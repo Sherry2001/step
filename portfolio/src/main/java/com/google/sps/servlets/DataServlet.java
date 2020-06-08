@@ -37,10 +37,10 @@ import com.google.sps.data.Recommendation;
 public class DataServlet extends HttpServlet {
 
   private final DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
-  private String name;
-  private String category;
-  private String content;
-  private String comment;
+  private static final String NAME = "name";
+  private static final String CATEGORY = "category";
+  private static final String CONTENT = "content";
+  private static final String COMMENT = "comment"; 
 
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -60,10 +60,11 @@ public class DataServlet extends HttpServlet {
       long id = entity.getKey().getId();
       System.out.println("id: " + id);
     
-      String name = (String) entity.getProperty("name");
-      String category = (String) entity.getProperty("category");
-      String content = (String) entity.getProperty("content");
-      String comment = (String) entity.getProperty("comment");
+      String name = (String) entity.getProperty(NAME);
+      String category = (String) entity.getProperty(CATEGORY);
+      String content = (String) entity.getProperty(CONTENT);
+      String comment = (String) entity.getProperty(COMMENT);
+ 
       Recommendation recommendation = new Recommendation(id, name, category, content, comment);
 
       myToDos.add(recommendation);
@@ -76,16 +77,16 @@ public class DataServlet extends HttpServlet {
   
   @Override
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {   
-    String name = request.getParameter("name");
-    String category = request.getParameter("category");
-    String content = request.getParameter("content");
-    String comment = request.getParameter("comment");
+    String name = request.getParameter(NAME);
+    String category = request.getParameter(CATEGORY);
+    String content = request.getParameter(CONTENT);
+    String comment = request.getParameter(COMMENT);
 
     Entity recommendation = new Entity("Recommendation");
-    recommendation.setProperty("name", name);
-    recommendation.setProperty("category", category);
-    recommendation.setProperty("content", content);
-    recommendation.setProperty("comment", comment);
+    recommendation.setProperty(NAME, name);
+    recommendation.setProperty(CATEGORY, category);
+    recommendation.setProperty(CONTENT, content);
+    recommendation.setProperty(COMMENT, comment);
     recommendation.setProperty("timestamp", System.currentTimeMillis());
 
     datastore.put(recommendation);

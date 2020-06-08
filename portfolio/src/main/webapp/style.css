@@ -26,8 +26,8 @@ body {
 /*Gallery page home view with Background*/
 .gallery-background {
   background: url("./images/sunset.jpg") no-repeat fixed;
-  background-size: contain;
-  height: 60%;
+  background-size: cover;
+  height: 100%;
   background-color:#0C0C0C;
   color: #fcfafc;
 }
@@ -103,7 +103,7 @@ section.blue {
 
 .gallery-title {
   position: absolute;
-  top: 30%;
+  top: 50%;
   left: 50%;
   text-align: center;
   transform: translate(-50%, -50%);
