@@ -121,11 +121,6 @@ function toggleForm() {
   }
 }
 
-function closeForm() {
-  document.getElementById('recommendation-form').style.display = 'none';
-  document.getElementById('datastore-form').style.display = 'none';
-}
-
 /**
  *Send recommendation to my Google Sheet
  */

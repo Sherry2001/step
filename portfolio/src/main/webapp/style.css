@@ -1,5 +1,4 @@
-@import url(https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:wght@300&display=swap);
-
+@import url(https://fonts.googleapis.com/css2?family=Muli:ital,wght@0,300;1,300&display=swap);
 * {
   box-sizing: border-box;
 }
@@ -12,20 +11,22 @@ html {
 body {
   margin: 0;
   height: 100%;
-  font-family: 'IBM Plex Serif', serif;
+  font-family: 'Muli', sans-serif;
 }
 
 /*Home View with Background*/
 .home-background {
   height: 100%;
-  background: linear-gradient(rgba(12, 12, 12, 0.99),rgba(12, 12, 12, 0.3)), 
-      url("/images/sunset.jpg") no-repeat fixed center;
+  background: linear-gradient(#06172300,#061723f2), 
+      url("./images/yellowbrush.jpg") no-repeat fixed center;
   color: #fcfafc;
   background-size: cover;
 }
 
 /*Gallery page home view with Background*/
 .gallery-background {
+  background: url("./images/sunset.jpg") no-repeat fixed;
+  background-size: contain;
   height: 60%;
   background-color:#0C0C0C;
   color: #fcfafc;
@@ -49,20 +50,27 @@ section {
   }
 }
 
+/*Dark and Light may not be used soon*/
 section.dark {
   background-color:#0C0C0C;
   color: #fcfafc;
 }
-
 section.light {
   background-color: #fcfafc;
   color: #0C0C0C;
 }
 
-section.blue {
-  background-color: #c7e8ff;
-  color: #0C0C0C;
+section.azure {
+  background: linear-gradient(#eaf6ff,#ffc393);
+  color: #061723;
 }
+section.blue {
+  background-color: #061723;
+  color: #fcfafc;
+}
+
+
+
 
 /*Containers*/
 .container {
@@ -158,9 +166,9 @@ section.blue {
 
 /*Cards*/
 .recommendation {
-  background-color:#dae8f9;
-  color: #0c0c0c;
-  padding: 10px 0px;
+  background-color:#e9f8ff;
+  color: #061723;
+  padding: 10px 2px;
   border-radius: 1px;
   width: 100%;
   margin: 10px auto;
@@ -189,8 +197,8 @@ section.blue {
 
 .profile-card {
   border-radius: 8px;
-  background-color:rgb(41, 41, 41);
-  box-shadow: 0 5px 16px rgba(175, 172, 172, 0.3);
+  background-color: #0d212f;
+  box-shadow: 0 5px 16px rgba(106, 111, 117, 0.3);
   transition: .4s;
   padding: 10px 20px;
   width: 100%;
@@ -198,7 +206,7 @@ section.blue {
 
 .profile-card:hover {
   transform: translateY(-.2%);
-  box-shadow: 0 5px 18px rgba(175, 172, 172, 0.4);
+  box-shadow: 0 5px 18px rgba(106, 111, 117, 0.5);
 }
 
 .card {
@@ -210,6 +218,8 @@ section.blue {
   position: relative;
   margin: 0 auto;
   max-width: 450px;
+  background-color: #fcfafc;
+  color: #0d212f;
 }
 
 .card:hover {
@@ -285,14 +295,14 @@ button {
   text-align: center;
   background-color: #c7e8ff;
   color: #0C0C0C;
-  border-radius: 13px;
+  border-radius: 8px;
   transition: .1s;
   border: 2px solid transparent;
 }
 
 button:hover { 
   cursor: pointer;
-  background-color: #0c0c0c;
+  background-color: inherit;
   color: inherit;
   border: 2px solid #c7e8ff;
 }
@@ -301,13 +311,10 @@ button:hover {
   padding: 10px 13px;
   margin: 15px auto;
   font: 20px inherit;
-  border-radius: 15px;
 }
   
 #recommendation-form button {
-  margin: auto;
-  text-align: center;
-  border-radius: 8px;
+  margin: 25px auto 0;
   width: 100%;
 }
 
@@ -428,20 +435,23 @@ button:hover {
 }
 /*Navigation Bar*/
 #nav{
-  background: rgba(12, 12, 12, 0.719);
+  background: #061723cb;
   z-index: 9999;
   padding: 8px 15px 0px;
 }
 
 #nav ul {
   list-style-type: none;
-  margin: 0;
+  margin: 0 auto;
   overflow: hidden;
   padding: 0;
 }
 
 #nav li {
-  float: right;
+  float: right;  
+  position: relative;
+  display:  inline-block;
+  font-weight: bold;
 }
 
 #nav li a {
@@ -605,7 +615,8 @@ button:hover {
   margin: 30px auto;
   max-width: 500px;
   position: relative;
-  border: 2px solid #c7e8ff;
+  border: 2px solid #061723;
+  color: #061723;
   border-radius: 20px;
   padding: 30px 40px;
   text-align: center;
@@ -642,6 +653,10 @@ form input, select, textarea {
 /*Text Appearances*/
 .blue-text {
   color: #c7e8ff;
+}
+
+.orange-text {
+  color: #FCA17D;
 }
 
 .turquoise-text {
