@@ -610,7 +610,7 @@ button:hover {
 }
 
 /*Form*/
-#recommendation-form, #datastore-form {
+#recommendations, #datastore-form {
   background: inherit;
   margin: 30px auto;
   max-width: 500px;
