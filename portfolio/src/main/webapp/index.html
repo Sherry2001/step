@@ -24,15 +24,14 @@
       </div>
       <div class="absolute-center">
         <h1>Sherry Shi</h1>
-        <p>Pictured: Port Washington Sunset | pc: Google Images</p>
       </div>
     </header>
 
     <!-- About Section --> 
-    <section id="about" class="dark">
+    <section id="about" class="blue">
       <div class="container">
         <!--Intro Paragraph-->
-        <h3 class="blue-text">About Me</h3>
+        <h3 class="orange-text">About Me</h3>
         <div class="wrapper bio">
           <img class="pro-pic" src="./images/ryan.jpg" alt = "My Profile Picture">
           <div class="intro">
@@ -79,9 +78,14 @@
             </div>
           </div>
         </div>
+      </div>
+    </section>
+
+    <section id="timeline" class="azure">
+      <div class="container">
         <!--Timeline div sections -->
-        <h3 id="timeline">A Brief History of Me</h3>
-        <h4 class="blue-text">Education, Work, and Other Milestones</h4> 
+        <h3>A Brief History of Me</h3>
+        <h4 class="orange-text">Education, Work, and Other Milestones</h4> 
         <div class="timeline">
           <div class="timeline-container left">
             <div class="timeline-content">
@@ -99,14 +103,14 @@
           </div>
           <!--Will insert more timeline items-->  
         </div>
-      </div>
+      </div> 
     </section>
 
     <!-- Project Section --> 
-    <section id="projects" class="light"> 
+    <section id="projects" class="blue"> 
       <div class="container">
         <h3>My Porfolio</h3>
-        <h4 class="blue-text">Some personal and class projects</h4>      
+        <h4 class="orange-text">Some personal and class projects</h4>      
         <div class="row wrapper projects">
           <div class="column third">
             <div class="card">
@@ -116,8 +120,8 @@
                 <p>This is a description of my project</p>
               </div>
               <div class="skills-container">
-                <div class="skill">View</div>
-                <div class="skill">Another Skill</div>
+                <div class="skill">javascript</div>
+                <div class="skill">react</div>
               </div>
             </div> 
           </div>
@@ -129,8 +133,8 @@
                 <p>This is a description of my project</p>
               </div>
               <div class="skills-container">
-                <div class="skill">View</div>
-                <div class="skill">Another Skill</div>
+                <div class="skill">html</div>
+                <div class="skill">css</div>
               </div>
             </div> 
           </div>
@@ -142,8 +146,8 @@
                 <p>This is a description of my project</p>
               </div>
               <div class="skills-container">
-                <div class="skill">View</div>
-                <div class="skill">Another Skill</div>
+                <div class="skill">java</div>
+                <div class="skill">javascript</div>
               </div>
             </div> 
           </div>
@@ -195,9 +199,7 @@
     </section> 
 
     <!-- To-Do Section -->
-    <!--TODO: Change to-do list titles appropriately after changing loadData() to 
-        separately load to each column-->
-    <section id="to-do" class="dark">
+    <section id="to-do" class="azure">
       <div class="container">
         <h3>My To-Do List</h3>
           <select id="max-loaded" class="inline-select" onChange="getData(this.value)">
@@ -211,7 +213,7 @@
         <div class="row wrapper to-dos">
           <div class="column quarter">
               <div class="to-do-container">
-              <h4 class="blue-text">Literature</h4>
+              <h4 class="orange-text">Literature</h4>
               <div id="literature-list">
                 <!--Dynamically put-in content-->
               </div>
@@ -219,7 +221,7 @@
           </div>
           <div class="column quarter">
             <div class="to-do-container">
-              <h4 class="blue-text">Music</h4>
+              <h4 class="orange-text">Music</h4>
               <div id="music-list">
                 <!--Dynamically put-in content-->
               </div>
@@ -227,7 +229,7 @@
           </div>
           <div class="column quarter">
             <div class="to-do-container">
-              <h4 class="blue-text">Movies & Shows </h4>
+              <h4 class="orange-text">Movies & Shows </h4>
               <div id="movie-list">
                 <!--Dynamically put-in content-->
               </div>
@@ -235,7 +237,7 @@
           </div>
           <div class="column quarter">
             <div class="to-do-container">
-              <h4 class="blue-text">Destinations & Foods</h4>
+              <h4 class="orange-text">Destinations & Foods</h4>
               <div id="travel-list">
                 <!--Dynamically put-in content-->
               </div>
@@ -243,7 +245,36 @@
           </div>
         </div>
 
-        <!-- Trying week3 post to server form--> 
+        <!--TODO: Review good/bad practice of posting recommendation-form to
+         two urls through query params. If it is okay, will delete second form--> 
+        
+        <!--Original Form: Now submits to datastore and excel--> 
+        <button onClick="toggleForm()">Suggestion Box</button>
+        <form id="recommendation-form" name="recommendation-form">
+          <h5 class="blue-text">
+        	  Give me your recommendations! Music, books, movies, tv-shows, foods, I'm all ears :)
+              </h5>
+          <input id="name-excel" type="text" name="Name" placeholder="Your Name?">
+          <select id="category-excel" placeholder="Category" name="Category" required>
+            <option value="" disabled selected>Select a Category</option>
+            <option value="Literature">Literature</option>
+            <option value="Music">Music</option>
+            <option value="Movie">Movie</option>
+            <option value="TV-Show">TV-Show</option>
+            <option value="Travel">Travel Destination</option>
+            <option value="Food">Food</option>
+            <option value="Activity">Activity</option>
+            <option value="Other">Other</option>
+          </select>
+          <input id="content-excel" type="text" 
+              placeholder="Your Recommendation?" name="Recommendation" required>
+          <textarea id="comment-excel" type="text" 
+              placeholder="Any additional comments?" name="Comments"></textarea>
+         <button type="submit" id="submit-form">Send</button>
+          <p id="form-response" class="hidden"></p>
+        </form>
+
+        <!-- Post to datastore only form--> 
         <form action="/data" method="POST" id="datastore-form" name="recommendation-form-server">
           <h5 class="blue-text">
         	  Give me your recommendations! Music, books, movies, tv-shows, foods, I'm all ears :)
@@ -255,50 +286,15 @@
             <option value="Music">Music</option>
             <option value="Movie">Movie</option>
             <option value="TV-Show">TV-Show</option>
-            <option value="Travel">Travel Destination</option>
+            <option value="Destination">Destination</option>
             <option value="Food">Food</option>
             <option value="Activity">Activity</option>
           </select>
-          <input id="recommendation" type="text" 
-              placeholder="Your Recommendation?" name="recommendation">
+          <input id="content" type="text" 
+              placeholder="Your Recommendation?" name="content">
           <textarea id="comment" type="text" 
-              placeholder="Any additional comments?" name="comments"></textarea>
+              placeholder="Any additional comments?" name="comment"></textarea>
           <button type="submit" id="submit-form">Send</button>
-        </form>
-
-        <!--TODO: Combine these two forms into one that posts to both server and google sheets--> 
-        
-        <!--Original Form--> 
-        <button onClick="openForm()">Suggestion Box</button>
-        <form id="recommendations" name="recommendation-form">
-          <h5 class="blue-text">
-        	  Give me your recommendations! Music, books, movies, tv-shows, foods, I'm all ears :)
-              </h5>
-          <input id="name-excel" type="text" name="Name" placeholder="Your Name?">
-          <select id="category-excel" placeholder="Category" name="Category">
-            <option value="" disabled selected>Select a Category</option>
-            <option value="Literature">Literature</option>
-            <option value="Music">Music</option>
-            <option value="Movie">Movie</option>
-            <option value="TV-Show">TV-Show</option>
-            <option value="Travel">Travel Destination</option>
-            <option value="Food">Food</option>
-            <option value="Activity">Activity</option>
-            <option value="Other">Other</option>
-          </select>
-          <input id="recommendation-excel" type="text" 
-              placeholder="Your Recommendation?" name="Recommendation">
-          <textarea id="comment-excel" type="text" 
-              placeholder="Any additional comments?" name="Comments"></textarea>
-          <div class="row">
-            <div class="column half">
-              <button type="submit" id="submit-form">Send</button>
-            </div> 
-            <div class="column half">
-              <button onclick="closeForm()" type="button">Close Form</button>
-            </div>   
-          </div>
-          <p id="form-response" class="hidden"></p>
         </form>
       </div>
     </section>

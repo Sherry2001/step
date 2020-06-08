@@ -112,13 +112,13 @@ document.addEventListener('DOMContentLoaded', function() {
 /**
  *Functions to toggle suggestion box form on and off
  */
-function openForm() {
-  document.getElementById('recommendations').style.display = 'block';
-  document.getElementById('datastore-form').style.display = 'block';
-}
-
-function closeForm() {
-  document.getElementById('recommendations').style.display = 'none';
+function toggleForm() {
+  const form = document.getElementById('recommendation-form');
+  if (form.style.display == 'block') {
+    form.style.display = 'none';
+  } else {
+    form.style.display = 'block';
+  }
 }
 
 /**
@@ -131,9 +131,16 @@ document.addEventListener('DOMContentLoaded', (event) => {
   form.addEventListener('submit', e => {
     e.preventDefault();
     fetch(scriptURL, { method: 'POST', body: new FormData(form), mode: 'no-cors'})
-	  .then(response => respond('Thank you for sending :)'))
-	  .catch(error => respond('Uh oh, error: ' + error.message))
-  });
+    .catch(error => respond('Uh oh, error: ' + error.message))
+    .then(() => {
+        fetch (url, {method: 'POST'});
+    }).then(() => {
+        getData();
+        respond("Thank you for your recommendation :)");
+    })
+  })
+});
+
 
   /**
  *Response to recommendation form
