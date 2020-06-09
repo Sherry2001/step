@@ -137,14 +137,17 @@ document.addEventListener('DOMContentLoaded', (event) => {
     const url = '/data?name=' + name + '&category=' + category + '&content=' + recommendation +
                '&comment=' + comment;
 
+
     fetch(scriptURL, { method: 'POST', body: new FormData(form), mode: 'no-cors'})
-    .catch(error => respond('Uh oh, error: ' + error.message))
     .then(() => {
-        fetch (url, {method: 'POST'});
-    }).then(() => {
-        getData();
-        respond("Thank you for your recommendation :)");
+      fetch (url, {method: 'POST'});
     })
+    .then(() => {
+      getData();
+      respond("Thank you for your recommendation :)");
+    })
+    .catch(error => respond('Uh oh, error: ' + error.message))
+
   })
 });
 
