@@ -176,11 +176,6 @@ document.addEventListener('DOMContentLoaded', (event) => {
     })
     .catch(error => respond('Uh oh, error: ' + error.message))
   })
-
-  const imageForm = document.forms['datastore-form'];
-  imageForm.addEventListener('submit', () => {
-      getData();
-  })
 });
 
 /**
