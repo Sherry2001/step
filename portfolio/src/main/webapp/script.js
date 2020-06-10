@@ -156,7 +156,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
   /**
    * Upon submission, adds data to both datastore and google sheets
    */
-  form.addEventListener('submit', e => {
+  form.addEventListener('submit', (e) => {
     e.preventDefault();
     const name = document.getElementById('name-excel').value;
     const category = document.getElementById('category-excel').value;
