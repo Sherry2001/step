@@ -14,7 +14,7 @@ function getData(maxLoad) {
     const musicList = document.getElementById('music-list');
     const movieList = document.getElementById('movie-list');
     const travelList = document.getElementById('travel-list');
-    
+
     literatureList.innerHTML = '';
     musicList.innerHTML = '';
     movieList.innerHTML = '';
@@ -55,7 +55,7 @@ function createRecommendationElement(toDo) {
   comment.innerHTML = toDo.comment; 
   recommendation.appendChild(comment);
 
-  if (toDo.imageUrl !== undefined){
+  if (toDo.imageUrl){
     const image = new Image();
     image.src = toDo.imageUrl;
     image.alt = toDo.content;
@@ -146,7 +146,6 @@ function setFormActionBlobstoreUrl(formId) {
       });
 }
 
-
 /**
  *Listens to page load
  */
@@ -166,16 +165,15 @@ document.addEventListener('DOMContentLoaded', (event) => {
     const url = '/data?name=' + name + '&category=' + category + '&content=' + recommendation +
                '&comment=' + comment;
 
-
     fetch(scriptURL, { method: 'POST', body: new FormData(form), mode: 'no-cors'})
     .then(() => {
       fetch (url, {method: 'POST'});
     })
     .then(() => {
       getData();
-      respond("Thank you for your recommendation :)");
+      respond('Thank you for your recommendation :)');
     })
-    .catch(error => respond('Uh oh, error: ' + error.message))
+    .catch((error) => respond('Uh oh, error: ' + error.message))
   })
 });
 
