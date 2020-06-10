@@ -58,6 +58,7 @@ function createRecommendationElement(toDo) {
   if (toDo.imageUrl !== undefined){
     const image = new Image();
     image.src = toDo.imageUrl;
+    image.alt = toDo.content;
     recommendation.appendChild(image);
   }
   
