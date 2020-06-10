@@ -14,7 +14,7 @@ function getData(maxLoad) {
     const musicList = document.getElementById('music-list');
     const movieList = document.getElementById('movie-list');
     const travelList = document.getElementById('travel-list');
-
+    
     literatureList.innerHTML = '';
     musicList.innerHTML = '';
     movieList.innerHTML = '';
@@ -55,6 +55,12 @@ function createRecommendationElement(toDo) {
   comment.innerHTML = toDo.comment; 
   recommendation.appendChild(comment);
 
+  if (toDo.imageUrl !== undefined){
+    const image = new Image();
+    image.src = toDo.imageUrl;
+    recommendation.appendChild(image);
+  }
+  
   const name = document.createElement('div');
   name.className = 'footer';
   name.innerHTML = toDo.category +' rec by: ' + toDo.name;
@@ -114,20 +120,42 @@ document.addEventListener('DOMContentLoaded', function() {
  */
 function toggleForm() {
   const form = document.getElementById('recommendation-form');
+  const imageForm = document.getElementById('datastore-form');
   if (form.style.display == 'block') {
     form.style.display = 'none';
+    imageForm.style.display = 'none';
   } else {
     form.style.display = 'block';
+    imageForm.style.display = 'block';
+    setFormActionBlobstoreUrl('datastore-form'); 
   }
 }
 
 /**
- *Send recommendation to my Google Sheet
+ * Sets form action to blobstore upload url 
+ */
+function setFormActionBlobstoreUrl(formId) {
+  fetch('/blobstore-url')
+      .then((response) => {
+        return response.text();
+      })
+      .then((blobstoreUrl) => {
+        let imageForm = document.getElementById(formId);
+        imageForm.action = blobstoreUrl;
+      });
+}
+
+
+/**
+ *Listens to page load
  */
 document.addEventListener('DOMContentLoaded', (event) => {
   const scriptURL = 'https://script.google.com/macros/s/AKfycbygq04RYi-5qwb82bmfONkahtZAsrz0WkSoGfHLgHVkPWnnmSI/exec';
   const form = document.forms['recommendation-form'];
 
+  /**
+   * Upon submission, adds data to both datastore and google sheets
+   */
   form.addEventListener('submit', e => {
     e.preventDefault();
     const name = document.getElementById('name-excel').value;
@@ -147,7 +175,11 @@ document.addEventListener('DOMContentLoaded', (event) => {
       respond("Thank you for your recommendation :)");
     })
     .catch(error => respond('Uh oh, error: ' + error.message))
+  })
 
+  const imageForm = document.forms['datastore-form'];
+  imageForm.addEventListener('submit', () => {
+      getData();
   })
 });
 

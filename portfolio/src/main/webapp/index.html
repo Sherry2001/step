@@ -275,9 +275,10 @@
         </form>
 
         <!-- Post to datastore only form--> 
-        <form action="/data" method="POST" id="datastore-form" name="recommendation-form-server">
+        <form action="" method="POST" id="datastore-form" name="recommendation-form-server" 
+            enctype="multipart/form-data">
           <h5 class="blue-text">
-        	  Give me your recommendations! Music, books, movies, tv-shows, foods, I'm all ears :)
+        	  This one uploads images too! 
               </h5>
           <input id="name" type="text" name="name" placeholder="Your Name?">
           <select id="category" placeholder="category" name="category" required>
@@ -292,6 +293,7 @@
           </select>
           <input id="content" type="text" 
               placeholder="Your Recommendation?" name="content">
+          <input type="file" id="image" name="image" placeholder="upload image">
           <textarea id="comment" type="text" 
               placeholder="Any additional comments?" name="comment"></textarea>
           <button type="submit" id="submit-form">Send</button>

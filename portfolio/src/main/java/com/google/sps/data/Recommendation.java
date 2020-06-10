@@ -8,13 +8,15 @@ public final class Recommendation {
   private final String category;
   private final String content;
   private final String comment;
+  private final String imageUrl; 
 
   public Recommendation(long id, String name, String category, String content,
-                          String comment) {
+                          String comment, String imageUrl) {
     this.id = id;
     this.name = name;
     this.category = category;
     this.content = content;
     this.comment = comment; 
+    this.imageUrl = imageUrl;
   } 
 }

@@ -29,7 +29,7 @@ public class BlobstoreUrlServlet extends HttpServlet {
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
     BlobstoreService blobstoreService = BlobstoreServiceFactory.getBlobstoreService();
-    String uploadUrl = blobstoreService.createUploadUrl("/my-form-handler");
+    String uploadUrl = blobstoreService.createUploadUrl("/data");
 
     response.setContentType("text/html");
     response.getWriter().println(uploadUrl);

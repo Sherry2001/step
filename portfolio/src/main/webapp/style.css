@@ -188,6 +188,11 @@ section.blue {
   padding: 5px 20px 10px;
 }
 
+.recommendation img {
+  padding: 0 10px 10px;
+  width: 100%;
+}
+
 .recommendation .footer{
   border-top: 2px solid rgba(189, 189, 189, 0.39);
   font-size: 14px;

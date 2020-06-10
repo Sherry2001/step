@@ -52,6 +52,7 @@ public class DataServlet extends HttpServlet {
   private static final String CATEGORY = "category";
   private static final String CONTENT = "content";
   private static final String COMMENT = "comment"; 
+  private static final String IMAGE = "image"; 
 
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -75,8 +76,9 @@ public class DataServlet extends HttpServlet {
       String category = (String) entity.getProperty(CATEGORY);
       String content = (String) entity.getProperty(CONTENT);
       String comment = (String) entity.getProperty(COMMENT);
+      String imageUrl = (String) entity.getProperty(IMAGE);
  
-      Recommendation recommendation = new Recommendation(id, name, category, content, comment);
+      Recommendation recommendation = new Recommendation(id, name, category, content, comment, imageUrl);
 
       myToDos.add(recommendation);
     }
@@ -92,15 +94,18 @@ public class DataServlet extends HttpServlet {
     String category = request.getParameter(CATEGORY);
     String content = request.getParameter(CONTENT);
     String comment = request.getParameter(COMMENT);
+    String imageUrl = getUploadedFileUrl(request, IMAGE);
 
     Entity recommendation = new Entity("Recommendation");
     recommendation.setProperty(NAME, name);
     recommendation.setProperty(CATEGORY, category);
     recommendation.setProperty(CONTENT, content);
     recommendation.setProperty(COMMENT, comment);
+    recommendation.setProperty(IMAGE, imageUrl); 
     recommendation.setProperty("timestamp", System.currentTimeMillis());
 
     datastore.put(recommendation);
+    response.sendRedirect("/index.html#to-do");
   }
 
   private static String convertToJson(List<Recommendation> messages) { 
