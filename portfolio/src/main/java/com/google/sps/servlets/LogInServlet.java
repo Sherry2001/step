@@ -17,10 +17,18 @@ public class LogInServlet extends HttpServlet {
     if (userService.isUserLoggedIn()) {
       String userEmail = userService.getCurrentUser().getEmail();
       String logoutUrl = userService.createLogoutURL("/index.html#to-do");
-      response.getWriter().println("<p>Hi Sherry, are you sure you want to delete?</p>");
-      response.getWriter().println("<button onclick=\"deleteData()\">Delete All</button>");
+      System.out.println(userEmail);
+      if (userEmail.equals("sherryshi2001@gmail.com") || userEmail.equals("shershi@google.com") ||
+          userEmail.equals("alfredh@google.com") || userEmail.equals("ricazhang@google.com")) {
+        System.out.println("got into the right one");
+        System.out.println(userEmail == "shershi@google.com");
+        System.out.println(userEmail);
+        response.getWriter().println("<p>Hi Sherry, are you sure you want to delete?</p>");
+        response.getWriter().println("<button onclick=\"deleteData()\">Delete All</button>");
+      } else {
+        response.getWriter().println("<p>I'm sorry, only Sherry can delete people's recommendation cards.</p>");
+      }
       response.getWriter().println("<a href=\"" + logoutUrl + "\">Log Out</a>");
-
     } else {
       String loginUrl = userService.createLoginURL("/index.html#to-do");
       response.getWriter().println("<p>You can only do this if you are Sherry. Log in, Sherry, and try again</p>");
