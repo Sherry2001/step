@@ -11,7 +11,6 @@ async function deleteData() {
 async function deleteBuffer() {
   fetch('/checklogin').then((response) => response.text())
   .then((htmlContent) => {
-    console.log(htmlContent);
     const alertCard = document.getElementById('alert-card');
     alertCard.innerHTML = htmlContent;
     alertCard.style.display = 'block';
@@ -36,11 +35,11 @@ function getData(maxLoad) {
       const recommendation = createRecommendationElement(toDo);
       const category = toDo.category;
 
-      if (category == 'Literature') {
+      if (category === 'Literature') {
         literatureList.appendChild(recommendation);
-      } else if (category == 'Music') {
+      } else if (category === 'Music') {
         musicList.appendChild(recommendation);
-      } else if (category == 'Movie' || category == 'TV-Show') {
+      } else if (category === 'Movie' || category === 'TV-Show') {
         movieList.appendChild(recommendation);
       } else {
         travelList.appendChild(recommendation); 
@@ -134,7 +133,7 @@ document.addEventListener('DOMContentLoaded', function() {
 function toggleForm() {
   const form = document.getElementById('recommendation-form');
   const imageForm = document.getElementById('datastore-form');
-  if (form.style.display == 'block') {
+  if (form.style.display === 'block') {
     form.style.display = 'none';
     imageForm.style.display = 'none';
   } else {
