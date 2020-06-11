@@ -5,6 +5,9 @@ async function deleteData() {
   fetch('/delete-data', {method:'POST'}).then(() => getData());
 }
 
+async function deleteBuffer() {
+  fetch('/checklogin', {method:'GET'});
+}
 /**
  * Fetch json practice, array of messages
  */
