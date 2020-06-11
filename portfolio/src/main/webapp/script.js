@@ -202,4 +202,3 @@ function respond(responseText) {
   document.getElementById('comment-excel').value = '';
   document.getElementById('category-excel').options[0].selected = 'true';
 }
-
