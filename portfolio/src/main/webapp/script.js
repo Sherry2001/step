@@ -55,6 +55,13 @@ function createRecommendationElement(toDo) {
   comment.innerHTML = toDo.comment; 
   recommendation.appendChild(comment);
 
+  if (toDo.imageUrl){
+    const image = new Image();
+    image.src = toDo.imageUrl;
+    image.alt = toDo.content;
+    recommendation.appendChild(image);
+  }
+  
   const name = document.createElement('div');
   name.className = 'footer';
   name.innerHTML = toDo.category +' rec by: ' + toDo.name;
@@ -114,21 +121,42 @@ document.addEventListener('DOMContentLoaded', function() {
  */
 function toggleForm() {
   const form = document.getElementById('recommendation-form');
+  const imageForm = document.getElementById('datastore-form');
   if (form.style.display == 'block') {
     form.style.display = 'none';
+    imageForm.style.display = 'none';
   } else {
     form.style.display = 'block';
+    imageForm.style.display = 'block';
+    setFormActionBlobstoreUrl('datastore-form'); 
   }
 }
 
 /**
- *Send recommendation to my Google Sheet
+ * Sets form action to blobstore upload url 
+ */
+function setFormActionBlobstoreUrl(formId) {
+  fetch('/blobstore-url')
+      .then((response) => {
+        return response.text();
+      })
+      .then((blobstoreUrl) => {
+        let imageForm = document.getElementById(formId);
+        imageForm.action = blobstoreUrl;
+      });
+}
+
+/**
+ *Listens to page load
  */
 document.addEventListener('DOMContentLoaded', (event) => {
   const scriptURL = 'https://script.google.com/macros/s/AKfycbygq04RYi-5qwb82bmfONkahtZAsrz0WkSoGfHLgHVkPWnnmSI/exec';
   const form = document.forms['recommendation-form'];
 
-  form.addEventListener('submit', e => {
+  /**
+   * Upon submission, adds data to both datastore and google sheets
+   */
+  form.addEventListener('submit', (e) => {
     e.preventDefault();
     const name = document.getElementById('name-excel').value;
     const category = document.getElementById('category-excel').value;
@@ -138,13 +166,14 @@ document.addEventListener('DOMContentLoaded', (event) => {
                '&comment=' + comment;
 
     fetch(scriptURL, { method: 'POST', body: new FormData(form), mode: 'no-cors'})
-    .catch(error => respond('Uh oh, error: ' + error.message))
     .then(() => {
-        fetch (url, {method: 'POST'});
-    }).then(() => {
-        getData();
-        respond("Thank you for your recommendation :)");
+      fetch (url, {method: 'POST'});
     })
+    .then(() => {
+      getData();
+      respond('Thank you for your recommendation :)');
+    })
+    .catch((error) => respond('Uh oh, error: ' + error.message))
   })
 });
 

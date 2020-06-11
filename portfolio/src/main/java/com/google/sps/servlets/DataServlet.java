@@ -14,6 +14,17 @@
 
 package com.google.sps.servlets;
 
+import com.google.appengine.api.blobstore.BlobInfo;
+import com.google.appengine.api.blobstore.BlobInfoFactory;
+import com.google.appengine.api.blobstore.BlobKey;
+import com.google.appengine.api.blobstore.BlobstoreService;
+import com.google.appengine.api.blobstore.BlobstoreServiceFactory;
+import com.google.appengine.api.images.ImagesService;
+import com.google.appengine.api.images.ImagesServiceFactory;
+import com.google.appengine.api.images.ServingUrlOptions;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.Map;
 import com.google.appengine.api.datastore.DatastoreService;
 import com.google.appengine.api.datastore.DatastoreServiceFactory;
 import com.google.appengine.api.datastore.Entity;
@@ -41,6 +52,7 @@ public class DataServlet extends HttpServlet {
   private static final String CATEGORY = "category";
   private static final String CONTENT = "content";
   private static final String COMMENT = "comment"; 
+  private static final String IMAGE = "image"; 
 
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -64,8 +76,9 @@ public class DataServlet extends HttpServlet {
       String category = (String) entity.getProperty(CATEGORY);
       String content = (String) entity.getProperty(CONTENT);
       String comment = (String) entity.getProperty(COMMENT);
+      String imageUrl = (String) entity.getProperty(IMAGE);
  
-      Recommendation recommendation = new Recommendation(id, name, category, content, comment);
+      Recommendation recommendation = new Recommendation(id, name, category, content, comment, imageUrl);
 
       myToDos.add(recommendation);
     }
@@ -81,20 +94,62 @@ public class DataServlet extends HttpServlet {
     String category = request.getParameter(CATEGORY);
     String content = request.getParameter(CONTENT);
     String comment = request.getParameter(COMMENT);
+    String imageUrl = getUploadedFileUrl(request, IMAGE);
 
     Entity recommendation = new Entity("Recommendation");
     recommendation.setProperty(NAME, name);
     recommendation.setProperty(CATEGORY, category);
     recommendation.setProperty(CONTENT, content);
     recommendation.setProperty(COMMENT, comment);
+    recommendation.setProperty(IMAGE, imageUrl); 
     recommendation.setProperty("timestamp", System.currentTimeMillis());
 
     datastore.put(recommendation);
+    response.sendRedirect("/index.html#to-do");
   }
 
   private static String convertToJson(List<Recommendation> messages) { 
     Gson gson = new Gson();
     String jsonString = gson.toJson(messages);
     return jsonString;
+  }
+
+  /** This section copied from Walkthrough tutorial **/
+  /** Returns a URL that points to the uploaded file, or null if the user didn't upload a file. */
+  private String getUploadedFileUrl(HttpServletRequest request, String formInputElementName) {
+    BlobstoreService blobstoreService = BlobstoreServiceFactory.getBlobstoreService();
+    Map<String, List<BlobKey>> blobs = blobstoreService.getUploads(request);
+    List<BlobKey> blobKeys = blobs.get(formInputElementName);
+
+    // User submitted form without selecting a file, so we can't get a URL. (dev server)
+    if (blobKeys == null || blobKeys.isEmpty()) {
+      return null;
+    }
+
+    // Our form only contains a single file input, so get the first index.
+    BlobKey blobKey = blobKeys.get(0);
+
+    // User submitted form without selecting a file, so we can't get a URL. (live server)
+    BlobInfo blobInfo = new BlobInfoFactory().loadBlobInfo(blobKey);
+    if (blobInfo.getSize() == 0) {
+      blobstoreService.delete(blobKey);
+      return null;
+    }
+
+    // We could check the validity of the file here, e.g. to make sure it's an image file
+    // https://stackoverflow.com/q/10779564/873165
+
+    // Use ImagesService to get a URL that points to the uploaded file.
+    ImagesService imagesService = ImagesServiceFactory.getImagesService();
+    ServingUrlOptions options = ServingUrlOptions.Builder.withBlobKey(blobKey);
+
+    // To support running in Google Cloud Shell with AppEngine's dev server, we must use the relative
+    // path to the image, rather than the path returned by imagesService which contains a host.
+    try {
+      URL url = new URL(imagesService.getServingUrl(options));
+      return url.getPath();
+    } catch (MalformedURLException e) {
+      return imagesService.getServingUrl(options);
+    }
   }
 }
