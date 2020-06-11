@@ -2,11 +2,20 @@
  * Delete from datastore
  */
 async function deleteData() {
-  fetch('/delete-data', {method:'POST'}).then(() => getData());
+  fetch('/delete-data', {method:'POST'}).then(() => {
+      document.getElementById("alert-card").style.display = 'none';
+      getData();
+  });
 }
 
 async function deleteBuffer() {
-  fetch('/checklogin', {method:'GET'});
+  fetch('/checklogin').then((response) => response.text())
+  .then((htmlContent) => {
+    console.log(htmlContent);
+    const alertCard = document.getElementById('alert-card');
+    alertCard.innerHTML = htmlContent;
+    alertCard.style.display = 'block';
+  })
 }
 /**
  * Fetch json practice, array of messages

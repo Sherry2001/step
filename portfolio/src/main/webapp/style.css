@@ -165,6 +165,15 @@ section.blue {
 }
 
 /*Cards*/
+#alert-card {
+  border: 2px solid black;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  display: none;
+  width: 50%;
+  margin: auto;
+}
 .recommendation {
   background-color:#e9f8ff;
   color: #061723;
