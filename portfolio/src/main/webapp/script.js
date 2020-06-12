@@ -1,21 +1,52 @@
 /**
  * Delete from datastore
  */
-async function deleteData() {
+function deleteData() {
   fetch('/delete-data', {method:'POST'}).then(() => {
       document.getElementById("alert-card").style.display = 'none';
       getData();
   });
 }
 
-async function deleteBuffer() {
-  fetch('/checklogin').then((response) => response.text())
-  .then((htmlContent) => {
+function deleteBuffer() {
+  fetch('/checklogin').then((response) => response.json())
+  .then((responseJson) => {
     const alertCard = document.getElementById('alert-card');
-    alertCard.innerHTML = htmlContent;
+    alertCard.innerHTML = '';
+    let message = document.createElement('p');
+
+    if (responseJson.loggedIn === true) {
+      const email = responseJson.email; 
+      if (email === 'sherryshi2001@gmail.com' || email === 'shershi@google.com' ||
+          email === 'alfredh@google.com' || email === 'ricazhang@google.com') {
+        message.innerHTML = 'Hi Sherry, are you sure you want to delete?';
+        alertCard.appendChild(message);
+        const deleteButton = document.createElement('button'); 
+        deleteButton.innerHTML = 'Delete';
+        deleteButton.onclick = () => {deleteData()};
+        alertCard.appendChild(deleteButton);
+      } else {
+        message.innerHTML = 'Sorry, only Sherry can delete these';
+        alertCard.appendChild(message);
+      }
+      const logoutLink = document.createElement('a');
+      const linkText = document.createTextNode("Log Out");
+      logoutLink.appendChild(linkText);
+      logoutLink.href = responseJson.url;
+      alertCard.appendChild(logoutLink);
+    } else {
+      message.innerHTML = 'Only Sherry can delete these. If you are Sherry, please log in!';
+      alertCard.appendChild(message);
+      const loginLink = document.createElement('a');
+      const linkText = document.createTextNode('Log In!');
+      loginLink.appendChild(linkText);
+      loginLink.href = responseJson.url;
+      alertCard.appendChild(loginLink);
+    }
     alertCard.style.display = 'block';
   })
 }
+
 /**
  * Fetch json practice, array of messages
  */
