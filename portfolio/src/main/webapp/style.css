@@ -205,7 +205,7 @@ section.blue {
 .recommendation .footer{
   border-top: 2px solid rgba(189, 189, 189, 0.39);
   font-size: 14px;
-  padding: 10px 20px 0px;
+  padding: 10px 10px 0px 20px;
   text-align: left;
 }
 
@@ -708,4 +708,16 @@ h5 {
 
 .hidden {
   visibility: hidden;
+}
+
+/*Icons*/
+.fa.fa-trash-o {
+  font-size: 20px;
+  float: right;
+  border-radius: 3px;
+}
+
+.fa.fa-trash-o:hover {
+  transform: translateY(-2%);
+  color: #FCA17D;
 }

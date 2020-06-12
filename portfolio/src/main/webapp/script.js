@@ -106,7 +106,8 @@ function createRecommendationElement(toDo) {
   
   const name = document.createElement('div');
   name.className = 'footer';
-  name.innerHTML = toDo.category +' rec by: ' + toDo.name;
+  name.innerHTML = toDo.category +' rec by: ' + toDo.name + 
+    '<i class="fa fa-trash-o" onclick="deleteBuffer()"></i>';
   recommendation.appendChild(name);
 
   return recommendation;
