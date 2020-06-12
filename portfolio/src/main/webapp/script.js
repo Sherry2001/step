@@ -1,8 +1,50 @@
 /**
  * Delete from datastore
  */
-async function deleteData() {
-  fetch('/delete-data', {method:'POST'}).then(() => getData());
+function deleteData() {
+  fetch('/delete-data', {method:'POST'}).then(() => {
+      document.getElementById("alert-card").style.display = 'none';
+      getData();
+  });
+}
+
+function deleteBuffer() {
+  fetch('/checklogin').then((response) => response.json())
+  .then((responseJson) => {
+    const alertCard = document.getElementById('alert-card');
+    alertCard.innerHTML = '';
+    let message = document.createElement('p');
+
+    if (responseJson.loggedIn) {
+      const email = responseJson.email; 
+      if (email === 'sherryshi2001@gmail.com' || email === 'shershi@google.com' ||
+          email === 'alfredh@google.com' || email === 'ricazhang@google.com') {
+        message.innerHTML = 'Hi Sherry, are you sure you want to delete?';
+        alertCard.appendChild(message);
+        const deleteButton = document.createElement('button'); 
+        deleteButton.innerHTML = 'Delete';
+        deleteButton.onclick = () => {deleteData()};
+        alertCard.appendChild(deleteButton);
+      } else {
+        message.innerHTML = 'Sorry, only Sherry can delete these';
+        alertCard.appendChild(message);
+      }
+      const logoutLink = document.createElement('a');
+      const linkText = document.createTextNode("Log Out");
+      logoutLink.appendChild(linkText);
+      logoutLink.href = responseJson.url;
+      alertCard.appendChild(logoutLink);
+    } else {
+      message.innerHTML = 'Only Sherry can delete these. If you are Sherry, please log in!';
+      alertCard.appendChild(message);
+      const loginLink = document.createElement('a');
+      const linkText = document.createTextNode('Log In!');
+      loginLink.appendChild(linkText);
+      loginLink.href = responseJson.url;
+      alertCard.appendChild(loginLink);
+    }
+    alertCard.style.display = 'block';
+  })
 }
 
 /**
@@ -24,11 +66,11 @@ function getData(maxLoad) {
       const recommendation = createRecommendationElement(toDo);
       const category = toDo.category;
 
-      if (category == 'Literature') {
+      if (category === 'Literature') {
         literatureList.appendChild(recommendation);
-      } else if (category == 'Music') {
+      } else if (category === 'Music') {
         musicList.appendChild(recommendation);
-      } else if (category == 'Movie' || category == 'TV-Show') {
+      } else if (category === 'Movie' || category === 'TV-Show') {
         movieList.appendChild(recommendation);
       } else {
         travelList.appendChild(recommendation); 
@@ -64,7 +106,8 @@ function createRecommendationElement(toDo) {
   
   const name = document.createElement('div');
   name.className = 'footer';
-  name.innerHTML = toDo.category +' rec by: ' + toDo.name;
+  name.innerHTML = toDo.category +' rec by: ' + toDo.name + 
+    '<i class="fa fa-trash-o" onclick="deleteBuffer()"></i>';
   recommendation.appendChild(name);
 
   return recommendation;
@@ -122,7 +165,7 @@ document.addEventListener('DOMContentLoaded', function() {
 function toggleForm() {
   const form = document.getElementById('recommendation-form');
   const imageForm = document.getElementById('datastore-form');
-  if (form.style.display == 'block') {
+  if (form.style.display === 'block') {
     form.style.display = 'none';
     imageForm.style.display = 'none';
   } else {
@@ -191,4 +234,3 @@ function respond(responseText) {
   document.getElementById('comment-excel').value = '';
   document.getElementById('category-excel').options[0].selected = 'true';
 }
-
