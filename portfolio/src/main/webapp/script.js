@@ -15,7 +15,7 @@ function deleteBuffer() {
     alertCard.innerHTML = '';
     let message = document.createElement('p');
 
-    if (responseJson.loggedIn === true) {
+    if (responseJson.loggedIn) {
       const email = responseJson.email; 
       if (email === 'sherryshi2001@gmail.com' || email === 'shershi@google.com' ||
           email === 'alfredh@google.com' || email === 'ricazhang@google.com') {
