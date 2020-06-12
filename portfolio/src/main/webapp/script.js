@@ -43,10 +43,22 @@ function deleteBuffer() {
       loginLink.href = responseJson.url;
       alertCard.appendChild(loginLink);
     }
-    alertCard.style.display = 'block';
+    showAlertMode(alertCard);
   })
 }
 
+/**
+ * Helper to show alert panel and blacked out background
+ */
+function showAlertMode(alertCard) {
+  alertCard.classList.add('active');
+  const backdrop = document.getElementById('backdrop');
+  backdrop.classList.add('active');
+  backdrop.addEventListener('click',() => {
+    backdrop.classList.remove('active');
+    alertCard.classList.remove('active');
+  })
+}
 /**
  * Fetch json practice, array of messages
  */
@@ -145,21 +157,6 @@ function randomNumberGenerator(factsLength) {
 }
 
 /**
- * Implements Sticky Nav Bar
- */
-document.addEventListener('DOMContentLoaded', function() {
-  let navbar = document.getElementById('nav');
-  let offsetPos = navbar.offsetTop;
-  window.onscroll = function() {
-    if (window.pageYOffset >= offsetPos) {
-      navbar.classList.add('sticky')
-    } else {
-      navbar.classList.remove('sticky');
-    }
-  };
-});
-
-/**
  *Functions to toggle suggestion box form on and off
  */
 function toggleForm() {
@@ -190,15 +187,28 @@ function setFormActionBlobstoreUrl(formId) {
 }
 
 /**
- *Listens to page load
+ * Performs the following after page loads
  */
 document.addEventListener('DOMContentLoaded', (event) => {
-  const scriptURL = 'https://script.google.com/macros/s/AKfycbygq04RYi-5qwb82bmfONkahtZAsrz0WkSoGfHLgHVkPWnnmSI/exec';
-  const form = document.forms['recommendation-form'];
+  /**
+   * Implements Sticky Nav Bar
+   */
+  let navbar = document.getElementById('nav');
+  let offsetPos = navbar.offsetTop;
+  window.onscroll = function() {
+    if (window.pageYOffset >= offsetPos) {
+      navbar.classList.add('sticky')
+    } else {
+      navbar.classList.remove('sticky');
+    }
+  };
 
   /**
-   * Upon submission, adds data to both datastore and google sheets
+   * Form submission-  posts form data to datatstore and google sheets
    */
+  const scriptURL = 'https://script.google.com/macros/s/AKfycbygq04RYi-5qwb82bmfONkahtZAsrz0WkSoGfHLgHVkPWnnmSI/exec';
+  const form = document.forms['recommendation-form'];
+  
   form.addEventListener('submit', (e) => {
     e.preventDefault();
     const name = document.getElementById('name-excel').value;
