@@ -20,10 +20,14 @@ public class LogInServlet extends HttpServlet {
     Boolean loggedIn;
     String email = null;
     String url;
+    Boolean access = false;
 
     if (userService.isUserLoggedIn()) {
       loggedIn = true;
       email = userService.getCurrentUser().getEmail();
+      if (email.equals("shershi@google.com") || email.equals("sherryshi2001@gmail.com") || email.equals("ricazhang@google.com") || email.equals("alfredh@google.com")) {
+        access = true;
+      }
       String logoutUrl = userService.createLogoutURL("/index.html#to-do");
       url = logoutUrl;
     } else {
@@ -32,7 +36,7 @@ public class LogInServlet extends HttpServlet {
       url = loginUrl;
     }
 
-    CheckLoginResponse checkLoginResponse = new CheckLoginResponse(loggedIn, url, email);
+    CheckLoginResponse checkLoginResponse = new CheckLoginResponse(loggedIn, url, email,access);
 
     //Convert to JSON string
     Gson gson = new Gson();

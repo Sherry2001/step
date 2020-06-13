@@ -3,7 +3,7 @@
  */
 function deleteData() {
   fetch('/delete-data', {method:'POST'}).then(() => {
-      document.getElementById("alert-card").style.display = 'none';
+      hideAlert();
       getData();
   });
 }
@@ -16,9 +16,8 @@ function deleteBuffer() {
     let message = document.createElement('p');
 
     if (responseJson.loggedIn) {
-      const email = responseJson.email; 
-      if (email === 'sherryshi2001@gmail.com' || email === 'shershi@google.com' ||
-          email === 'alfredh@google.com' || email === 'ricazhang@google.com') {
+      const access = responseJson.access;
+      if (access) {
         message.innerHTML = 'Hi Sherry, are you sure you want to delete?';
         alertCard.appendChild(message);
         const deleteButton = document.createElement('button'); 
@@ -55,9 +54,18 @@ function showAlertMode(alertCard) {
   const backdrop = document.getElementById('backdrop');
   backdrop.classList.add('active');
   backdrop.addEventListener('click',() => {
-    backdrop.classList.remove('active');
-    alertCard.classList.remove('active');
+    hideAlert();
   })
+}
+
+/**
+ * Helper to clear alert mode
+ */
+function hideAlert() {
+  const alertCard = document.getElementById('alert-card');
+  const backdrop = document.getElementById('backdrop');
+  backdrop.classList.remove('active');
+  alertCard.classList.remove('active');
 }
 /**
  * Fetch json practice, array of messages
