@@ -67,6 +67,7 @@ function hideAlert() {
   backdrop.classList.remove('active');
   alertCard.classList.remove('active');
 }
+
 /**
  * Fetch json practice, array of messages
  */

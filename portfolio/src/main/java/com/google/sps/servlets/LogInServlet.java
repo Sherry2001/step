@@ -36,7 +36,7 @@ public class LogInServlet extends HttpServlet {
       url = loginUrl;
     }
 
-    CheckLoginResponse checkLoginResponse = new CheckLoginResponse(loggedIn, url, email,access);
+    CheckLoginResponse checkLoginResponse = new CheckLoginResponse(loggedIn, url, email, access);
 
     //Convert to JSON string
     Gson gson = new Gson();
