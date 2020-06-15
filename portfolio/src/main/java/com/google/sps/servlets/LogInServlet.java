@@ -23,9 +23,8 @@ public class LogInServlet extends HttpServlet {
     String email = null;
     String url;
     boolean access = false;
-
+    
     List<String> acceptedEmails = Arrays.asList("shershi@google.com","ricazhang@google.com","alfredh@google.com");
-
 
     if (userService.isUserLoggedIn()) {
       loggedIn = true;
