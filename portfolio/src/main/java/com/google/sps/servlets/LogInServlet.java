@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import com.google.sps.data.CheckLoginResponse;
 import com.google.gson.Gson;
+import java.util.List;
+import java.util.Arrays;
 
 @WebServlet("/checklogin")
 public class LogInServlet extends HttpServlet {
@@ -17,15 +19,18 @@ public class LogInServlet extends HttpServlet {
     UserService userService = UserServiceFactory.getUserService(); 
     response.setContentType("application/json");
 
-    Boolean loggedIn;
+    boolean loggedIn;
     String email = null;
     String url;
-    Boolean access = false;
+    boolean access = false;
+
+    List<String> acceptedEmails = Arrays.asList("shershi@google.com","ricazhang@google.com","alfredh@google.com");
+
 
     if (userService.isUserLoggedIn()) {
       loggedIn = true;
       email = userService.getCurrentUser().getEmail();
-      if (email.equals("shershi@google.com") || email.equals("sherryshi2001@gmail.com") || email.equals("ricazhang@google.com") || email.equals("alfredh@google.com")) {
+      if (acceptedEmails.contains(email)) {
         access = true;
       }
       String logoutUrl = userService.createLogoutURL("/index.html#to-do");

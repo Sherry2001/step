@@ -22,7 +22,7 @@ function deleteBuffer() {
         alertCard.appendChild(message);
         const deleteButton = document.createElement('button'); 
         deleteButton.innerHTML = 'Delete';
-        deleteButton.onclick = () => {deleteData()};
+        deleteButton.onclick = deleteData;
         alertCard.appendChild(deleteButton);
       } else {
         message.innerHTML = 'Sorry, only Sherry can delete these';
@@ -53,9 +53,7 @@ function showAlertMode(alertCard) {
   alertCard.classList.add('active');
   const backdrop = document.getElementById('backdrop');
   backdrop.classList.add('active');
-  backdrop.addEventListener('click',() => {
-    hideAlert();
-  })
+  backdrop.addEventListener('click', hideAlert);
 }
 
 /**

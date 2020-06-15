@@ -3,12 +3,12 @@
 package com.google.sps.data;
 
 public final class CheckLoginResponse {
-  private final Boolean loggedIn;
+  private final boolean loggedIn;
   private final String url; 
   private final String email;
-  private final Boolean access;
+  private final boolean access;
 
-  public CheckLoginResponse(Boolean loggedIn, String url, String email, Boolean access) {
+  public CheckLoginResponse(boolean loggedIn, String url, String email, boolean access) {
     this.loggedIn = loggedIn;
     this.url = url;
     this.email = email; 
