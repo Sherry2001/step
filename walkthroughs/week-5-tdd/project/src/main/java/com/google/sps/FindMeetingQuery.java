@@ -38,22 +38,12 @@ public final class FindMeetingQuery {
     //Filter events to only consider events that have attendees also in the Meeting Requested
     List<TimeRange> relevantEventTimes = filterEvents(events, requestAttendees);
     
-    
-    //No relevant events means the whole day is free for the meeting
-    if(relevantEventTimes.size() == 0) {
-      answer.add(TimeRange.WHOLE_DAY);
-      return answer;
-    }
-
     Collections.sort(relevantEventTimes, TimeRange.ORDER_BY_START);
 
     //Variables used to resolve time range overlaps during linear scan 
-    int combinedRangeStartTime = relevantEventTimes.get(0).start();
-    int combinedRangeEndTime = relevantEventTimes.get(0).end();
-    
-    //Process the first available timeRange from start of day to start of first event
-    addPossibleTimeRange(answer, TimeRange.START_OF_DAY, combinedRangeStartTime, requestDuration, false);
-
+    int combinedRangeStartTime;
+    int combinedRangeEndTime = TimeRange.START_OF_DAY;    
+  
     for (TimeRange currentTimeRange : relevantEventTimes) {
       int currentStartTime = currentTimeRange.start();
       int currentEndTime = currentTimeRange.end();
