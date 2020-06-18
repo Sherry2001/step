@@ -24,18 +24,67 @@ import java.util.Set;
 
 public final class FindMeetingQuery {
   public Collection<TimeRange> query(Collection<Event> events, MeetingRequest request) {
-    //Return Collection
-    Collection<TimeRange> answer = new ArrayList<TimeRange>();
     
-    //Get requested meeting attendees 
+    Collection<TimeRange> answer = new ArrayList<TimeRange>();
+
     Collection<String> requestAttendees = request.getAttendees();
     long requestDuration = request.getDuration();
     
+    //Check for valid request duration
     if (requestDuration > 24 * 60) {
       return answer;
     }
     
-    //Filter events to only consider those with relevant attendees
+    //Filter events to only consider events that have attendees also in the Meeting Requested
+    List<TimeRange> relevantEventTimes = filterEvents(events, requestAttendees);
+    
+    
+    //No relevant events means the whole day is free for the meeting
+    if(relevantEventTimes.size() == 0) {
+      answer.add(TimeRange.WHOLE_DAY);
+      return answer;
+    }
+
+    Collections.sort(relevantEventTimes, TimeRange.ORDER_BY_START);
+
+    //Variables used to resolve time range overlaps during linear scan 
+    int combinedRangeStartTime = relevantEventTimes.get(0).start();
+    int combinedRangeEndTime = relevantEventTimes.get(0).end();
+    
+    //Process the first available timeRange from start of day to start of first event
+    addPossibleTimeRange(answer, TimeRange.START_OF_DAY, combinedRangeStartTime, requestDuration, false);
+
+    for (TimeRange currentTimeRange : relevantEventTimes) {
+      int currentStartTime = currentTimeRange.start();
+      int currentEndTime = currentTimeRange.end();
+      
+      if (currentStartTime <= combinedRangeEndTime) {
+        if (currentEndTime > combinedRangeEndTime) {
+          combinedRangeEndTime = currentEndTime;
+        }
+      } else {
+        addPossibleTimeRange(answer, combinedRangeEndTime, currentStartTime, requestDuration, false);
+        combinedRangeStartTime = currentStartTime;
+        combinedRangeEndTime = currentEndTime;
+      }
+    }
+    
+    //Process the last available timeRange from end of last event to end of day.
+    addPossibleTimeRange(answer, combinedRangeEndTime, TimeRange.END_OF_DAY, requestDuration, true);
+    
+    return answer;
+  }
+  
+ 
+  /**
+   * Helper function to filter through the events given and only return the time ranges 
+   * for events that have attendees in the MeetingRequest's attendees list.
+   * 
+   * @param events
+   * @param requestAttendees
+   * @return List of TimeRange for events that have attendees who are also in the requested meeting
+   */
+  private List<TimeRange> filterEvents(Collection<Event> events, Collection<String> requestAttendees) {
     Iterator<Event> eventsIterator = events.iterator(); 
     List<TimeRange> relevantEventTimes = new ArrayList<TimeRange>();
     while (eventsIterator.hasNext()) {
@@ -46,61 +95,34 @@ public final class FindMeetingQuery {
         relevantEventTimes.add(event.getWhen());
       }
     }
-    
-    if(relevantEventTimes.size() == 0) {
-      answer.add(TimeRange.WHOLE_DAY);
-      return answer;
-    }
-
-    //Sort list of relevant event time ranges by start time
-    Collections.sort(relevantEventTimes, TimeRange.ORDER_BY_START);
-
-    //Initialize variables used during linear scan 
-    int combinedRangeStartTime = relevantEventTimes.get(0).start();
-    int combinedRangeEndTime = relevantEventTimes.get(0).end();
-    
-    //Process the first available timeRange from start of day to start of first event
-    if (validTimeRange(TimeRange.START_OF_DAY, combinedRangeStartTime, requestDuration)) {
-        answer.add(TimeRange.fromStartEnd(TimeRange.START_OF_DAY, combinedRangeStartTime, false));
-    }
-    
-    //Linear scan of relevant time ranges starting from the end
-    for (TimeRange currentTimeRange : relevantEventTimes) {
-      int currentStartTime = currentTimeRange.start();
-      int currentEndTime = currentTimeRange.end();
-      if (currentStartTime <= combinedRangeEndTime) {
-        if (currentEndTime > combinedRangeEndTime) {
-          //|----combinedRange---|
-          //             |----currentRange----|
-          //extend combinedRange end time:
-          //|---------combinedRange-----------|
-          combinedRangeEndTime = currentEndTime;
-        }
-      } else {
-        if(validTimeRange(combinedRangeEndTime, currentStartTime, requestDuration)) {
-            answer.add(TimeRange.fromStartEnd(combinedRangeEndTime, currentStartTime, false));
-        }
-        combinedRangeStartTime = currentStartTime;
-        combinedRangeEndTime = currentEndTime;
-      }
-    }
-    
-    //Process the last available timeRange from end of last event to end of day.
-
-    if (validTimeRange(combinedRangeEndTime, TimeRange.END_OF_DAY, requestDuration)) {
-        answer.add(TimeRange.fromStartEnd(combinedRangeEndTime, TimeRange.END_OF_DAY, true));
-    }
-    
-    return answer;
+    return relevantEventTimes;
   }
   
   /**
-   * Helper function to check if a time range is valid, given meeting request
-   * duration
-   * 
+   * Helper function to check if a time range is long enough for the requested duration
+   * @param startTime
+   * @param endTime
+   * @param requestDuration
+   * @return true or false, whether or not this time works 
    */
-  
   private boolean validTimeRange(int startTime, int endTime, long requestDuration) {
       return (endTime - startTime >= requestDuration);
+  }
+  
+  /**
+   * Helper to update the list of possible time ranges by creating a new TimeRange
+   * if a given time range is longer than the requested duration
+   *  
+   * @param answer 
+   * @param startTime
+   * @param endTime
+   * @param requestDuration
+   * @param inclusive
+   */
+  private void addPossibleTimeRange(Collection<TimeRange> answer, int startTime, int endTime, 
+          long requestDuration, boolean inclusive) {
+    if (validTimeRange(startTime, endTime, requestDuration)) {
+      answer.add(TimeRange.fromStartEnd(startTime, endTime, inclusive));
+    }
   }
 }
