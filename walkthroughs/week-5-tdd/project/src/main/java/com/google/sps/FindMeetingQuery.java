@@ -30,11 +30,6 @@ public final class FindMeetingQuery {
     Collection<String> requestAttendees = request.getAttendees();
     long requestDuration = request.getDuration();
     
-    //Check for valid request duration
-    if (requestDuration > 24 * 60) {
-      return answer;
-    }
-    
     //Filter events to only consider events that have attendees also in the Meeting Requested
     List<TimeRange> relevantEventTimes = filterEvents(events, requestAttendees);
     
@@ -44,6 +39,7 @@ public final class FindMeetingQuery {
     int combinedRangeStartTime;
     int combinedRangeEndTime = TimeRange.START_OF_DAY;    
   
+    //Linear scan to assess all possible time slots between and before events
     for (TimeRange currentTimeRange : relevantEventTimes) {
       int currentStartTime = currentTimeRange.start();
       int currentEndTime = currentTimeRange.end();
@@ -59,7 +55,7 @@ public final class FindMeetingQuery {
       }
     }
     
-    //Process the last available timeRange from end of last event to end of day.
+    //Process the timeRange from end of last event to end of day, or the entire day if there are no events
     addPossibleTimeRange(answer, combinedRangeEndTime, TimeRange.END_OF_DAY, requestDuration, true);
     
     return answer;
