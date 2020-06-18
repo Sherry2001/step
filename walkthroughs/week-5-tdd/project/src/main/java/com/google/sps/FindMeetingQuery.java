@@ -23,15 +23,12 @@ import java.util.List;
 import java.util.Set;
 
 public final class FindMeetingQuery {
-    
-  private Collection<TimeRange> answer;
-  private long requestDuration;
-  
   public Collection<TimeRange> query(Collection<Event> events, MeetingRequest request) {
-    answer = new ArrayList<TimeRange>();
+    
+    Collection<TimeRange> answer = new ArrayList<TimeRange>();
 
     Collection<String> requestAttendees = request.getAttendees();
-    requestDuration = request.getDuration();
+    long requestDuration = request.getDuration();
     
     //Filter events to only consider events that have attendees also in the Meeting Requested
     List<TimeRange> relevantEventTimes = filterEvents(events, requestAttendees);
@@ -52,14 +49,14 @@ public final class FindMeetingQuery {
           combinedRangeEndTime = currentEndTime;
         }
       } else {
-        addPossibleTimeRange(combinedRangeEndTime, currentStartTime, false);
+        addPossibleTimeRange(answer, combinedRangeEndTime, currentStartTime, requestDuration, false);
         combinedRangeStartTime = currentStartTime;
         combinedRangeEndTime = currentEndTime;
       }
     }
     
     //Process the timeRange from end of last event to end of day, or the entire day if there are no events
-    addPossibleTimeRange(combinedRangeEndTime, TimeRange.END_OF_DAY, true);
+    addPossibleTimeRange(answer, combinedRangeEndTime, TimeRange.END_OF_DAY, requestDuration, true);
     
     return answer;
   }
@@ -94,7 +91,7 @@ public final class FindMeetingQuery {
    * @param requestDuration
    * @return true or false, whether or not this time works 
    */
-  private boolean validTimeRange(int startTime, int endTime) {
+  private boolean validTimeRange(int startTime, int endTime, long requestDuration) {
       return (endTime - startTime >= requestDuration);
   }
   
@@ -108,8 +105,9 @@ public final class FindMeetingQuery {
    * @param requestDuration
    * @param inclusive
    */
-  private void addPossibleTimeRange(int startTime, int endTime, boolean inclusive) {
-    if (validTimeRange(startTime, endTime)) {
+  private void addPossibleTimeRange(Collection<TimeRange> answer, int startTime, int endTime, 
+          long requestDuration, boolean inclusive) {
+    if (validTimeRange(startTime, endTime, requestDuration)) {
       answer.add(TimeRange.fromStartEnd(startTime, endTime, inclusive));
     }
   }
