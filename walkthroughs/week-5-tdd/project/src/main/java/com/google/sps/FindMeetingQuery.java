@@ -45,7 +45,6 @@ public final class FindMeetingQuery {
     
     return answer;
   }
-  
  
   /**
    * Helper function that updates a list of available times for meeting, given
