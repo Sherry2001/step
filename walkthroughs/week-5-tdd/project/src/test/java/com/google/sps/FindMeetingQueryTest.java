@@ -207,6 +207,7 @@ public final class FindMeetingQueryTest {
 
     request.addOptionalAttendee(PERSON_A);
     request.addOptionalAttendee(PERSON_B);
+    request.addOptionalAttendee(PERSON_C);
     
     Collection<TimeRange> actual = query.query(events, request);
     Collection<TimeRange> expected =
@@ -228,7 +229,7 @@ public final class FindMeetingQueryTest {
     // Options : None
 
     Collection<Event> events = Arrays.asList(
-        new Event("Event 1", TimeRange.fromStartDuration(TIME_0800AM, DURATION_1_HOUR),
+        new Event("Event 1", TimeRange.fromStartEnd(TimeRange.START_OF_DAY, TIME_0900AM, false ),
             Arrays.asList(PERSON_A)),
         new Event("Event 2", TimeRange.fromStartDuration(TIME_0900AM, TimeRange.END_OF_DAY),
             Arrays.asList(PERSON_B)));

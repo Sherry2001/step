@@ -27,41 +27,61 @@ public final class FindMeetingQuery {
     
     Collection<TimeRange> answer = new ArrayList<TimeRange>();
 
-    Collection<String> requestAttendees = request.getAttendees();
+    Collection<String> requestAttendees = new ArrayList<String>(request.getAttendees());
+    requestAttendees.addAll(request.getOptionalAttendees());
     long requestDuration = request.getDuration();
     
-    //Filter events to only consider events that have attendees also in the Meeting Requested
     List<TimeRange> relevantEventTimes = filterEvents(events, requestAttendees);
-    
-    Collections.sort(relevantEventTimes, TimeRange.ORDER_BY_START);
 
-    //Variables used to resolve time range overlaps during linear scan 
-    int combinedRangeStartTime;
-    int combinedRangeEndTime = TimeRange.START_OF_DAY;    
-  
-    //Linear scan to assess all possible time slots between and before events
-    for (TimeRange currentTimeRange : relevantEventTimes) {
-      int currentStartTime = currentTimeRange.start();
-      int currentEndTime = currentTimeRange.end();
-      
-      if (currentStartTime <= combinedRangeEndTime) {
-        if (currentEndTime > combinedRangeEndTime) {
-          combinedRangeEndTime = currentEndTime;
-        }
-      } else {
-        addPossibleTimeRange(answer, combinedRangeEndTime, currentStartTime, requestDuration, false);
-        combinedRangeStartTime = currentStartTime;
-        combinedRangeEndTime = currentEndTime;
-      }
-    }
+    System.out.println(relevantEventTimes);
+    findPossibleTimes(answer, relevantEventTimes, requestDuration);
     
-    //Process the timeRange from end of last event to end of day, or the entire day if there are no events
-    addPossibleTimeRange(answer, combinedRangeEndTime, TimeRange.END_OF_DAY, requestDuration, true);
+    //If accommodating optional attendees isn't possible, only consider mandatory attendees
+    if (answer.size() == 0 && request.getAttendees().size() > 0) {
+      requestAttendees = request.getAttendees();  
+      relevantEventTimes = filterEvents(events, requestAttendees);
+      findPossibleTimes(answer, relevantEventTimes, requestDuration);
+    }
     
     return answer;
   }
   
  
+  /**
+   * Helper function that updates a list of available times for meeting, given
+   * @param answer- list containing available times
+   * @param relevantEventTimes- events during the day to plan around
+   * @param requestDuration- how long the request meeting is
+   */
+  private void findPossibleTimes(Collection<TimeRange> answer, List<TimeRange> relevantEventTimes, long requestDuration) {
+    //Filter events to only consider events that have mandatory attendees also in the Meeting Requested
+      
+      Collections.sort(relevantEventTimes, TimeRange.ORDER_BY_START);
+
+      //Variables used to resolve time range overlaps during linear scan 
+      int combinedRangeStartTime;
+      int combinedRangeEndTime = TimeRange.START_OF_DAY;    
+    
+      //Linear scan to assess all possible time slots between and before events
+      for (TimeRange currentTimeRange : relevantEventTimes) {
+        int currentStartTime = currentTimeRange.start();
+        int currentEndTime = currentTimeRange.end();
+        
+        if (currentStartTime <= combinedRangeEndTime) {
+          if (currentEndTime > combinedRangeEndTime) {
+            combinedRangeEndTime = currentEndTime;
+          }
+        } else {
+          addPossibleTimeRange(answer, combinedRangeEndTime, currentStartTime, requestDuration, false);
+          combinedRangeStartTime = currentStartTime;
+          combinedRangeEndTime = currentEndTime;
+        }
+      }
+      
+      //Process the timeRange from end of last event to end of day, or the entire day if there are no events
+      addPossibleTimeRange(answer, combinedRangeEndTime, TimeRange.END_OF_DAY, requestDuration, true);
+  }
+  
   /**
    * Helper function to filter through the events given and only return the time ranges 
    * for events that have attendees in the MeetingRequest's attendees list.
