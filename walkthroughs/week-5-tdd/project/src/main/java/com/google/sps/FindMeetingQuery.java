@@ -90,7 +90,7 @@ public final class FindMeetingQuery {
    * @return true or false, whether or not this time works 
    */
   private boolean validTimeRange(int startTime, int endTime, long requestDuration) {
-      return endTime - startTime >= requestDuration;
+    return endTime - startTime >= requestDuration;
   }
   
   /**
