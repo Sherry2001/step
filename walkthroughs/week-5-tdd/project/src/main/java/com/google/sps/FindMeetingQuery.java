@@ -71,13 +71,11 @@ public final class FindMeetingQuery {
    * @return List of TimeRange for events that have attendees who are also in the requested meeting
    */
   private List<TimeRange> filterEvents(Collection<Event> events, Collection<String> requestAttendees) {
-    Iterator<Event> eventsIterator = events.iterator(); 
     List<TimeRange> relevantEventTimes = new ArrayList<TimeRange>();
-    while (eventsIterator.hasNext()) {
-      Event event = eventsIterator.next(); 
+    for (Event event: events) {
       Set<String> eventAttendees = new HashSet<String>(event.getAttendees());
       eventAttendees.retainAll(requestAttendees);
-      if(eventAttendees.size() > 0) {
+      if(!eventAttendees.isEmpty()) {
         relevantEventTimes.add(event.getWhen());
       }
     }
@@ -92,7 +90,7 @@ public final class FindMeetingQuery {
    * @return true or false, whether or not this time works 
    */
   private boolean validTimeRange(int startTime, int endTime, long requestDuration) {
-      return (endTime - startTime >= requestDuration);
+      return endTime - startTime >= requestDuration;
   }
   
   /**
