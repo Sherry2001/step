@@ -47,7 +47,8 @@ public final class FindMeetingQuery {
   }
  
   /**
-   * Helper function that updates a list of available times for meeting, given
+   * Helper function that updates a list of available times for the meeting.
+   * 
    * @param answer- list containing available times
    * @param relevantEventTimes- events during the day to plan around
    * @param requestDuration- how long the request meeting is
