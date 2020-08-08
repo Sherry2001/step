@@ -25,7 +25,7 @@ import java.util.Set;
 public final class FindMeetingQuery {
   public Collection<TimeRange> query(Collection<Event> events, MeetingRequest request) {
     
-    Collection<TimeRange> answer = new ArrayList<TimeRange>();
+    Collection<TimeRange> answer = new ArrayList<>();
 
     Collection<String> requestAttendees = request.getAttendees();
     long requestDuration = request.getDuration();
@@ -36,7 +36,6 @@ public final class FindMeetingQuery {
     Collections.sort(relevantEventTimes, TimeRange.ORDER_BY_START);
 
     //Variables used to resolve time range overlaps during linear scan 
-    int combinedRangeStartTime;
     int combinedRangeEndTime = TimeRange.START_OF_DAY;    
   
     //Linear scan to assess all possible time slots between and before events
@@ -45,12 +44,9 @@ public final class FindMeetingQuery {
       int currentEndTime = currentTimeRange.end();
       
       if (currentStartTime <= combinedRangeEndTime) {
-        if (currentEndTime > combinedRangeEndTime) {
-          combinedRangeEndTime = currentEndTime;
-        }
+        combinedRangeEndTime = Math.max(currentEndTime, combinedRangeEndTime);
       } else {
         addPossibleTimeRange(answer, combinedRangeEndTime, currentStartTime, requestDuration, false);
-        combinedRangeStartTime = currentStartTime;
         combinedRangeEndTime = currentEndTime;
       }
     }
