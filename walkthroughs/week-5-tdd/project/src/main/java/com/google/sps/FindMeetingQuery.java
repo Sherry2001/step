@@ -34,11 +34,10 @@ public final class FindMeetingQuery {
     //Get events that have mandatory attendees also in the Meeting Requested
     List<TimeRange> relevantEventTimes = filterEvents(events, requestAttendees);
 
-    System.out.println(relevantEventTimes);
     findPossibleTimes(answer, relevantEventTimes, requestDuration);
     
     //If accommodating optional attendees isn't possible, only consider mandatory attendees
-    if (answer.size() == 0 && request.getAttendees().size() > 0) {
+    if (answer.isEmpty()  && !request.getAttendees().isEmpty()) {
       requestAttendees = request.getAttendees();  
       relevantEventTimes = filterEvents(events, requestAttendees);
       findPossibleTimes(answer, relevantEventTimes, requestDuration);
@@ -56,7 +55,7 @@ public final class FindMeetingQuery {
    */
   private void findPossibleTimes(Collection<TimeRange> answer, List<TimeRange> relevantEventTimes, long requestDuration) {      
     Collections.sort(relevantEventTimes, TimeRange.ORDER_BY_START);
-    
+
     //Variables used to resolve time range overlaps during linear scan 
     int combinedRangeEndTime = TimeRange.START_OF_DAY;    
   

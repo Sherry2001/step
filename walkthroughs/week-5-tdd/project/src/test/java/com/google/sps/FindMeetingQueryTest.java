@@ -244,7 +244,7 @@ public final class FindMeetingQueryTest {
     Collection<TimeRange> expected =
         Arrays.asList();
 
-    Assert.assertEquals(expected, actual);
+    Assert.assertTrue(actual.isEmpty());
   }
   
   @Test
@@ -350,7 +350,7 @@ public final class FindMeetingQueryTest {
   }
   
   @Test
-  public void havingOptinalAttendeeNotEnoughTime() {
+  public void havingOptionalAttendeeNotEnoughTime() {
     // Have one mandatory person, but there's just enough room at one point in the day to
     // have the meeting. 
     // Accomodating the optional attendee B would mean shortening meeting time- ignore. 
