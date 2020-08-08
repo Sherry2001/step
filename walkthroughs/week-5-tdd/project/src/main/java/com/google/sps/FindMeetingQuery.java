@@ -25,7 +25,7 @@ import java.util.Set;
 public final class FindMeetingQuery {
   public Collection<TimeRange> query(Collection<Event> events, MeetingRequest request) {
     
-    Collection<TimeRange> answer = new ArrayList<TimeRange>();
+    Collection<TimeRange> answer = new ArrayList<>();
 
     Collection<String> requestAttendees = new ArrayList<String>(request.getAttendees());
     requestAttendees.addAll(request.getOptionalAttendees());
@@ -55,26 +55,21 @@ public final class FindMeetingQuery {
    * @param requestDuration- how long the request meeting is
    */
   private void findPossibleTimes(Collection<TimeRange> answer, List<TimeRange> relevantEventTimes, long requestDuration) {      
-      Collections.sort(relevantEventTimes, TimeRange.ORDER_BY_START);
-
-      //Variables used to resolve time range overlaps during linear scan 
-      int combinedRangeStartTime;
-      int combinedRangeEndTime = TimeRange.START_OF_DAY;    
+    Collections.sort(relevantEventTimes, TimeRange.ORDER_BY_START);
     
-      //Linear scan to assess all possible time slots between and before events
-      for (TimeRange currentTimeRange : relevantEventTimes) {
-        int currentStartTime = currentTimeRange.start();
-        int currentEndTime = currentTimeRange.end();
-        
-        if (currentStartTime <= combinedRangeEndTime) {
-          if (currentEndTime > combinedRangeEndTime) {
-            combinedRangeEndTime = currentEndTime;
-          }
-        } else {
-          addPossibleTimeRange(answer, combinedRangeEndTime, currentStartTime, requestDuration, false);
-          combinedRangeStartTime = currentStartTime;
-          combinedRangeEndTime = currentEndTime;
-        }
+    //Variables used to resolve time range overlaps during linear scan 
+    int combinedRangeEndTime = TimeRange.START_OF_DAY;    
+  
+    //Linear scan to assess all possible time slots between and before events
+    for (TimeRange currentTimeRange : relevantEventTimes) {
+      int currentStartTime = currentTimeRange.start();
+      int currentEndTime = currentTimeRange.end();
+      
+      if (currentStartTime <= combinedRangeEndTime) {
+        combinedRangeEndTime = Math.max(currentEndTime, combinedRangeEndTime);
+      } else {
+        addPossibleTimeRange(answer, combinedRangeEndTime, currentStartTime, requestDuration, false);
+        combinedRangeEndTime = currentEndTime;
       }
       
       //Process the timeRange from end of last event to end of day, or the entire day if there are no events
@@ -90,13 +85,11 @@ public final class FindMeetingQuery {
    * @return List of TimeRange for events that have attendees who are also in the requested meeting
    */
   private List<TimeRange> filterEvents(Collection<Event> events, Collection<String> requestAttendees) {
-    Iterator<Event> eventsIterator = events.iterator(); 
     List<TimeRange> relevantEventTimes = new ArrayList<TimeRange>();
-    while (eventsIterator.hasNext()) {
-      Event event = eventsIterator.next(); 
+    for (Event event: events) {
       Set<String> eventAttendees = new HashSet<String>(event.getAttendees());
       eventAttendees.retainAll(requestAttendees);
-      if(eventAttendees.size() > 0) {
+      if(!eventAttendees.isEmpty()) {
         relevantEventTimes.add(event.getWhen());
       }
     }
@@ -111,7 +104,11 @@ public final class FindMeetingQuery {
    * @return true or false, whether or not this time works 
    */
   private boolean validTimeRange(int startTime, int endTime, long requestDuration) {
+<<<<<<< HEAD
     return (endTime - startTime >= requestDuration);
+=======
+    return endTime - startTime >= requestDuration;
+>>>>>>> 6e6c225a863901834a80e80b5c168aeb004dcf42
   }
   
   /**
