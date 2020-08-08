@@ -3,7 +3,7 @@
  */
 function deleteData() {
   fetch('/delete-data', {method:'POST'}).then(() => {
-      hideAlert();
+      document.getElementById("alert-card").style.display = 'none';
       getData();
   });
 }
@@ -16,13 +16,14 @@ function deleteBuffer() {
     let message = document.createElement('p');
 
     if (responseJson.loggedIn) {
-      const access = responseJson.access;
-      if (access) {
+      const email = responseJson.email; 
+      if (email === 'sherryshi2001@gmail.com' || email === 'shershi@google.com' ||
+          email === 'alfredh@google.com' || email === 'ricazhang@google.com') {
         message.innerHTML = 'Hi Sherry, are you sure you want to delete?';
         alertCard.appendChild(message);
         const deleteButton = document.createElement('button'); 
         deleteButton.innerHTML = 'Delete';
-        deleteButton.onclick = deleteData;
+        deleteButton.onclick = () => {deleteData()};
         alertCard.appendChild(deleteButton);
       } else {
         message.innerHTML = 'Sorry, only Sherry can delete these';
@@ -42,28 +43,8 @@ function deleteBuffer() {
       loginLink.href = responseJson.url;
       alertCard.appendChild(loginLink);
     }
-    showAlertMode(alertCard);
+    alertCard.style.display = 'block';
   })
-}
-
-/**
- * Helper to show alert panel and blacked out background
- */
-function showAlertMode(alertCard) {
-  alertCard.classList.add('active');
-  const backdrop = document.getElementById('backdrop');
-  backdrop.classList.add('active');
-  backdrop.addEventListener('click', hideAlert);
-}
-
-/**
- * Helper to clear alert mode
- */
-function hideAlert() {
-  const alertCard = document.getElementById('alert-card');
-  const backdrop = document.getElementById('backdrop');
-  backdrop.classList.remove('active');
-  alertCard.classList.remove('active');
 }
 
 /**
@@ -164,6 +145,21 @@ function randomNumberGenerator(factsLength) {
 }
 
 /**
+ * Implements Sticky Nav Bar
+ */
+document.addEventListener('DOMContentLoaded', function() {
+  let navbar = document.getElementById('nav');
+  let offsetPos = navbar.offsetTop;
+  window.onscroll = function() {
+    if (window.pageYOffset >= offsetPos) {
+      navbar.classList.add('sticky')
+    } else {
+      navbar.classList.remove('sticky');
+    }
+  };
+});
+
+/**
  *Functions to toggle suggestion box form on and off
  */
 function toggleForm() {
@@ -194,28 +190,15 @@ function setFormActionBlobstoreUrl(formId) {
 }
 
 /**
- * Performs the following after page loads
+ *Listens to page load
  */
 document.addEventListener('DOMContentLoaded', (event) => {
-  /**
-   * Implements Sticky Nav Bar
-   */
-  let navbar = document.getElementById('nav');
-  let offsetPos = navbar.offsetTop;
-  window.onscroll = function() {
-    if (window.pageYOffset >= offsetPos) {
-      navbar.classList.add('sticky')
-    } else {
-      navbar.classList.remove('sticky');
-    }
-  };
-
-  /**
-   * Form submission-  posts form data to datatstore and google sheets
-   */
   const scriptURL = 'https://script.google.com/macros/s/AKfycbygq04RYi-5qwb82bmfONkahtZAsrz0WkSoGfHLgHVkPWnnmSI/exec';
   const form = document.forms['recommendation-form'];
-  
+
+  /**
+   * Upon submission, adds data to both datastore and google sheets
+   */
   form.addEventListener('submit', (e) => {
     e.preventDefault();
     const name = document.getElementById('name-excel').value;
